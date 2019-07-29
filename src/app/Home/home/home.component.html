@@ -13,8 +13,8 @@
                 <div class="left-navigation">
                     <ul class="list">
                         <h5><strong>WHEREABOUTS</strong></h5>
-                        <li>Services<i class="fas fa-atlas"></i></li>
-                        <li>Factures</li>
+                        <li routerLink="Services"> Services </li>
+                        <li routerLink="factures">Factures</li>
                         <li>Tableau de bord</li>
                         <li>Excel</li>
                         <li>Deconnexion</li>
@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-10 col-sm-8 main-content">
             <!--Main content code to be written here --> 
-            <app-int-service></app-int-service>
+            <router-outlet></router-outlet>
 
             
         </div>

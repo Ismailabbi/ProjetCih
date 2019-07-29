@@ -1,4 +1,6 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import {Popup} from 'ng2-opd-popup';
 
 @Component({
   selector: 'app-int-service',
@@ -10,7 +12,11 @@ import { Component, OnInit ,ViewChild} from '@angular/core';
 
 
 export class IntServiceComponent implements OnInit {
+  constructor(private _flashMessagesService: FlashMessagesService,private popup:Popup) {}
+
   ngOnInit() {
+    this._flashMessagesService.show('We are in about component!', { cssClass: 'alert-success', timeout: 1000 });
+
   }
   filterbol:boolean=false;
  
@@ -26,7 +32,10 @@ export class IntServiceComponent implements OnInit {
   affchfilter(){
    this.filterbol=!this.filterbol
   }
-  
+  show(){
+    this.popup.show();
+
+  }
  
 
 }

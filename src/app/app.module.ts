@@ -12,13 +12,17 @@ import {MatTableModule} from '@angular/material/table';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import {PopupModule} from 'ng2-opd-popup';
+import { ListfactureComponent } from './Home/home/listfacture/listfacture.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthentificationComponent,
     HomeComponent,
-    IntServiceComponent
+    IntServiceComponent,
+    ListfactureComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,12 @@ import { FormsModule } from '@angular/forms';
     MatTableModule,
     MatPaginatorModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    FlashMessagesModule.forRoot(),
+    PopupModule.forRoot()
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
