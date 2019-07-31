@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +34,9 @@ import { ListfactureComponent } from './Home/home/listfacture/listfacture.compon
     NgbModule,
     FormsModule,
     FlashMessagesModule.forRoot(),
-    PopupModule.forRoot()
+    PopupModule.forRoot(),
+    HttpClientModule
+
 
 
 

@@ -1,7 +1,8 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import {Popup} from 'ng2-opd-popup';
-
+import {SrvsService} from '../../../Services/srvs.service'
+import { Service } from 'src/app/Models/Service';
 @Component({
   selector: 'app-int-service',
   templateUrl: './int-service.component.html',
@@ -12,23 +13,25 @@ import {Popup} from 'ng2-opd-popup';
 
 
 export class IntServiceComponent implements OnInit {
-  constructor(private _flashMessagesService: FlashMessagesService,private popup:Popup) {}
-
-  ngOnInit() {
-    this._flashMessagesService.show('We are in about component!', { cssClass: 'alert-success', timeout: 1000 });
-
-  }
+  constructor(private _flashMessagesService: FlashMessagesService,private popup:Popup,private SrvSrvsService:SrvsService) {}
+  s:Service[]
   filterbol:boolean=false;
+  page ;
+  pageSize ;
+  collectionSize ;
  
-
-  page = 1;
-  pageSize = 8;
-  collectionSize = COUNTRIES.length;
-  get countries(): Country[] {
-    return COUNTRIES
-      .map((country, i) => ({id: i + 1, ...country}))
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  ngOnInit() {
+    this.SrvSrvsService.get_services().subscribe((data)=>{
+      this.s=data
+      
+ this. page = 1;
+ this. pageSize = 8;
+  this.collectionSize = this.s.length;
+ 
+    })
   }
+ 
+  
   affchfilter(){
    this.filterbol=!this.filterbol
   }
@@ -36,9 +39,18 @@ export class IntServiceComponent implements OnInit {
     this.popup.show();
 
   }
- 
+  get countries(): any[] {
+    COUNTRIES=this.s
+    console.log(COUNTRIES)
+    return COUNTRIES
+      .map((country, i) => ({id: i + 1, ...country}))
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+    
+  }
 
 }
+
+
 interface Country {
   id?: number;
   name: string;
@@ -46,7 +58,7 @@ interface Country {
   area: number;
   population: number;
 }
-const COUNTRIES: Country[] = [
+let COUNTRIES: any[] = [
   {
     name: 'Russia',
     flag: 'f/f3/Flag_of_Russia.svg',
