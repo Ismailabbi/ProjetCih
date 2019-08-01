@@ -1,6 +1,9 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { SrvsService } from 'src/app/Services/srvs.service';
 import { Service } from 'src/app/Models/Service';
+import { Facture } from 'src/app/Models/Factures';
+import { FactureService } from 'src/app/Services/facture.service';
+import {Popup} from 'ng2-opd-popup';
 
 @Component({
   selector: 'app-listfacture',
@@ -9,13 +12,31 @@ import { Service } from 'src/app/Models/Service';
 })
 export class ListfactureComponent implements OnInit {
   
-  constructor(private SrvSrvsService:SrvsService) { }
-  s:Service[]
+  constructor(private SrvSrvsService:SrvsService,private FactureServicess:FactureService,private popup:Popup) { }
+  s:Facture[]
+  factpop:Facture
   filterbol:boolean=false;
   page ;
   pageSize ;
   collectionSize ;
- 
+  show(country:Facture){
+    this.popup.options = {
+      header: "Your custom header",
+      color: "#5cb85c", // red, blue....
+      widthProsentage: 80, // The with of the popou measured by browser width
+      animationDuration: 1, // in seconds, 0 = no animation
+      showButtons: true, // You can hide this in case you want to use custom buttons
+      confirmBtnContent: "OK", // The text on your confirm button
+      cancleBtnContent: "Cancel", // the text on your cancel button
+      confirmBtnClass: "btn btn-default", // your class for styling the confirm button
+      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
+      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+  };
+  this.popup.show(this.popup.options);
+  this.factpop=country
+
+  }
+  
   get countries(): any[] {
     COUNTRIES=this.s
     console.log(COUNTRIES)
@@ -28,7 +49,7 @@ export class ListfactureComponent implements OnInit {
     this.filterbol=!this.filterbol
    }
   ngOnInit() {
-    this.SrvSrvsService.get_services().subscribe((data)=>{
+    this.FactureServicess.get_factures().subscribe((data)=>{
       this.s=data
       
  this. page = 1;
@@ -37,6 +58,7 @@ export class ListfactureComponent implements OnInit {
  
     })
   }
+  
 
 }
 interface Country {

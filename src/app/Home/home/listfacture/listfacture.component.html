@@ -7,7 +7,16 @@
   </div>
     <div class="panel-body">
         <tr *ngIf="filterbol" class="filters">
-            <th><input type="text" class="form-control" placeholder="#" ></th>
+            <th>
+                
+                    <select class="form-control" id="exampleSelect1">
+                      <option>Account Management Systems AMS	</option>
+                      <option>File Maintenance	</option>
+                      <option>File Transmission - Acquirer	</option>
+                    
+                    </select>
+                 
+            </th>
             <th><input type="text" class="form-control" placeholder="First Name" ></th>
             <th><input type="text" class="form-control" placeholder="Last Name" ></th>
             <th><input type="text" class="form-control" placeholder="Username" ></th>
@@ -15,21 +24,27 @@
         <table class="table table-striped">
             <thead>
             <tr>
-              <th scope="col">ServiceID</th>
-              <th scope="col">ServiceNAME</th>
-              <th scope="col">Typedeservice</th>
-              <th scope="col">Classification</th>
+              <th scope="col">DOCUMENTTYPE</th>
+              <th scope="col">SERVICECODEDESCRIPTION</th>
+              <th scope="col">QUANTITYAMOUNT</th>
+              <th scope="col">TOTALCHARGE</th>
+              <th scope="col">EVENTID</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let country of countries">
-              <th scope="row">{{ country.ServiceID }}</th>
+              <th scope="row">{{ country.DOCUMENTTYPE }}</th>
               <td>
                
-                {{ country.ServiceNAME }}
+                {{ country.SERVICECODEDESCRIPTION }}
               </td>
-              <td>{{ country.Typedeservice }}</td>
-              <td>{{ country.Classification  }}</td>
+              <td>{{ country.QUANTITYAMOUNT }}</td>
+              <td>{{ country.TOTALCHARGE  }}</td>
+              <td>{{ country.EVENTID  }}</td>
+              <td>
+                <button type="button"(click)="show(country)" class="btn btn-info">Info</button>
+
+              </td>
             </tr>
             </tbody>
           </table>
@@ -43,6 +58,61 @@
     </div>
   </div>
   <popup>
-    Add your custom html elements here
-</popup>
-<button (click)="show()">ok</button>
+    <div>
+        <div style='overflow-x:scroll;overflow-y:hidden;'>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">DOCUMENTTYPE</th>
+                    <th scope="col">INVOICENUMBER</th>
+                    <th scope="col">CURRENCY</th>
+                    <th scope="col">BILLINGCYCLEDATE</th>
+                    <th scope="col">INVOICEICA</th>
+                    <th scope="col">ACTIVITYICA</th>
+                    <th scope="col">BILLABLEICA</th>
+                    <th scope="col">COLLECTIONMETHOD</th>
+                    <th scope="col">SERVICECODE</th>
+                    <th scope="col">SERVICECODEDESCRIPTION</th>
+                
+                    <th scope="col">EVENTID</th>
+                    <th scope="col">EVENTDESCRIPTION</th>
+                    <th scope="col">AFFILIATE</th>
+                    <th scope="col">UOM</th>
+                    <th scope="col">QUANTITYAMOUNT</th>
+                    <th scope="col">RATE</th>
+                    <th scope="col">CHARGE</th>
+                    <th scope="col">TAXCHARGE</th>
+                    <th scope="col">TOTALCHARGE</th>
+          
+                  </tr>
+                </thead>
+                <tbody>
+                <td>{{ factpop.DOCUMENTTYPE }}</td>
+                <td>{{ factpop.INVOICENUMBER }}</td>
+                <td>{{ factpop.CURRENCY }}</td>
+                <td>{{ factpop.BILLINGCYCLEDATE }}</td>
+                <td>{{ factpop.INVOICEICA }}</td>
+                <td>{{ factpop.ACTIVITYICA }}</td>
+                <td>{{ factpop.BILLABLEICA }}</td>
+                <td>{{ factpop.COLLECTIONMETHOD }}</td>
+                <td>{{ factpop.SERVICECODE }}</td> 
+                <td>{{ factpop.SERVICECODEDESCRIPTION }}</td> 
+               
+                <td>{{ factpop.EVENTID }}</td>   
+                <td>{{ factpop.EVENTDESCRIPTION }}</td>
+                <td>{{ factpop.AFFILIATE }}</td>
+                <td>{{ factpop.UOM }}</td>
+                <td>{{ factpop.QUANTITYAMOUNT }}</td>
+                <td>{{ factpop.RATE }}</td>
+                <td>{{ factpop.CHARGE }}</td>
+                <td>{{ factpop.TAXCHARGE }}</td>
+                <td>{{ factpop.TOTALCHARGE }}</td>
+
+
+                
+   
+                </tbody>
+              </table>
+        </div>
+   </div>
+  </popup>
