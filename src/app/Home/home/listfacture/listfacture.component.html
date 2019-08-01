@@ -9,7 +9,8 @@
         <tr *ngIf="filterbol" class="filters">
             <th>
                 
-                    <select class="form-control" id="exampleSelect1">
+                    <select class="form-control" id="exampleSelect1" >
+                      <option>SERVICECODEDESCRIPTION	</option>
                       <option>Account Management Systems AMS	</option>
                       <option>File Maintenance	</option>
                       <option>File Transmission - Acquirer	</option>
@@ -17,9 +18,27 @@
                     </select>
                  
             </th>
-            <th><input type="text" class="form-control" placeholder="First Name" ></th>
-            <th><input type="text" class="form-control" placeholder="Last Name" ></th>
-            <th><input type="text" class="form-control" placeholder="Username" ></th>
+            <th>	
+                <select class="form-control" id="exampleSelect1">
+                    <option>EVENTDESCRIPTION	</option>
+                    <option>File Transmission Fee First Presentments On-Us		</option>
+                    <option>Stand-In Range Blocking Residency		</option>
+                    <option>File Transmission Fee Second Presentments	</option>
+                  
+                  </select>
+
+
+
+            </th>
+            <th>
+            
+                <select class="form-control" id="exampleSelect1">
+                    <option>01/07/18	</option>
+                    
+                  
+                  </select>
+            </th>
+           
         </tr>
         <table class="table table-striped">
             <thead>
@@ -27,8 +46,10 @@
               <th scope="col">DOCUMENTTYPE</th>
               <th scope="col">SERVICECODEDESCRIPTION</th>
               <th scope="col">QUANTITYAMOUNT</th>
-              <th scope="col">TOTALCHARGE</th>
-              <th scope="col">EVENTID</th>
+              <th scope="col">EVENTDESCRIPTION</th>
+              <th scope="col">BILLINGCYCLEDATE</th>
+
+
             </tr>
             </thead>
             <tbody>
@@ -39,8 +60,8 @@
                 {{ country.SERVICECODEDESCRIPTION }}
               </td>
               <td>{{ country.QUANTITYAMOUNT }}</td>
-              <td>{{ country.TOTALCHARGE  }}</td>
-              <td>{{ country.EVENTID  }}</td>
+              <td>{{ country.EVENTDESCRIPTION  }}</td>
+              <td>{{ country.BILLINGCYCLEDATE  }}</td>
               <td>
                 <button type="button"(click)="show(country)" class="btn btn-info">Info</button>
 

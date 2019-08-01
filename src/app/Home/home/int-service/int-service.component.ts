@@ -23,7 +23,7 @@ export class IntServiceComponent implements OnInit {
   ngOnInit() {
     this.SrvSrvsService.get_services().subscribe((data)=>{
       this.s=data
-      
+      console.log(data)
  this. page = 1;
  this. pageSize = 8;
   this.collectionSize = this.s.length;
