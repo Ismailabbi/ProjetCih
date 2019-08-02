@@ -8,10 +8,50 @@
 </div>
   <div class="panel-body">
       <tr *ngIf="filterbol" class="filters">
-          <th><input type="text" class="form-control" placeholder="#" ></th>
-          <th><input type="text" class="form-control" placeholder="First Name" ></th>
-          <th><input type="text" class="form-control" placeholder="Last Name" ></th>
-          <th><input type="text" class="form-control" placeholder="Username" ></th>
+          <th>
+
+
+              
+                
+                  <select class="form-control" id="exampleSelect1" >
+                    <option>ServiceNAME		</option>
+                    <option>Issuer Lounge Billing		</option>
+                    <option>Anti-Money Laundering		</option>
+                    
+                  
+                  </select>
+               
+          
+          </th>
+          <th>
+              <th>
+
+
+              
+                
+                  <select class="form-control" id="exampleSelect1" >
+                    <option>Typedeservice		</option>
+                    <option>Services non transactionnels adossés aux cartes		</option>
+                    <option>Service d'anti Blanchiment d'argent		</option>
+                    
+                  
+                  </select>
+
+
+          </th>
+          <th>
+ 
+              <select class="form-control" id="exampleSelect1" >
+                  <option>Classification		</option>
+                  <option>Services cartes</option>
+                  <option>Risque & fraud management
+                    </option>
+                  
+                
+                </select>
+
+          </th>
+        
       </tr>
       <table class="table table-striped">
           <thead>

@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import {PopupModule} from 'ng2-opd-popup';
 import { ListfactureComponent } from './Home/home/listfacture/listfacture.component';
+import { Ng2UploaderModule } from 'ng2-uploader';
+import { UploadComponent } from './Home/home/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { ListfactureComponent } from './Home/home/listfacture/listfacture.compon
     AuthentificationComponent,
     HomeComponent,
     IntServiceComponent,
-    ListfactureComponent
+    ListfactureComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { ListfactureComponent } from './Home/home/listfacture/listfacture.compon
     FormsModule,
     FlashMessagesModule.forRoot(),
     PopupModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    Ng2UploaderModule
 
 
 
