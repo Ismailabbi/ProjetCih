@@ -16,8 +16,12 @@ import { FormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import {PopupModule} from 'ng2-opd-popup';
 import { ListfactureComponent } from './Home/home/listfacture/listfacture.component';
-import { Ng2UploaderModule } from 'ng2-uploader';
 import { UploadComponent } from './Home/home/upload/upload.component';
+import { TableaubordComponent } from './Home/home/tableaubord/tableaubord.component';
+import { ServicenamePipe } from './servicename.pipe';
+import { SercivnamsPipe } from './pipes/sercivnams.pipe';
+import { TypeservicePipe } from './Pipes/typeservice.pipe';
+import { ClassificationPipe } from './Pipes/classification.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,12 @@ import { UploadComponent } from './Home/home/upload/upload.component';
     HomeComponent,
     IntServiceComponent,
     ListfactureComponent,
-    UploadComponent
+    UploadComponent,
+    TableaubordComponent,
+    ServicenamePipe,
+    SercivnamsPipe,
+    TypeservicePipe,
+    ClassificationPipe
   ],
   imports: [
     BrowserModule,
@@ -39,7 +48,6 @@ import { UploadComponent } from './Home/home/upload/upload.component';
     FlashMessagesModule.forRoot(),
     PopupModule.forRoot(),
     HttpClientModule,
-    Ng2UploaderModule
 
 
 

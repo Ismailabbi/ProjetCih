@@ -1,21 +1,25 @@
-<input type="file"
-       ngFileSelect
-       [options]="options"
-       (onUpload)="handleUpload($event)"
-       (beforeUpload)="beforeUpload($event)">
- 
-<!-- drag & drop file example-->
-<style>
-  .file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
-</style> 
-<div ngFileDrop
-     [options]="options"
-     (onUpload)="handleUpload($event)"
-     [ngClass]="{'file-over': hasBaseDropZoneOver}"
-     (onFileOver)="fileOverBase($event)"
-     (beforeUpload)="beforeUpload($event)">
-</div>
- 
-<div>
-Response: {{ uploadFile | json }}
+
+	<div class="row">
+    <div class="col-md-6 col-md-offset-6">
+
+
+
+    		<div class="card mb">
+              <img class="card-img-top" src="http://www.placehold.it/286x180" alt="Card image cap">
+              <div class="card-body mb">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+               <a href="http://192.168.0.3:9090/CodeIgniter/upload_classification"> <button type="button"   class="btn btn-primary mb">button</button> </a>
+              </div>
+            </div>
+            <div class="card mb">
+              <img class="card-img-top" src="http://www.placehold.it/286x180" alt="Card image cap">
+              <div class="card-body mb">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+               <a href="http://192.168.0.3:9090/CodeIgniter/upload_classification"> <button type="button"   class="btn btn-primary mb">button</button> </a>
+              </div>
+            </div>
+        </div>
+
 </div>

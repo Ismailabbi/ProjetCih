@@ -1,9 +1,9 @@
 export class Service {
     private id:number
- private ServiceID :string
- private ServiceNAME:string
- private Typedeservice:string
- private Classification:string
+ public ServiceID :string
+ public ServiceNAME:string
+ public Typedeservice:string
+ public Classification:string
   public getid(){
       return this.ServiceID
   }

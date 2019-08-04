@@ -3,6 +3,8 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import {Popup} from 'ng2-opd-popup';
 import {SrvsService} from '../../../Services/srvs.service'
 import { Service } from 'src/app/Models/Service';
+import { SercivnamsPipe } from 'src/app/Pipes/sercivnams.pipe';
+
 @Component({
   selector: 'app-int-service',
   templateUrl: './int-service.component.html',
@@ -15,6 +17,9 @@ import { Service } from 'src/app/Models/Service';
 export class IntServiceComponent implements OnInit {
   constructor(private _flashMessagesService: FlashMessagesService,private popup:Popup,private SrvSrvsService:SrvsService) {}
   s:Service[]
+  servicename:string;
+  typeservice:string
+  classification:string
   filterbol:boolean=false;
   page ;
   pageSize ;
@@ -23,12 +28,12 @@ export class IntServiceComponent implements OnInit {
   ngOnInit() {
     this.SrvSrvsService.get_services().subscribe((data)=>{
       this.s=data
-      console.log(data)
  this. page = 1;
  this. pageSize = 8;
   this.collectionSize = this.s.length;
  
     })
+    console.log(this.servicename+"haha")
   }
  
   
@@ -41,7 +46,6 @@ export class IntServiceComponent implements OnInit {
   }
   get countries(): any[] {
     COUNTRIES=this.s
-    console.log(COUNTRIES)
     return COUNTRIES
       .map((country, i) => ({id: i + 1, ...country}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);

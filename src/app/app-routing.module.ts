@@ -4,12 +4,13 @@ import { AuthentificationComponent } from './Login/authentification/authentifica
 import { HomeComponent } from './Home/home/home.component';
 import { ListfactureComponent } from './Home/home/listfacture/listfacture.component';
 import { IntServiceComponent } from './Home/home/int-service/int-service.component';
+import { UploadComponent } from './Home/home/upload/upload.component';
 
 
 const routes: Routes = [
   {path:'login',component:AuthentificationComponent},
   {path:'home',component:HomeComponent , children: [
-   
+    {path:'upload',component:UploadComponent},
     { path: 'factures', component: ListfactureComponent },
     {path:'Services',component:IntServiceComponent}
   ]}

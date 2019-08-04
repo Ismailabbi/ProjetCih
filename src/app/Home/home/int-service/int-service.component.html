@@ -1,4 +1,3 @@
-
 <div class="panel panel-primary t">
   <div class="panel-heading">Services
     
@@ -13,8 +12,8 @@
 
               
                 
-                  <select class="form-control" id="exampleSelect1" >
-                    <option>ServiceNAME		</option>
+                  <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
+                    <option disabled selected hidden [ngValue]="undefined">ServiceNAME		</option>
                     <option>Issuer Lounge Billing		</option>
                     <option>Anti-Money Laundering		</option>
                     
@@ -29,8 +28,10 @@
 
               
                 
-                  <select class="form-control" id="exampleSelect1" >
-                    <option>Typedeservice		</option>
+                  <select class="form-control" id="exampleSelect1"  [(ngModel)]="typeservice" >
+                    <option disabled selected hidden [ngValue]="undefined">Type de service		</option>
+                    <option>Services non transactionnels adossés aux cartes		</option>
+                    <option>Service d'anti Blanchiment d'argent		</option>
                     <option>Services non transactionnels adossés aux cartes		</option>
                     <option>Service d'anti Blanchiment d'argent		</option>
                     
@@ -41,12 +42,12 @@
           </th>
           <th>
  
-              <select class="form-control" id="exampleSelect1" >
-                  <option>Classification		</option>
+              <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
+                  <option  disabled selected hidden [ngValue]="undefined">Classification		</option>
                   <option>Services cartes</option>
-                  <option>Risque & fraud management
-                    </option>
-                  
+                  <option>Risque & fraud management </option>
+                  <option>Services cartes</option>
+                  <option>Risque & fraud managemen </option>
                 
                 </select>
 
@@ -63,7 +64,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let country of countries">
+          <tr *ngFor="let country of countries |sercivnams:servicename|typeservice:typeservice|classification:classification">
             <th scope="row">{{ country.ServiceID }}</th>
             <td>
              
