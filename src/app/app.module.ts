@@ -22,6 +22,8 @@ import { ServicenamePipe } from './servicename.pipe';
 import { SercivnamsPipe } from './pipes/sercivnams.pipe';
 import { TypeservicePipe } from './Pipes/typeservice.pipe';
 import { ClassificationPipe } from './Pipes/classification.pipe';
+import { ServicecodePipe } from './Pipes/servicecode.pipe';
+import { EventdescriptionPipe } from './Pipes/eventdescription.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ClassificationPipe } from './Pipes/classification.pipe';
     ServicenamePipe,
     SercivnamsPipe,
     TypeservicePipe,
-    ClassificationPipe
+    ClassificationPipe,
+    ServicecodePipe,
+    EventdescriptionPipe
   ],
   imports: [
     BrowserModule,

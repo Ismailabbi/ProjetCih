@@ -5,6 +5,7 @@ import { HomeComponent } from './Home/home/home.component';
 import { ListfactureComponent } from './Home/home/listfacture/listfacture.component';
 import { IntServiceComponent } from './Home/home/int-service/int-service.component';
 import { UploadComponent } from './Home/home/upload/upload.component';
+import { TableaubordComponent } from './Home/home/tableaubord/tableaubord.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:'home',component:HomeComponent , children: [
     {path:'upload',component:UploadComponent},
     { path: 'factures', component: ListfactureComponent },
-    {path:'Services',component:IntServiceComponent}
+    {path:'Services',component:IntServiceComponent},
+    {path:'dashbord',component:TableaubordComponent}
   ]}
 
  

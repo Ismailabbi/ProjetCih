@@ -9,8 +9,8 @@
         <tr *ngIf="filterbol" class="filters">
             <th>
                 
-                    <select class="form-control" id="exampleSelect1" >
-                      <option>SERVICECODEDESCRIPTION	</option>
+                    <select class="form-control" id="exampleSelect1" [(ngModel)]="servicecode" >
+                      <option disabled selected hidden [ngValue]="undefined">SERVICECODEDESCRIPTION	</option>
                       <option>Account Management Systems AMS	</option>
                       <option>File Maintenance	</option>
                       <option>File Transmission - Acquirer	</option>
@@ -19,8 +19,8 @@
                  
             </th>
             <th>	
-                <select class="form-control" id="exampleSelect1">
-                    <option>EVENTDESCRIPTION	</option>
+                <select class="form-control" id="exampleSelect1" [(ngModel)]="event">
+                    <option disabled selected hidden [ngValue]="undefined">EVENTDESCRIPTION	</option>
                     <option>File Transmission Fee First Presentments On-Us		</option>
                     <option>Stand-In Range Blocking Residency		</option>
                     <option>File Transmission Fee Second Presentments	</option>
@@ -53,7 +53,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let country of countries">
+            <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event">
               <th scope="row">{{ country.DOCUMENTTYPE }}</th>
               <td>
                

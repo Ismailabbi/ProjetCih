@@ -14,8 +14,10 @@ export class ListfactureComponent implements OnInit {
   
   constructor(private SrvSrvsService:SrvsService,private FactureServicess:FactureService,private popup:Popup) { }
   s:Facture[]
+  servicecode:string
   factpop:Facture
   filterbol:boolean=false;
+  event:string
   page ;
   pageSize ;
   collectionSize ;
