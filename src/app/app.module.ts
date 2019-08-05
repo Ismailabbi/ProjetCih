@@ -24,6 +24,7 @@ import { TypeservicePipe } from './Pipes/typeservice.pipe';
 import { ClassificationPipe } from './Pipes/classification.pipe';
 import { ServicecodePipe } from './Pipes/servicecode.pipe';
 import { EventdescriptionPipe } from './Pipes/eventdescription.pipe';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { EventdescriptionPipe } from './Pipes/eventdescription.pipe';
     FlashMessagesModule.forRoot(),
     PopupModule.forRoot(),
     HttpClientModule,
+    ChartsModule
 
 
 

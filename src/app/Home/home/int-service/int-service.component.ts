@@ -21,6 +21,7 @@ export class IntServiceComponent implements OnInit {
   typeservice:string
   classification:string
   filterbol:boolean=false;
+  dataall:any[]
   page ;
   pageSize ;
   collectionSize ;
@@ -28,9 +29,12 @@ export class IntServiceComponent implements OnInit {
   ngOnInit() {
     this.SrvSrvsService.get_services().subscribe((data)=>{
       this.s=data
- this. page = 1;
+      this.dataall=data
+    
+ this. page = 3;
  this. pageSize = 8;
   this.collectionSize = this.s.length;
+  console.log(data)
  
     })
     console.log(this.servicename+"haha")
@@ -47,8 +51,7 @@ export class IntServiceComponent implements OnInit {
   get countries(): any[] {
     COUNTRIES=this.s
     return COUNTRIES
-      .map((country, i) => ({id: i + 1, ...country}))
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+    
     
   }
 

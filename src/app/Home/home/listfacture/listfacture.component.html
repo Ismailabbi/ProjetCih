@@ -1,83 +1,4 @@
 
-<div class="panel panel-primary t">
-    <div class="panel-heading">Factures
-    <div class="pull-right">
-        <button  (click)="affchfilter()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
-    </div>
-  </div>
-    <div class="panel-body">
-        <tr *ngIf="filterbol" class="filters">
-            <th>
-                
-                    <select class="form-control" id="exampleSelect1" [(ngModel)]="servicecode" >
-                      <option disabled selected hidden [ngValue]="undefined">SERVICECODEDESCRIPTION	</option>
-                      <option>Account Management Systems AMS	</option>
-                      <option>File Maintenance	</option>
-                      <option>File Transmission - Acquirer	</option>
-                    
-                    </select>
-                 
-            </th>
-            <th>	
-                <select class="form-control" id="exampleSelect1" [(ngModel)]="event">
-                    <option disabled selected hidden [ngValue]="undefined">EVENTDESCRIPTION	</option>
-                    <option>File Transmission Fee First Presentments On-Us		</option>
-                    <option>Stand-In Range Blocking Residency		</option>
-                    <option>File Transmission Fee Second Presentments	</option>
-                  
-                  </select>
-
-
-
-            </th>
-            <th>
-            
-                <select class="form-control" id="exampleSelect1">
-                    <option>01/07/18	</option>
-                    
-                  
-                  </select>
-            </th>
-           
-        </tr>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-              <th scope="col">DOCUMENTTYPE</th>
-              <th scope="col">SERVICECODEDESCRIPTION</th>
-              <th scope="col">QUANTITYAMOUNT</th>
-              <th scope="col">EVENTDESCRIPTION</th>
-              <th scope="col">BILLINGCYCLEDATE</th>
-
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event">
-              <th scope="row">{{ country.DOCUMENTTYPE }}</th>
-              <td>
-               
-                {{ country.SERVICECODEDESCRIPTION }}
-              </td>
-              <td>{{ country.QUANTITYAMOUNT }}</td>
-              <td>{{ country.EVENTDESCRIPTION  }}</td>
-              <td>{{ country.BILLINGCYCLEDATE  }}</td>
-              <td>
-                <button type="button"(click)="show(country)" class="btn btn-info">Info</button>
-
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          
-          <div class="d-flex justify-content-between p-2">
-            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-            </ngb-pagination>
-          
-          </div>
-
-    </div>
-  </div>
   <popup>
     <div>
         <div style='overflow-x:scroll;overflow-y:hidden;'>
@@ -108,26 +29,26 @@
                   </tr>
                 </thead>
                 <tbody>
-                <td>{{ factpop.DOCUMENTTYPE }}</td>
-                <td>{{ factpop.INVOICENUMBER }}</td>
-                <td>{{ factpop.CURRENCY }}</td>
-                <td>{{ factpop.BILLINGCYCLEDATE }}</td>
-                <td>{{ factpop.INVOICEICA }}</td>
-                <td>{{ factpop.ACTIVITYICA }}</td>
-                <td>{{ factpop.BILLABLEICA }}</td>
-                <td>{{ factpop.COLLECTIONMETHOD }}</td>
-                <td>{{ factpop.SERVICECODE }}</td> 
-                <td>{{ factpop.SERVICECODEDESCRIPTION }}</td> 
+                <td>{{ factpop.DocumentType }}</td>
+                <td>{{ factpop.InvoiceNumber }}</td>
+                <td>{{ factpop.Currency }}</td>
+                <td>{{ factpop.BillingCycleDate }}</td>
+                <td>{{ factpop.InvoiceICA }}</td>
+                <td>{{ factpop.AactivityICA }}</td>
+                <td>{{ factpop.BillableICA }}</td>
+                <td>{{ factpop.CollectionMethod }}</td>
+                <td>{{ factpop.ServiceCode }}</td> 
+                <td>{{ factpop.ServiceCodeDescription }}</td> 
                
-                <td>{{ factpop.EVENTID }}</td>   
-                <td>{{ factpop.EVENTDESCRIPTION }}</td>
+                <td>{{ factpop.EventID }}</td>   
+                <td>{{ factpop.EventDescription }}</td>
                 <td>{{ factpop.AFFILIATE }}</td>
                 <td>{{ factpop.UOM }}</td>
-                <td>{{ factpop.QUANTITYAMOUNT }}</td>
-                <td>{{ factpop.RATE }}</td>
-                <td>{{ factpop.CHARGE }}</td>
-                <td>{{ factpop.TAXCHARGE }}</td>
-                <td>{{ factpop.TOTALCHARGE }}</td>
+                <td>{{ factpop.QuantityAmount }}</td>
+                <td>{{ factpop.Rate }}</td>
+                <td>{{ factpop.Charge }}</td>
+                <td>{{ factpop.TaxCharge }}</td>
+                <td>{{ factpop.TotalCharge }}</td>
 
 
                 
@@ -137,3 +58,80 @@
         </div>
    </div>
   </popup>
+<div class="panel panel-primary t">
+    <div class="panel-heading">Factures
+    <div class="pull-right">
+        <button  (click)="affchfilter()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+    </div>
+  </div>
+    <div class="panel-body">
+        <tr *ngIf="filterbol" class="filters">
+            <th>
+                
+                    <select class="form-control" id="exampleSelect1" [(ngModel)]="servicecode" >
+                      <option disabled selected hidden [ngValue]="undefined">SERVICECODEDESCRIPTION	</option>
+                      <option  *ngFor="let t of dataall"  >              {{ t.ServiceCodeDescription }}
+                      
+                        </option>
+                    
+                    </select>
+                 
+            </th>
+            <th>	
+                <select class="form-control" id="exampleSelect1" [(ngModel)]="event">
+                    <option disabled selected hidden [ngValue]="undefined">EVENTDESCRIPTION	</option>
+                    <option  *ngFor="let t of dataall"  >              {{ t.EventDescription }}
+                      
+                      </option>
+                  
+                  </select>
+
+
+
+            </th>
+            <th>
+            
+                <select class="form-control" id="exampleSelect1">
+                    <option>01/07/18	</option>
+                    
+                  
+                  </select>
+            </th>
+           
+        </tr>
+        <div class="scrollable">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">DOCUMENTTYPE</th>
+              <th scope="col">SERVICECODEDESCRIPTION</th>
+              <th scope="col">QUANTITYAMOUNT</th>
+              <th scope="col">EVENTDESCRIPTION</th>
+              <th scope="col">BILLINGCYCLEDATE</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event">
+              <th scope="row">{{ country.DocumentType }}</th>
+              <td>
+               
+                {{ country.ServiceCodeDescription }}
+              </td>
+              <td>{{ country.QuantityAmount }}</td>
+              <td>{{ country.EventDescription  }}</td>
+              <td>{{ country.BillingCycleDate  }}</td>
+              <td>
+                <button type="button"(click)="show(country)" class="btn btn-info">Info</button>
+
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      
+
+    </div>
+  </div>
+  

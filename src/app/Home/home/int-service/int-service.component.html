@@ -13,9 +13,13 @@
               
                 
                   <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
-                    <option disabled selected hidden [ngValue]="undefined">ServiceNAME		</option>
-                    <option>Issuer Lounge Billing		</option>
-                    <option>Anti-Money Laundering		</option>
+                      <option  disabled selected hidden [ngValue]="undefined">Service Name		</option>
+
+                    <option  *ngFor="let t of dataall"  >              {{ t.ServiceNAME }}
+                      
+                    </option>
+                    
+                    
                     
                   
                   </select>
@@ -29,11 +33,12 @@
               
                 
                   <select class="form-control" id="exampleSelect1"  [(ngModel)]="typeservice" >
-                    <option disabled selected hidden [ngValue]="undefined">Type de service		</option>
-                    <option>Services non transactionnels adossés aux cartes		</option>
-                    <option>Service d'anti Blanchiment d'argent		</option>
-                    <option>Services non transactionnels adossés aux cartes		</option>
-                    <option>Service d'anti Blanchiment d'argent		</option>
+                   
+                      <option  disabled selected hidden [ngValue]="undefined"> Type de service		</option>
+
+                      <option  *ngFor="let t of dataall"  >              {{ t.Typedeservice }}
+                        
+                      </option>
                     
                   
                   </select>
@@ -44,16 +49,16 @@
  
               <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
                   <option  disabled selected hidden [ngValue]="undefined">Classification		</option>
-                  <option>Services cartes</option>
-                  <option>Risque & fraud management </option>
-                  <option>Services cartes</option>
-                  <option>Risque & fraud managemen </option>
+                  <option  *ngFor="let t of dataall"  >              {{ t.Classification }}
+                        
+                    </option>
                 
                 </select>
 
           </th>
         
       </tr>
+      <div class="scrollable">
       <table class="table table-striped">
           <thead>
           <tr>
@@ -63,7 +68,7 @@
             <th scope="col">Classification</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody >
           <tr *ngFor="let country of countries |sercivnams:servicename|typeservice:typeservice|classification:classification">
             <th scope="row">{{ country.ServiceID }}</th>
             <td>
@@ -75,12 +80,7 @@
           </tr>
           </tbody>
         </table>
+      </div>
         
-        <div class="d-flex justify-content-between p-2">
-          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-          </ngb-pagination>
-        
-        </div>
-
   </div>
 </div>

@@ -12,7 +12,7 @@ export class EventdescriptionPipe implements PipeTransform {
       else {
         let nvsercive:Facture[]=[];
         for(let i=0;i<tablefacture.length;i++){
-          if(tablefacture[i].EVENTDESCRIPTION.replace(/ /g,'')==event.replace(/ /g,'')){
+          if(tablefacture[i].EventDescription.replace(/ /g,'')==event.replace(/ /g,'')){
            nvsercive.push(tablefacture[i])
            
           }

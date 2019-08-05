@@ -1,3 +1,7 @@
 .t{
     margin-top: 20px;  
   }
+  .scrollable {
+    height: 70vh;
+    overflow-y: scroll;
+  }

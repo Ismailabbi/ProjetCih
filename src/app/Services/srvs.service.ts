@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SrvsService {
- Url:string="http://localhost:3000/Services"
+ Url:string="http://192.168.43.202:9090/CodeIgniter/api/product"
 
   constructor(private httpClient: HttpClient) { }
   get_services():Observable<Service[]>{

@@ -13,7 +13,7 @@ export class ServicecodePipe implements PipeTransform {
     else {
       let nvsercive:Facture[]=[];
       for(let i=0;i<tablefacture.length;i++){
-        if(tablefacture[i].SERVICECODEDESCRIPTION.replace(/ /g,'')==code.replace(/ /g,'')){
+        if(tablefacture[i].ServiceCodeDescription.replace(/ /g,'')==code.replace(/ /g,'')){
          nvsercive.push(tablefacture[i])
          
         }

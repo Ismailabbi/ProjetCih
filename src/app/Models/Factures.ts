@@ -9,12 +9,12 @@ export class Facture{
     private BILLABLEICA:string
     private COLLECTIONMETHOD: string 
     private  SERVICECODE :string
-    public SERVICECODEDESCRIPTION: string
+    public ServiceCodeDescription: string
     private PERIODSTARTDATE: string
     private PERIODENDDATE:string
     private  ORIGINALINVOICENUMBER:string
     private EVENTID : string
-    public EVENTDESCRIPTION: string
+    public EventDescription: string
     private AFFILIATE: string
     private UOM: string
     private QUANTITYAMOUNT: string
