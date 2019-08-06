@@ -15,21 +15,43 @@
   </div>
   <div>
 
-    <button mat-button mat-raised-button color="primary" (click)="changeLabels()">Par service</button>
-    <button mat-button mat-raised-button color="primary" (click)="en()">Par MOK</button>
-   
+      <button type="button" class="btn btn-primary"(click)="class()"> Classfication</button>
+      <button type="button" class="btn btn-primary" (click)="changeLabels()"> Services</button>
+      <button type="button" class="btn btn-primary" (click)="ok()"> Par Anne</button>
+      
+
   </div>
 
+  
+ 
 
-  <div>
-    <div>
-      <div>
-        <div style="display: block">
-          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-             [chartType]="barChartType" 
-            (chartClick)="chartClicked($event)"></canvas>
+      <div *ngIf="isAvailable" class="panel panel-default">
+          
+          <div class="panel-body">
+              <div class="row">
+                  <div class="col-sm-3">
+                      <select class="form-control" id="exampleSelect1" [(ngModel)]="Annee" >
+                          <option disabled selected hidden [ngValue]="undefined">2018	</option>
+                          <option>2018</option>
+                        
+                          
+                           
+                        
+                        </select>
+                  </div>
+                  <div class="col-sm-3">
+                      <select class="form-control" id="exampleSelect1" [(ngModel)]="Annee" >
+                          <option disabled selected hidden [ngValue]="undefined">SERVICECODEDESCRIPTION	</option>
+                        
+                          
+                           
+                        
+                        </select>
+                  </div>
+                  <div class="col-sm-3">
+                      <button mat-button mat-raised-button color="primary" (click)="ko()">Par Anne</button>
+                    </div>
+            
+          </div>
         </div>
-        <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
-      </div>
-    </div>
-  </div>
+    

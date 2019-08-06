@@ -14,8 +14,14 @@ export class DashbordService {
   get_dashbord2():Observable<any[]>{
     return this.httpClient.get<any[]>(this.Url2)
 }
-post_dashbord(){
-   this.httpClient.post('http://192.168.0.4:9090/CodeIgniter/api/test/',{Ay:'hello'}).subscribe(data=>console.log(data))
+post_dashbord(a:string,b:string=null){
+  console.log(a)
+   this.httpClient.post('http://192.168.0.4:9090/CodeIgniter/api/test',{"Mois": null,"Annee":a}).subscribe(data=>console.log(data))
  
 }
+get_year():Observable<any[]>{
+  return this.httpClient.get<any[]>("http://192.168.0.4:9090/CodeIgniter/api/year")
+}
+
+
 }

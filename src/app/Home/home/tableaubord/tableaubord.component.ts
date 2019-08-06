@@ -5,6 +5,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels'
 import { from } from 'rxjs';
 import {ChartDataSets} from 'chart.js'
 import { DashbordService } from 'src/app/Services/dashbord.service';
+import { SrvsService } from 'src/app/Services/srvs.service';
 @Component({
   selector: 'app-tableaubord',
   templateUrl: './tableaubord.component.html',
@@ -12,6 +13,8 @@ import { DashbordService } from 'src/app/Services/dashbord.service';
 })
 export class TableaubordComponent implements OnInit {
 pie:any;
+Annee:string
+isAvailable:boolean=false
   public pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {
@@ -38,15 +41,31 @@ pie:any;
     },
   ];
 
-  constructor(public dash:DashbordService) { }
+  constructor(public dash:DashbordService,public services:SrvsService) { }
  en(){
-   this.dash.post_dashbord()
+  
    console.log("ok")
+ }
+ class(){
+  this.dash.get_dashbord1().subscribe(
+    (data)=>{this.pie=data
+      console.log(data)
+       this.pieChartLabels = ['Compensation','Conformité','Equipements Simulateurs & interfaces','Facturation','Gestion de compte','Gestion des autorisations','Gestion des flux','Gestion des transactions','Litiges','Publication, Consultations et Reporting','Risque & fraud management','Service chèques','Services ATM','Services cartes','formation']
+       this.pieChartData  = [this.pie.Compensation, this.pie.Conformité,this.pie["Equipements, Simulateurs & interfaces"],this.pie['Facturation'],this.pie['Gestion de compte'],this.pie['Gestion des autorisations'],this.pie['Gestion des flux'],this.pie['Gestion des transactions'],this.pie['Litiges'],this.pie['Publication, Consultations et Reporting'],this.pie['Risque & fraud management'],this.pie['Service chèques'],this.pie['Services ATM'],this.pie['Services cartes'],this.pie['formation']]
+     
+      
+    
+    }
+
+  )
+
+
  }
   ngOnInit() {
     this.dash.get_dashbord1().subscribe(
       (data)=>{this.pie=data
         console.log(data)
+      
          this.pieChartLabels = ['Compensation','Conformité','Equipements Simulateurs & interfaces','Facturation','Gestion de compte','Gestion des autorisations','Gestion des flux','Gestion des transactions','Litiges','Publication, Consultations et Reporting','Risque & fraud management','Service chèques','Services ATM','Services cartes','formation']
          this.pieChartData  = [this.pie.Compensation, this.pie.Conformité,this.pie["Equipements, Simulateurs & interfaces"],this.pie['Facturation'],this.pie['Gestion de compte'],this.pie['Gestion des autorisations'],this.pie['Gestion des flux'],this.pie['Gestion des transactions'],this.pie['Litiges'],this.pie['Publication, Consultations et Reporting'],this.pie['Risque & fraud management'],this.pie['Service chèques'],this.pie['Services ATM'],this.pie['Services cartes'],this.pie['formation']]
        
@@ -55,6 +74,8 @@ pie:any;
       }
 
     )
+
+    this.dash.get_year().subscribe(data=>{console.log(data)})
   }
 
   // events
@@ -99,5 +120,13 @@ pie:any;
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
+
+  public ok(){
+    this.isAvailable=!this.isAvailable
+
+  }
+  public ko(){
+    this.dash.post_dashbord(this.Annee)
+  }
 
 }
