@@ -67,6 +67,27 @@ isAvailable:boolean=false
     }
 
   )
+  this.pieChartOptions= {
+    responsive: true,
+    legend: {
+      position: 'left',
+      display:true
+    },
+    
+    plugins: {
+      datalabels: {
+        display: true,
+
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+      },
+      outlabels: {
+        display: true,
+       },
+    }
+  };
 
 
  }
