@@ -12,23 +12,31 @@ import { SrvsService } from 'src/app/Services/srvs.service';
   styleUrls: ['./tableaubord.component.css']
 })
 export class TableaubordComponent implements OnInit {
+  m:number=null
   years:any[];
   mois:string
 pie:any;
-Annee:string
+Annee:any
 isAvailable:boolean=false
   public pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {
-      position: 'top',
+      position: 'left',
+      display:true
     },
+    
     plugins: {
       datalabels: {
+        display: false,
+
         formatter: (value, ctx) => {
           const label = ctx.chart.data.labels[ctx.dataIndex];
           return label;
         },
       },
+      outlabels: {
+        display: true,
+       },
     }
   };
   public pieChartLabels: Label[]=['Compensation','Conformité']
@@ -94,6 +102,27 @@ isAvailable:boolean=false
     this.pieChartLabels = Object.getOwnPropertyNames(data);
        this.pieChartData=Object.values(data)
     }))
+    this.pieChartOptions= {
+      responsive: true,
+      legend: {
+        position: 'left',
+        display:false
+      },
+      
+      plugins: {
+        datalabels: {
+          display: false,
+  
+          formatter: (value, ctx) => {
+            const label = ctx.chart.data.labels[ctx.dataIndex];
+            return label;
+          },
+        },
+        outlabels: {
+          display: true,
+         },
+      }
+    };
   
   }
 
@@ -126,40 +155,49 @@ isAvailable:boolean=false
 
   }
   public ko(){
+
     console.log(this.mois)
-    let a:string="ok"
-    if(this.mois=="janvier"){
+    
+    if(this.mois=="Janvier"){
+                this.m=1;
                 
-                console.log(a)
     }
     if(this.mois=="Février"){
-      a="2"
+      this.m=2
 }
 if(this.mois=="Mars"){
-  a="3"
+  this.m=3
 }
 if(this.mois=="Avril"){
-  a="4"
+  this.m=4
 }
 if(this.mois=="Mai"){
-  a="5"
+  this.m=5
 }
 if(this.mois=="Juin"){
-  a="6"}
-  if(this.mois=="Juillet"){
-    a="7"}
-    if(this.mois=="Aout"){
-      a="7"}
-      if(this.mois=="Septembre"){
-        a="9"}
-        if(this.mois=="Octobre"){
-          a="10"}
-          if(this.mois=="Novembre"){
-            a="11"}
-            if(this.mois=="Decembre"){
-              a="12"}
+  this.m=6
+}
+if(this.mois=="Juillet"){
+  this.m=7
+}
+if(this.mois=="Septembre"){
+  this.m=9
+}
+if(this.mois=="Octobre"){
+  this.m=10
+}
+if(this.mois=="Novembre"){
+  this.m=11
+}
+if(this.mois=="Decembre"){
+  this.m=11
+}
+
+
+
+
  
-    this.dash.post_dashbord(this.Annee,a).subscribe(
+    this.dash.post_dashbord(this.Annee,this.m).subscribe(
       data=>{
           console.log(Object.values(data))
           this.pieChartData=Object.values(data)
@@ -167,6 +205,27 @@ if(this.mois=="Juin"){
           this.pieChartLabels=Object.getOwnPropertyNames(data)
       }
     )
+    this.pieChartOptions= {
+      responsive: true,
+      legend: {
+        position: 'left',
+        display:true
+      },
+      
+      plugins: {
+        datalabels: {
+          display: false,
+  
+          formatter: (value, ctx) => {
+            const label = ctx.chart.data.labels[ctx.dataIndex];
+            return label;
+          },
+        },
+        outlabels: {
+          display: true,
+         },
+      }
+    };
   }
 
 }
