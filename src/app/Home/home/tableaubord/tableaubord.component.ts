@@ -12,6 +12,8 @@ import { SrvsService } from 'src/app/Services/srvs.service';
   styleUrls: ['./tableaubord.component.css']
 })
 export class TableaubordComponent implements OnInit {
+  years:any[];
+  mois:string
 pie:any;
 Annee:string
 isAvailable:boolean=false
@@ -37,7 +39,7 @@ isAvailable:boolean=false
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)','rgba(201,25,2,150)','rgba(255,0,255,0.3)','rgba(255,255,0,0.3)','rgba(0,0,255,0.9)','rgba(191,191,63,1)','rgba(63,189,191,1)','rgba(191,63,125,1)','rgba(225,151,125,1)','rgba(151,39,225,1)','rgba(39,225,222,1)','rgba(39,225,48,1)','rgba(136,182,235,1)','rgba(180,115,132,1)','rgba(154,115,180,1)','rgba(206,124,48,1)','rgba(30,107,97,1)','rgba(144,202,62,1)','rgba(252,202,62,1)','rgba(272,202,62,1)','rgba(211,202,62,1)','rgba(75,31,46,1)'],
+      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)','rgba(201,25,2,150)','rgba(255,0,255,0.3)','rgba(255,255,0,0.3)','rgba(0,0,255,0.9)','rgba(191,191,63,1)','rgba(63,189,191,1)','rgba(191,63,125,1)','rgba(225,151,125,1)','rgba(151,39,225,1)','rgba(39,225,222,1)','rgba(39,225,48,1)','rgba(136,182,235,1)','rgba(180,115,132,1)','rgba(154,115,180,1)','rgba(206,124,48,1)','rgba(30,107,97,1)','rgba(144,202,62,1)','rgba(252,202,62,1)','rgba(272,202,62,1)','rgba(211,202,62,1)','rgba(75,31,46,1)','rgba(222, 18, 181, 1)','rgba(18, 222, 181, 1)','rgba(131, 189, 15, 1)','rgba(189, 105, 15, 0.87)','rgba(189, 15, 15, 0.87)','rgba(72, 9, 113, 0.87)','rgba(227, 194, 250, 0.87)','rgba(7, 49, 85, 0.87)','rgba(230, 146, 246, 0.64)','rgba(86, 127, 10, 0.64)','rgba(45, 66, 5, 0.64)','rgba(62, 5, 66, 0.64)','rgba(5, 66, 14, 0.64)','rgba(76, 100, 240, 0.64)','rgba(155, 93, 39, 0.64)','rgba(98, 24, 83, 0.64)','rgba(149, 18, 9, 0.64)','rgba(63, 9, 149, 0.64)','rgba(149, 140, 9, 0.64)'],
     },
   ];
 
@@ -50,9 +52,8 @@ isAvailable:boolean=false
   this.dash.get_dashbord1().subscribe(
     (data)=>{this.pie=data
       console.log(data)
-       this.pieChartLabels = ['Compensation','Conformité','Equipements Simulateurs & interfaces','Facturation','Gestion de compte','Gestion des autorisations','Gestion des flux','Gestion des transactions','Litiges','Publication, Consultations et Reporting','Risque & fraud management','Service chèques','Services ATM','Services cartes','formation']
-       this.pieChartData  = [this.pie.Compensation, this.pie.Conformité,this.pie["Equipements, Simulateurs & interfaces"],this.pie['Facturation'],this.pie['Gestion de compte'],this.pie['Gestion des autorisations'],this.pie['Gestion des flux'],this.pie['Gestion des transactions'],this.pie['Litiges'],this.pie['Publication, Consultations et Reporting'],this.pie['Risque & fraud management'],this.pie['Service chèques'],this.pie['Services ATM'],this.pie['Services cartes'],this.pie['formation']]
-     
+       this.pieChartLabels = Object.getOwnPropertyNames(data);
+       this.pieChartData=Object.values(data)
       
     
     }
@@ -65,17 +66,17 @@ isAvailable:boolean=false
     this.dash.get_dashbord1().subscribe(
       (data)=>{this.pie=data
         console.log(data)
-      
-         this.pieChartLabels = ['Compensation','Conformité','Equipements Simulateurs & interfaces','Facturation','Gestion de compte','Gestion des autorisations','Gestion des flux','Gestion des transactions','Litiges','Publication, Consultations et Reporting','Risque & fraud management','Service chèques','Services ATM','Services cartes','formation']
-         this.pieChartData  = [this.pie.Compensation, this.pie.Conformité,this.pie["Equipements, Simulateurs & interfaces"],this.pie['Facturation'],this.pie['Gestion de compte'],this.pie['Gestion des autorisations'],this.pie['Gestion des flux'],this.pie['Gestion des transactions'],this.pie['Litiges'],this.pie['Publication, Consultations et Reporting'],this.pie['Risque & fraud management'],this.pie['Service chèques'],this.pie['Services ATM'],this.pie['Services cartes'],this.pie['formation']]
-       
+        this.pieChartLabels = Object.getOwnPropertyNames(data);
+        this.pieChartData=Object.values(data)
         
       
       }
 
     )
 
-    this.dash.get_year().subscribe(data=>{console.log(data)})
+    this.dash.get_year().subscribe(data=>{
+      this.years=data
+    })
   }
 
   // events
@@ -90,9 +91,8 @@ isAvailable:boolean=false
   changeLabels() {
     this.dash.get_dashbord2().subscribe((data=>{
     console.log(data)
-    this.pieChartLabels=['ATM Acquirer Switch Fees','ATM Locator Internet','Account Management System (AMS)','Acquirer Assessment','Acquirer Authorization','Acquirer Call Referral','Acquirer Cross-Border','Acquirer Debit ATM','Acquirer Debit POS','Acquirer Decision Management Services','Acquirer Money Transfer','Acquirer On-Behalf' ,'Acquirer Processing Integrity','Anti-Money Laundering,Assessment Noncompliance','Cardholder','Solutions','Cirrus','Cirrus Billing','Clearing Fees Issuer','Clearing Incoming','Clearing Issuer Transaction','Clearing Outgoing']
-    this.pieChartData=[data['ATM Acquirer Switch Fees'], data['ATM Locator Internet'],data['Account Management System (AMS)'],data['Acquirer Assessment'],data['Acquirer Authorization'],data['Acquirer Call Referral'],data['Acquirer Cross-Border'],data['Acquirer Debit ATM'],data['Acquirer Debit POS'],data['Acquirer Decision Management Services'],data['Acquirer Money Transfer'],data['Acquirer On-Behalf Service'],data['Acquirer Processing Integrity'],data['Anti-Money Laundering'],data['Assessment Noncompliance'],data['Cardholder'],data['Solutions'],data['Cirrus'],data['Cirrus Billing'],data['Clearing 1740 Miscellaneous Collection'],data['Clearing Fees Issuer'],data['Clearing Incoming'],data['Clearing Issuer Transaction'],data['Clearing Outgoing']]
-
+    this.pieChartLabels = Object.getOwnPropertyNames(data);
+       this.pieChartData=Object.values(data)
     }))
   
   }
@@ -126,7 +126,47 @@ isAvailable:boolean=false
 
   }
   public ko(){
-    this.dash.post_dashbord(this.Annee)
+    console.log(this.mois)
+    let a:string="ok"
+    if(this.mois=="janvier"){
+                
+                console.log(a)
+    }
+    if(this.mois=="Février"){
+      a="2"
+}
+if(this.mois=="Mars"){
+  a="3"
+}
+if(this.mois=="Avril"){
+  a="4"
+}
+if(this.mois=="Mai"){
+  a="5"
+}
+if(this.mois=="Juin"){
+  a="6"}
+  if(this.mois=="Juillet"){
+    a="7"}
+    if(this.mois=="Aout"){
+      a="7"}
+      if(this.mois=="Septembre"){
+        a="9"}
+        if(this.mois=="Octobre"){
+          a="10"}
+          if(this.mois=="Novembre"){
+            a="11"}
+            if(this.mois=="Decembre"){
+              a="12"}
+ 
+    this.dash.post_dashbord(this.Annee,a).subscribe(
+      data=>{
+          console.log(Object.values(data))
+          this.pieChartData=Object.values(data)
+          console.log(Object.getOwnPropertyNames(data))
+          this.pieChartLabels=Object.getOwnPropertyNames(data)
+      }
+    )
   }
 
 }

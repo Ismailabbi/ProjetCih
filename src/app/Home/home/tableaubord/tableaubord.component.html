@@ -31,8 +31,11 @@
               <div class="row">
                   <div class="col-sm-3">
                       <select class="form-control" id="exampleSelect1" [(ngModel)]="Annee" >
-                          <option disabled selected hidden [ngValue]="undefined">2018	</option>
-                          <option>2018</option>
+                          <option disabled selected hidden [ngValue]="undefined">Année	</option>
+                          
+                          <option  *ngFor="let t of  years"  >              {{ t }}
+                      
+                          </option>
                         
                           
                            
@@ -40,17 +43,27 @@
                         </select>
                   </div>
                   <div class="col-sm-3">
-                      <select class="form-control" id="exampleSelect1" [(ngModel)]="Annee" >
-                          <option disabled selected hidden [ngValue]="undefined">SERVICECODEDESCRIPTION	</option>
+                      <select class="form-control" id="exampleSelect1" [(ngModel)]="mois" >
+                          <option disabled selected hidden [ngValue]="undefined">Mois	</option>
                         
-                          
-                           
-                        
+                          <option>Janvier</option>
+                        <option>Février</option>
+                        <option>Mars</option> 
+                        <option>Avril</option>
+                        <option>Mai</option>
+                        <option>Juin</option>
+                        <option>Juillet</option>  
+                        <option>Aout</option>
+                        <option>Septembre</option>
+                        <option>Octobre</option>
+                        <option>Novembre</option>
+                        <option>Decembre</option>
                         </select>
                   </div>
-                  <div class="col-sm-3">
-                      <button mat-button mat-raised-button color="primary" (click)="ko()">Par Anne</button>
-                    </div>
+                  
+                    <div class="col-sm-3">
+                    <button type="button"  (click)="ko()"class="btn btn-info">Info</button>      
+                     </div>
             
           </div>
         </div>
