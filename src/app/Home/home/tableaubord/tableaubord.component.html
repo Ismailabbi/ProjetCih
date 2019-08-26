@@ -2,13 +2,14 @@
     <div>
       <div class="chart">
         <canvas baseChart
+        
           [data]="pieChartData"
           [labels]="pieChartLabels"
           [chartType]="pieChartType"
           [options]="pieChartOptions"
           [plugins]="pieChartPlugins"
           [colors]="pieChartColors"
-          [legend]="pieChartLegend">
+        >
         </canvas>
       </div>
     </div>
@@ -18,8 +19,10 @@
       <button type="button" class="btn btn-primary"(click)="class()"> Classfication</button>
       <button type="button" class="btn btn-primary" (click)="changeLabels()"> Services</button>
       <button type="button" class="btn btn-primary" (click)="ok()"> Par Anne</button>
-      
-
+      <button type="button" class="btn btn-primary" (click)="acceptance()"> Acceptance</button>
+      <button type="button" class="btn btn-primary" (click)="origin()"> Origin</button>
+      <button type="button" class="btn btn-primary" (click)="canal()"> Canal</button>
+      <button type="button" class="btn btn-primary" (click)="fiable()">fiabilité</button>
   </div>
 
   
@@ -67,4 +70,11 @@
             
           </div>
         </div>
-    
+    </div>
+       <div *ngIf="isA" class="panel panel-default">
+        <button type="button" class="btn btn-primary" (click)="canal()"> Acceptance</button>
+        <button type="button" class="btn btn-primary" (click)="canal()"> Canal</button>
+        <button type="button" class="btn btn-primary" (click)="canal()"> Origin</button>
+
+        
+    </div>

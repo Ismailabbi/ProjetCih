@@ -1,0 +1,87 @@
+<div class="panel panel-primary t">
+    <div class="panel-heading">Services
+      
+    <div class="pull-right">
+        <button  (click)="affchfilter()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+    </div>
+  </div>
+    <div class="panel-body">
+        <tr *ngIf="filterbol" class="filters">
+            <th>
+  
+  
+                
+                  
+                    <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
+                        <option  disabled selected hidden [ngValue]="undefined">Service Name		</option>
+  
+                      <option  *ngFor="let t of dataall"  >              {{ t.ServiceNAME }}
+                        
+                      </option>
+                      
+                      
+                      
+                    
+                    </select>
+                 
+            
+            </th>
+            <th>
+                <th>
+  
+  
+                
+                  
+                    <select class="form-control" id="exampleSelect1"  [(ngModel)]="typeservice" >
+                     
+                        <option  disabled selected hidden [ngValue]="undefined"> Type de service		</option>
+  
+                        <option  *ngFor="let t of dataall"  >              {{ t.Typedeservice }}
+                          
+                        </option>
+                      
+                    
+                    </select>
+  
+  
+            </th>
+            <th>
+   
+                <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
+                    <option  disabled selected hidden [ngValue]="undefined">Classification		</option>
+                    <option  *ngFor="let t of dataall"  >              {{ t.Classification }}
+                          
+                      </option>
+                  
+                  </select>
+  
+            </th>
+          
+        </tr>
+        <div class="scrollable">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">ServiceID</th>
+              <th scope="col">ServiceNAME</th>
+              <th scope="col">Typedeservice</th>
+              <th scope="col">Classification</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr *ngFor="let country of countries |sercivnams:servicename|typeservice:typeservice|classification:classification">
+              <th scope="row">{{ country.ServiceID }}</th>
+              <td>
+               
+                {{ country.ServiceNAME }}
+              </td>
+              <td>{{ country.Typedeservice }}</td>
+              <td>{{ country.Classification  }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+          
+    </div>
+  </div>
+  

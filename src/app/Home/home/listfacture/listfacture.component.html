@@ -25,7 +25,7 @@
                     <th scope="col">CHARGE</th>
                     <th scope="col">TAXCHARGE</th>
                     <th scope="col">TOTALCHARGE</th>
-          
+                   <th scope="col">NetFinal</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,6 +49,7 @@
                 <td>{{ factpop.Charge }}</td>
                 <td>{{ factpop.TaxCharge }}</td>
                 <td>{{ factpop.TotalCharge }}</td>
+                <td>{{factpop.NetFinal}}</td>
 
 
                 
@@ -122,8 +123,11 @@
               <td>{{ country.QuantityAmount }}</td>
               <td>{{ country.EventDescription  }}</td>
               <td>{{ country.BillingCycleDate  }}</td>
+             
               <td>
-                <button type="button"(click)="show(country)" class="btn btn-info">Info</button>
+                <button type="button"(click)="show(country)" class="btn btn-info">Detail
+
+                </button>
 
               </td>
             </tr>

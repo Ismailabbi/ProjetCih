@@ -15,7 +15,7 @@
                   <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
                       <option  disabled selected hidden [ngValue]="undefined">Service Name		</option>
 
-                    <option  *ngFor="let t of dataall"  >              {{ t.ServiceNAME }}
+                    <option  *ngFor="let t of dataname"  >              {{ t.ServiceNAME }}
                       
                     </option>
                     
@@ -36,7 +36,7 @@
                    
                       <option  disabled selected hidden [ngValue]="undefined"> Type de service		</option>
 
-                      <option  *ngFor="let t of dataall"  >              {{ t.Typedeservice }}
+                      <option  *ngFor="let t of datatype"  >              {{ t.Typedeservice }}
                         
                       </option>
                     
@@ -49,14 +49,40 @@
  
               <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
                   <option  disabled selected hidden [ngValue]="undefined">Classification		</option>
-                  <option  *ngFor="let t of dataall"  >              {{ t.Classification }}
+                  <option  *ngFor="let t of dataclassification"  >              {{ t.Classification }}
                         
                     </option>
                 
                 </select>
 
           </th>
-        
+          <th>
+ 
+            <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptance" >
+                <option  disabled selected hidden [ngValue]="undefined">Acceptance		</option>
+                <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
+                      
+                  </option>
+                  <option  *ngFor="let t of datacanal"  >              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    
+                  </option>
+              
+              </select>
+
+        </th>
+        <th>
+ 
+          <select class="form-control" id="exampleSelect1" [(ngModel)]="canal"  >
+              <option  disabled selected hidden [ngValue]="undefined">Canal		</option>
+              <option  *ngFor="let t of datacanal"  >              {{ t.Canal }}
+                    
+                </option>
+                <option  *ngFor="let t of datacanal"  >              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    
+                </option>
+            </select>
+
+      </th>
       </tr>
       <div class="scrollable">
       <table class="table table-striped">
@@ -66,10 +92,15 @@
             <th scope="col">ServiceNAME</th>
             <th scope="col">Typedeservice</th>
             <th scope="col">Classification</th>
+            <th>Acceptance</th>
+            <th>Canal</th>
+            <th>Origine</th>
+            <th>Rate</th>
+            <th>TypeRate</th>
           </tr>
           </thead>
           <tbody >
-          <tr *ngFor="let country of countries |sercivnams:servicename|typeservice:typeservice|classification:classification">
+          <tr *ngFor="let country of countries |sercivnams:servicename|typeservice:typeservice|classification:classification|acceptance:acceptance|canal:canal">
             <th scope="row">{{ country.ServiceID }}</th>
             <td>
              
@@ -77,6 +108,11 @@
             </td>
             <td>{{ country.Typedeservice }}</td>
             <td>{{ country.Classification  }}</td>
+            <td>{{country.Acceptance}}</td>
+            <td>{{country.Canal}}</td>
+            <td>{{country.Origine}}</td>
+            <td>{{country.Rate}}</td>
+            <td>{{country.TypeRate}}</td>
           </tr>
           </tbody>
         </table>

@@ -7,7 +7,7 @@ import { Facture } from '../Models/Factures';
   providedIn: 'root'
 })
 export class FactureService {
-  Url:string="http://192.168.43.202:9090/CodeIgniter/api/facture"
+  Url:string="http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/facture"
   constructor(private httpClient: HttpClient) { }
   get_factures():Observable<Facture[]>{
     return this.httpClient.get<Facture[]>(this.Url)

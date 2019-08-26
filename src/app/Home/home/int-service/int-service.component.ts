@@ -4,6 +4,7 @@ import {Popup} from 'ng2-opd-popup';
 import {SrvsService} from '../../../Services/srvs.service'
 import { Service } from 'src/app/Models/Service';
 import { SercivnamsPipe } from 'src/app/Pipes/sercivnams.pipe';
+import { AcceptancePipe } from 'src/app/Pipes/acceptance.pipe';
 
 @Component({
   selector: 'app-int-service',
@@ -17,27 +18,55 @@ import { SercivnamsPipe } from 'src/app/Pipes/sercivnams.pipe';
 export class IntServiceComponent implements OnInit {
   constructor(private _flashMessagesService: FlashMessagesService,private popup:Popup,private SrvSrvsService:SrvsService) {}
   s:Service[]
+  acceptance:string
   servicename:string;
   typeservice:string
   classification:string
   filterbol:boolean=false;
   dataall:any[]
+  canal:string
   page ;
   pageSize ;
   collectionSize ;
- 
+  dataname;
+  datatype;
+ dataclassification
+ datacceptance;
+ datacanal;
   ngOnInit() {
     this.SrvSrvsService.get_services().subscribe((data)=>{
       this.s=data
       this.dataall=data
-    
+      this.SrvSrvsService.getservicename().subscribe(data=>{
+        this.dataname=data
+        console.log(data)
+      })
+      this.SrvSrvsService.gettypeservice().subscribe(data=>{
+        this.datatype=data
+        console.log(data)
+      })
+    this.SrvSrvsService.getclassfication().subscribe(
+      data=>{
+        this.dataclassification=data
+      }
+    )
+    this.SrvSrvsService.getAcceptance().subscribe(
+      data=>{
+        this.datacceptance=data
+      }
+    )
+    this.SrvSrvsService.getCanal().subscribe(
+      data=>{
+        this.datacanal=data
+      }
+    )
  this. page = 3;
  this. pageSize = 8;
   this.collectionSize = this.s.length;
   console.log(data)
  
     })
-    console.log(this.servicename+"haha")
+   
   }
  
   

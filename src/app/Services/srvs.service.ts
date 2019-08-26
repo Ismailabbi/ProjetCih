@@ -7,10 +7,28 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SrvsService {
- Url:string="http://192.168.43.202:9090/CodeIgniter/api/product"
+ Url:string="http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/service"
 
   constructor(private httpClient: HttpClient) { }
   get_services():Observable<Service[]>{
     return this.httpClient.get<Service[]>(this.Url)
   }
+  getservicename():Observable<any[]>{
+    return this.httpClient.get<any[]>("http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/service")
+  }
+  gettypeservice():Observable<any[]>
+  {
+    return this.httpClient.get<any[]>("http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/typedeservice")
+  }
+  getclassfication():Observable<any[]>
+  {
+    return this.httpClient.get<any[]>("http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/classification")
+  }
+  getAcceptance():Observable<any[]>{
+    return this.httpClient.get<any[]>('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/Acceptance')
+  }
+getCanal():Observable<any[]> {
+  return this.httpClient.get<any[]>(' http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/Canal')
+}
+
 }

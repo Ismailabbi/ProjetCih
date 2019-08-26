@@ -1,26 +1,26 @@
 export class Facture{
 
-    private DOCUMENTTYPE:string
-    private INVOICENUMBER: string
-    private CURRENCY: string
-    private BILLINGCYCLEDATE:string
-    private INVOICEICA: string
-    private  ACTIVITYICA: string
-    private BILLABLEICA:string
-    private COLLECTIONMETHOD: string 
-    private  SERVICECODE :string
+    public DocumentType:string
+    public InvoiceNumber: string
+    public Currency: string
+    public BillingCycleDate:string
+    public InvoiceICA: string
+    public  AactivityICA: string
+    public BillableICA:string
+    public CollectionMethod: string 
+    public  ServiceCode :string
     public ServiceCodeDescription: string
-    private PERIODSTARTDATE: string
-    private PERIODENDDATE:string
-    private  ORIGINALINVOICENUMBER:string
-    private EVENTID : string
+    public PERIODSTARTDATE: string
+    public PERIODENDDATE:string
+    public  ORIGINALINVOICENUMBER:string
+    public EventID : string
     public EventDescription: string
-    private AFFILIATE: string
-    private UOM: string
-    private QUANTITYAMOUNT: string
-    private  RATE: string
-    private  CHARGE: string
-    private TAXCHARGE:string
-    private TOTALCHARGE: string
+    public AFFILIATE: string
+    public UOM: string
+    public QuantityAmount: string
+    public  Rate: string
+    public  Charge: string
+    public TaxCharge:string
+    public TotalCharge: string
 
 }

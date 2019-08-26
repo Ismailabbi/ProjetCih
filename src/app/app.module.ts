@@ -18,13 +18,17 @@ import {PopupModule} from 'ng2-opd-popup';
 import { ListfactureComponent } from './Home/home/listfacture/listfacture.component';
 import { UploadComponent } from './Home/home/upload/upload.component';
 import { TableaubordComponent } from './Home/home/tableaubord/tableaubord.component';
-import { ServicenamePipe } from './servicename.pipe';
-import { SercivnamsPipe } from './pipes/sercivnams.pipe';
+
+import { SercivnamsPipe } from './Pipes/sercivnams.pipe';
 import { TypeservicePipe } from './Pipes/typeservice.pipe';
 import { ClassificationPipe } from './Pipes/classification.pipe';
 import { ServicecodePipe } from './Pipes/servicecode.pipe';
 import { EventdescriptionPipe } from './Pipes/eventdescription.pipe';
 import { ChartsModule } from 'ng2-charts';
+import { from } from 'rxjs';
+import { ListeventComponent } from './Home/home/listevent/listevent.component';
+import { AcceptancePipe } from './Pipes/acceptance.pipe';
+import { CanalPipe } from './Pipes/canal.pipe';
 
 @NgModule({
   declarations: [
@@ -35,12 +39,14 @@ import { ChartsModule } from 'ng2-charts';
     ListfactureComponent,
     UploadComponent,
     TableaubordComponent,
-    ServicenamePipe,
-    SercivnamsPipe,
     TypeservicePipe,
     ClassificationPipe,
     ServicecodePipe,
-    EventdescriptionPipe
+    EventdescriptionPipe,
+    SercivnamsPipe,
+    ListeventComponent,
+    AcceptancePipe,
+    CanalPipe
   ],
   imports: [
     BrowserModule,

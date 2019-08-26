@@ -17,6 +17,7 @@ export class TableaubordComponent implements OnInit {
   mois:string
 pie:any;
 Annee:any
+isA:boolean=false
 isAvailable:boolean=false
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -175,6 +176,22 @@ isAvailable:boolean=false
     this.isAvailable=!this.isAvailable
 
   }
+  public acceptance(){
+    this.dash.get_acceptance().subscribe((data=>{
+      console.log(data)
+      this.pieChartLabels = Object.getOwnPropertyNames(data);
+         this.pieChartData=Object.values(data)
+      }))
+      
+  }
+  public origin(){
+    this.dash.get_origin().subscribe((data=>{
+      console.log(data)
+      this.pieChartLabels = Object.getOwnPropertyNames(data);
+         this.pieChartData=Object.values(data)
+      }))
+  }
+  public
   public ko(){
 
     console.log(this.mois)
@@ -247,6 +264,26 @@ if(this.mois=="Decembre"){
          },
       }
     };
+  }
+  public fiableAcc(){
+    console.log("salam")
+    this.dash.get_accfiable().subscribe((data=>{
+      
+      console.log(Object.getOwnPropertyNames(data))
+      this.pieChartLabels = Object.getOwnPropertyNames(data);
+         this.pieChartData=Object.values(data)
+      }))
+  }
+  public fiable(){
+ this.isA=true
+ console.log("salamsalam")
+  }
+  public canal(){
+    this.dash.get_canal().subscribe((data=>{
+      console.log(data)
+      this.pieChartLabels = Object.getOwnPropertyNames(data);
+         this.pieChartData=Object.values(data)
+      }))
   }
 
 }
