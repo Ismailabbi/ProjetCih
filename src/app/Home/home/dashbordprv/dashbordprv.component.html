@@ -1,0 +1,81 @@
+<div>
+        <div>
+          <div class="chart">
+            <canvas baseChart
+            
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              [options]="pieChartOptions"
+              [plugins]="pieChartPlugins"
+              [colors]="pieChartColors"
+            >
+            </canvas>
+          </div>
+        </div>
+      </div>
+      <div>
+    
+          <button type="button" class="btn btn-primary"(click)="class()"> Classfication</button>
+          <button type="button" class="btn btn-primary" (click)="changeLabels()"> Services</button>
+          <button type="button" class="btn btn-primary" (click)="ok()"> Par Anne</button>
+          <button type="button" class="btn btn-primary" (click)="acceptance()"> Acceptance</button>
+          <button type="button" class="btn btn-primary" (click)="origin()"> Origin</button>
+          <button type="button" class="btn btn-primary" (click)="canal()"> Canal</button>
+      
+      </div>
+    
+      
+     
+    
+          <div *ngIf="isAvailable" class="panel panel-default">
+              
+              <div class="panel-body">
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <select class="form-control" id="exampleSelect1" [(ngModel)]="Annee" >
+                              <option disabled selected hidden [ngValue]="undefined">Année	</option>
+                              
+                              <option  *ngFor="let t of  years"  >              {{ t }}
+                          
+                              </option>
+                            
+                              
+                               
+                            
+                            </select>
+                      </div>
+                      <div class="col-sm-3">
+                          <select class="form-control" id="exampleSelect1" [(ngModel)]="mois" >
+                              <option disabled selected hidden [ngValue]="undefined">Mois	</option>
+                            
+                              <option>Janvier</option>
+                            <option>Février</option>
+                            <option>Mars</option> 
+                            <option>Avril</option>
+                            <option>Mai</option>
+                            <option>Juin</option>
+                            <option>Juillet</option>  
+                            <option>Aout</option>
+                            <option>Septembre</option>
+                            <option>Octobre</option>
+                            <option>Novembre</option>
+                            <option>Decembre</option>
+                            </select>
+                      </div>
+                      
+                        <div class="col-sm-7">
+                            
+                                <button type="button" class="btn btn-warning"(click)="fiableAccP()"> Acceptance</button>
+                                <button type="button" class="btn btn-warning"(click)="canalfiableP()"> Canal</button>
+                                <button type="button" class="btn btn-warning" (click)="originfiableP()"> Origin</button>  
+                                <button type="button" class="btn btn-warning" (click)="classfiableP()"> Classfication</button>     
+                                <button type="button" class="btn btn-warning" (click)="servicefiableP()"> Services</button>     
+           
+                                 
+                         </div>
+                
+              </div>
+            </div>
+        </div>
+         

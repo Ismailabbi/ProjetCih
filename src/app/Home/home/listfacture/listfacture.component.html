@@ -58,6 +58,9 @@
               </table>
         </div>
    </div>
+   <button type="button" (click)='fermer()' class="btn btn-secondary">Fermer</button>
+
+
   </popup>
 <div class="panel panel-primary t">
     <div class="panel-heading">Factures
@@ -66,12 +69,16 @@
     </div>
   </div>
     <div class="panel-body">
-        <tr *ngIf="filterbol" class="filters">
-            <th>
+        <div *ngIf="filterbol" class="filters">
+          
+                <div class="s">
+                    <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>  réinitialiser</button>
+                </div>
+<th>
                 
                     <select class="form-control" id="exampleSelect1" [(ngModel)]="servicecode" >
                       <option disabled selected hidden [ngValue]="undefined">SERVICECODEDESCRIPTION	</option>
-                      <option  *ngFor="let t of dataall"  >              {{ t.ServiceCodeDescription }}
+                      <option  *ngFor="let t of servicedesc"  >              {{ t.ServiceCodeDescription }}
                       
                         </option>
                     
@@ -81,7 +88,7 @@
             <th>	
                 <select class="form-control" id="exampleSelect1" [(ngModel)]="event">
                     <option disabled selected hidden [ngValue]="undefined">EVENTDESCRIPTION	</option>
-                    <option  *ngFor="let t of dataall"  >              {{ t.EventDescription }}
+                    <option  *ngFor="let t of dataevent"  >              {{ t.EventDescription }}
                       
                       </option>
                   
@@ -92,14 +99,15 @@
             </th>
             <th>
             
-                <select class="form-control" id="exampleSelect1">
-                    <option>01/07/18	</option>
+                <select class="form-control" id="exampleSelect1" [(ngModel)]="d">
+                    <option disabled selected hidden [ngValue]="undefined">Date	</option>
+                    <option  *ngFor="let t of datadate">{{t.BillingCycleDate}}	</option>
                     
                   
                   </select>
             </th>
            
-        </tr>
+          </div>
         <div class="scrollable">
         <table class="table table-striped">
             <thead>
@@ -114,7 +122,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event">
+            <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event|pipedate:d">
               <th scope="row">{{ country.DocumentType }}</th>
               <td>
                

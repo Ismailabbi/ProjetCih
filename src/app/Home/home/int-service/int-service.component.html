@@ -6,7 +6,11 @@
   </div>
 </div>
   <div class="panel-body">
-      <tr *ngIf="filterbol" class="filters">
+      <div *ngIf="filterbol" class="filters"> <div class="s">
+        
+          <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> réinitialiser</button>
+      </div>
+
           <th>
 
 
@@ -26,7 +30,7 @@
                
           
           </th>
-          <th>
+        
               <th>
 
 
@@ -59,13 +63,11 @@
           <th>
  
             <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptance" >
-                <option  disabled selected hidden [ngValue]="undefined">Acceptance		</option>
+                <option  disabled selected hidden [ngValue]="undefined">Acceptance &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
                 <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
                       
                   </option>
-                  <option  *ngFor="let t of datacanal"  >              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    
-                  </option>
+              
               
               </select>
 
@@ -73,24 +75,22 @@
         <th>
  
           <select class="form-control" id="exampleSelect1" [(ngModel)]="canal"  >
-              <option  disabled selected hidden [ngValue]="undefined">Canal		</option>
+              <option  disabled selected hidden [ngValue]="undefined">Canal	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
               <option  *ngFor="let t of datacanal"  >              {{ t.Canal }}
                     
                 </option>
-                <option  *ngFor="let t of datacanal"  >              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    
-                </option>
+               
             </select>
 
       </th>
-      </tr>
+    </div>
       <div class="scrollable">
       <table class="table table-striped">
           <thead>
           <tr>
-            <th scope="col">ServiceID</th>
-            <th scope="col">ServiceNAME</th>
-            <th scope="col">Typedeservice</th>
+            <th >Service ID</th>
+            <th scope="col">Service Name</th>
+            <th scope="col">Type des service</th>
             <th scope="col">Classification</th>
             <th>Acceptance</th>
             <th>Canal</th>
@@ -101,7 +101,8 @@
           </thead>
           <tbody >
           <tr *ngFor="let country of countries |sercivnams:servicename|typeservice:typeservice|classification:classification|acceptance:acceptance|canal:canal">
-            <th scope="row">{{ country.ServiceID }}</th>
+            <th scope="row">{{ country.ServiceID }}
+              </th>
             <td>
              
               {{ country.ServiceNAME }}

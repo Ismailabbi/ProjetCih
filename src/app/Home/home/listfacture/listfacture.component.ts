@@ -15,10 +15,14 @@ export class ListfactureComponent implements OnInit {
   constructor(private SrvSrvsService:SrvsService,private FactureServicess:FactureService,private popup:Popup) { }
   s:Facture[]
   servicecode:string
+  datadate;
+  d:string
+  dataevent;
   factpop:Facture
   filterbol:boolean=false;
   event:string;
   dataall:any[]
+  servicedesc;
   page ;
   pageSize ;
   collectionSize ;
@@ -28,7 +32,7 @@ export class ListfactureComponent implements OnInit {
       color: "#f65900", // red, blue....
       widthProsentage: 80, // The with of the popou measured by browser width
       animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: true, // You can hide this in case you want to use custom buttons
+      showButtons: false, // You can hide this in case you want to use custom buttons
       cancleBtnClass: "btn btn-default", // you class for styling the cancel button
       animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
   };
@@ -44,11 +48,27 @@ export class ListfactureComponent implements OnInit {
     
     
   }
+  vider(){
+    this.servicecode=undefined
+    this.event=undefined
+    this.d=undefined
+  }
   affchfilter(){
     this.filterbol=!this.filterbol
    }
   ngOnInit() {
     this.FactureServicess.get_factures().subscribe((data)=>{
+      this.FactureServicess.get_date().subscribe(data=>{
+        
+        this.datadate=data
+        console.log(this.datadate)
+      })
+      this.FactureServicess.get_event().subscribe(data=>{
+        this.dataevent=data
+      })
+      this.FactureServicess.get_servicedescription().subscribe(data=>{
+        this.servicedesc=data
+      })
       this.s=data
       this.dataall=data
  this. page = 1;
@@ -58,7 +78,9 @@ export class ListfactureComponent implements OnInit {
     })
   }
   
-
+  fermer(){
+    this.popup.hide()
+  }
 }
 interface Country {
   id?: number;

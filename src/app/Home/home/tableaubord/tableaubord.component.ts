@@ -12,6 +12,12 @@ import { SrvsService } from 'src/app/Services/srvs.service';
   styleUrls: ['./tableaubord.component.css']
 })
 export class TableaubordComponent implements OnInit {
+  datacceptance
+  classification
+  dataclassification
+  acceptancee:string
+  servicename:string;
+  servicenames
   m:number=null
   years:any[];
   mois:string
@@ -92,7 +98,37 @@ isAvailable:boolean=false
 
 
  }
+ tri(){
+   this.dash.post_canalP(this.acceptancee,this.Annee,this.classification,this.servicename).subscribe(data=>{
+     if(this.servicename==undefined){
+       this.servicename=''
+     }
+     if(this.acceptancee==undefined){
+       this.acceptancee=''
+     }
+     if(this.classification==undefined){
+       this.classification=''
+     }
+    this.pieChartLabels = [this.servicename+'-'+this.classification]
+    this.pieChartData=Object.values(data)
+    console.log(data)
+   })
+ }
   ngOnInit() {
+    this.services.getclassfication().subscribe(
+      data=>{
+        this.dataclassification=data
+      }
+    )
+    this.services.getAcceptance().subscribe(
+      data=>{
+        this.datacceptance=data
+      }
+    )
+    this.services.getservicename().subscribe(data=>{
+      this.servicenames=data
+      console.log(data)
+    })
     this.dash.get_dashbord1().subscribe(
       (data)=>{this.pie=data
         console.log(data)
@@ -191,7 +227,7 @@ isAvailable:boolean=false
          this.pieChartData=Object.values(data)
       }))
   }
-  public
+
   public ko(){
 
     console.log(this.mois)
@@ -237,6 +273,7 @@ if(this.mois=="Decembre"){
  
     this.dash.post_dashbord(this.Annee,this.m).subscribe(
       data=>{
+        console.log(data)
           console.log(Object.values(data))
           this.pieChartData=Object.values(data)
           console.log(Object.getOwnPropertyNames(data))
@@ -267,7 +304,7 @@ if(this.mois=="Decembre"){
   }
   public fiableAcc(){
     console.log("salam")
-    this.dash.get_accfiable().subscribe((data=>{
+    this.dash.post_accep(this.Annee,this.m).subscribe((data=>{
       
       console.log(Object.getOwnPropertyNames(data))
       this.pieChartLabels = Object.getOwnPropertyNames(data);
@@ -275,11 +312,41 @@ if(this.mois=="Decembre"){
       }))
   }
   public fiable(){
- this.isA=true
- console.log("salamsalam")
+ this.isA=!this.isA
+ 
   }
   public canal(){
     this.dash.get_canal().subscribe((data=>{
+      console.log(data)
+      this.pieChartLabels = Object.getOwnPropertyNames(data);
+         this.pieChartData=Object.values(data)
+      }))
+  }
+  classfiable(){
+    this.dash.post_classification(this.Annee,this.m).subscribe((data=>{
+      console.log(data)
+      this.pieChartLabels = Object.getOwnPropertyNames(data);
+         this.pieChartData=Object.values(data)
+      }))
+  }
+  servicefiable(){
+    this.dash.post_service(this.Annee,this.m).subscribe((data=>{
+      console.log(data)
+      this.pieChartLabels = Object.getOwnPropertyNames(data);
+         this.pieChartData=Object.values(data)
+      }))
+  }
+  public originfiable(){
+    console.log("ok")
+    this.dash.post_origin(this.Annee,this.m).subscribe((data=>{
+      console.log(data)
+      this.pieChartLabels = Object.getOwnPropertyNames(data);
+         this.pieChartData=Object.values(data)
+      }))
+  }
+
+  canalfiable(){
+    this.dash.post_canal(this.Annee,this.m).subscribe((data=>{
       console.log(data)
       this.pieChartLabels = Object.getOwnPropertyNames(data);
          this.pieChartData=Object.values(data)

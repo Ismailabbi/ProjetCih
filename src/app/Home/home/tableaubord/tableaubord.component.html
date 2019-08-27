@@ -16,13 +16,9 @@
   </div>
   <div>
 
-      <button type="button" class="btn btn-primary"(click)="class()"> Classfication</button>
-      <button type="button" class="btn btn-primary" (click)="changeLabels()"> Services</button>
-      <button type="button" class="btn btn-primary" (click)="ok()"> Par Anne</button>
-      <button type="button" class="btn btn-primary" (click)="acceptance()"> Acceptance</button>
-      <button type="button" class="btn btn-primary" (click)="origin()"> Origin</button>
-      <button type="button" class="btn btn-primary" (click)="canal()"> Canal</button>
-      <button type="button" class="btn btn-primary" (click)="fiable()">fiabilité</button>
+      
+      <button type="button" class="btn btn-primary" (click)="ok()"> Filtrer</button>
+     
   </div>
 
   
@@ -46,35 +42,43 @@
                         </select>
                   </div>
                   <div class="col-sm-3">
-                      <select class="form-control" id="exampleSelect1" [(ngModel)]="mois" >
-                          <option disabled selected hidden [ngValue]="undefined">Mois	</option>
+                      <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
+                          <option  disabled selected hidden [ngValue]="undefined">Classification		</option>
+                          <option  *ngFor="let t of dataclassification"  >              {{ t.Classification }}
+                                
+                            </option>
                         
-                          <option>Janvier</option>
-                        <option>Février</option>
-                        <option>Mars</option> 
-                        <option>Avril</option>
-                        <option>Mai</option>
-                        <option>Juin</option>
-                        <option>Juillet</option>  
-                        <option>Aout</option>
-                        <option>Septembre</option>
-                        <option>Octobre</option>
-                        <option>Novembre</option>
-                        <option>Decembre</option>
                         </select>
                   </div>
-                  
-                    <div class="col-sm-3">
-                    <button type="button"  (click)="ko()"class="btn btn-info">Info</button>      
-                     </div>
+                  <div class="col-sm-3">
+                      <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptancee" >
+                          <option  disabled selected hidden [ngValue]="undefined">Acceptance &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
+                          <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
+                                
+                            </option>
+                        
+                        
+                        </select>
+                  </div>
+                  <div class="col-sm-3">
+                      <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
+                          <option  disabled selected hidden [ngValue]="undefined">Service Name		</option>
+    
+                        <option  *ngFor="let t of servicenames"  >              {{ t.ServiceNAME }}
+                          
+                        </option>
+                        
+                        
+                        
+                      
+                      </select>
+                   
+                  </div>
+                  <button type="button" class="btn btn-secondary" (click)='tri()'>Chercher</button>
+
             
           </div>
         </div>
     </div>
-       <div *ngIf="isA" class="panel panel-default">
-        <button type="button" class="btn btn-primary" (click)="canal()"> Acceptance</button>
-        <button type="button" class="btn btn-primary" (click)="canal()"> Canal</button>
-        <button type="button" class="btn btn-primary" (click)="canal()"> Origin</button>
-
-        
-    </div>
+      
+    

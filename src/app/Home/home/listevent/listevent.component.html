@@ -1,5 +1,5 @@
 <div class="panel panel-primary t">
-    <div class="panel-heading">Services
+    <div class="panel-heading">Evenement
       
     <div class="pull-right">
         <button  (click)="affchfilter()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
@@ -62,21 +62,35 @@
         <table class="table table-striped">
             <thead>
             <tr>
-              <th scope="col">ServiceID</th>
-              <th scope="col">ServiceNAME</th>
-              <th scope="col">Typedeservice</th>
-              <th scope="col">Classification</th>
+             
+             
+             
+              <th scope="col">Nom Event	</th>
+              <th scope="col">Num Event</th>
+             
+              <th scope="col">  &shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy; ID Service	    </th>
+             
+              <th scope="col">    RateNet      </th>
             </tr>
             </thead>
             <tbody >
-            <tr *ngFor="let country of countries |sercivnams:servicename|typeservice:typeservice|classification:classification">
-              <th scope="row">{{ country.ServiceID }}</th>
+            <tr *ngFor="let country of countries">
+            
               <td>
-               
-                {{ country.ServiceNAME }}
+                  {{ country.NomEvent }}&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy; 
               </td>
-              <td>{{ country.Typedeservice }}</td>
-              <td>{{ country.Classification  }}</td>
+              <td>
+
+                  {{ country.NumEvent }}&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;              
+              <td>
+
+                  {{ country.IDService }}&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;
+             
+              <td>
+
+                  {{ country.RateNet }}
+              </td>
+             
             </tr>
             </tbody>
           </table>

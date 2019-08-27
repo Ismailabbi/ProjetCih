@@ -21,6 +21,7 @@ export class IntServiceComponent implements OnInit {
   acceptance:string
   servicename:string;
   typeservice:string
+
   classification:string
   filterbol:boolean=false;
   dataall:any[]
@@ -33,6 +34,14 @@ export class IntServiceComponent implements OnInit {
  dataclassification
  datacceptance;
  datacanal;
+ vider(){
+   console.log("salam")
+  this.classification=undefined;
+  this.servicename=undefined
+  this.typeservice=undefined
+  this.acceptance=undefined
+  this.canal=undefined
+ }
   ngOnInit() {
     this.SrvSrvsService.get_services().subscribe((data)=>{
       this.s=data

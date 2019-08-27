@@ -29,6 +29,9 @@ import { from } from 'rxjs';
 import { ListeventComponent } from './Home/home/listevent/listevent.component';
 import { AcceptancePipe } from './Pipes/acceptance.pipe';
 import { CanalPipe } from './Pipes/canal.pipe';
+import { FacturePrevisionComponent } from './Home/home/facture-prevision/facture-prevision.component';
+import { DashbordprvComponent } from './Home/home/dashbordprv/dashbordprv.component';
+import { PipedatePipe } from './Pipes/pipedate.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { CanalPipe } from './Pipes/canal.pipe';
     SercivnamsPipe,
     ListeventComponent,
     AcceptancePipe,
-    CanalPipe
+    CanalPipe,
+    FacturePrevisionComponent,
+    DashbordprvComponent,
+    PipedatePipe
   ],
   imports: [
     BrowserModule,

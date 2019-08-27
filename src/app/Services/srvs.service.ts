@@ -7,28 +7,28 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SrvsService {
- Url:string="http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/service"
+ Url:string="https://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/service"
 
   constructor(private httpClient: HttpClient) { }
   get_services():Observable<Service[]>{
     return this.httpClient.get<Service[]>(this.Url)
   }
   getservicename():Observable<any[]>{
-    return this.httpClient.get<any[]>("http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/service")
+    return this.httpClient.get<any[]>("https://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/service")
   }
   gettypeservice():Observable<any[]>
   {
-    return this.httpClient.get<any[]>("http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/typedeservice")
+    return this.httpClient.get<any[]>("https://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/typedeservice")
   }
   getclassfication():Observable<any[]>
   {
-    return this.httpClient.get<any[]>("http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/classification")
+    return this.httpClient.get<any[]>("https://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/classification")
   }
   getAcceptance():Observable<any[]>{
-    return this.httpClient.get<any[]>('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/Acceptance')
+    return this.httpClient.get<any[]>('https://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/Acceptance')
   }
 getCanal():Observable<any[]> {
-  return this.httpClient.get<any[]>(' http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/Canal')
+  return this.httpClient.get<any[]>('https://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/Canal')
 }
 
 }

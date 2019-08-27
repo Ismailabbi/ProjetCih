@@ -7,6 +7,8 @@ import { IntServiceComponent } from './Home/home/int-service/int-service.compone
 import { UploadComponent } from './Home/home/upload/upload.component';
 import { TableaubordComponent } from './Home/home/tableaubord/tableaubord.component';
 import { ListeventComponent } from './Home/home/listevent/listevent.component';
+import { FacturePrevisionComponent } from './Home/home/facture-prevision/facture-prevision.component';
+import { DashbordprvComponent } from './Home/home/dashbordprv/dashbordprv.component';
 
 
 const routes: Routes = [
@@ -20,7 +22,9 @@ const routes: Routes = [
     { path: 'factures', component: ListfactureComponent },
     {path:'Services',component:IntServiceComponent},
     {path:'dashbord',component:TableaubordComponent},
-    {path:'event',component:ListeventComponent}
+    {path:'event',component:ListeventComponent},
+    {path:'facutreprevison',component:FacturePrevisionComponent},
+    {path:'dashbordprv',component:DashbordprvComponent}
   ]},
   
 

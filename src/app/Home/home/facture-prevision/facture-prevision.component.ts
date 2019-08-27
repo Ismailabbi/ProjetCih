@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FactureService } from 'src/app/Services/facture.service';
+import {Popup} from 'ng2-opd-popup';
+import { Facture } from 'src/app/Models/Factures';
 
 @Component({
-  selector: 'app-listevent',
-  templateUrl: './listevent.component.html',
-  styleUrls: ['./listevent.component.css']
+  selector: 'app-facture-prevision',
+  templateUrl: './facture-prevision.component.html',
+  styleUrls: ['./facture-prevision.component.css']
 })
-export class ListeventComponent implements OnInit {
-  data
-  s:any[]
+export class FacturePrevisionComponent implements OnInit {
+  s:Facture[]
   servicecode:string
   datadate;
+  d:string
   dataevent;
+  factpop:Facture
   filterbol:boolean=false;
   event:string;
   dataall:any[]
@@ -19,8 +22,24 @@ export class ListeventComponent implements OnInit {
   page ;
   pageSize ;
   collectionSize ;
-  
-  
+  constructor(private FactureServicess:FactureService,private popup:Popup) { }
+  show(country:Facture){
+    this.popup.options = {
+      header: "Detail",
+      color: "#f65900", // red, blue....
+      widthProsentage: 80, // The with of the popou measured by browser width
+      animationDuration: 1, // in seconds, 0 = no animation
+      showButtons: false, // You can hide this in case you want to use custom buttons
+      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
+      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+  };
+  this.popup.show(this.popup.options);
+  this.factpop=country
+
+  }
+  fermer(){
+    this.popup.hide()
+  }
   get countries(): any[] {
     COUNTRIES=this.s
     console.log(COUNTRIES)
@@ -28,25 +47,35 @@ export class ListeventComponent implements OnInit {
     
     
   }
-
-
-  constructor( public FactureService:FactureService) { }
-
+  vider(){
+    this.servicecode=undefined
+    this.event=undefined
+    this.d=undefined
+  }
+  affchfilter(){
+    this.filterbol=!this.filterbol
+   }
   ngOnInit() {
-    this.FactureService.get_events().subscribe(d=>{
-      this.s=d.reverse()
-      this.dataall=d
-    }
-
-    )
-      
+    this.FactureServicess.get_facutresP().subscribe((data)=>{
+      this.FactureServicess.get_date().subscribe(data=>{
+        
+        this.datadate=data
+        console.log(this.datadate)
+      })
+      this.FactureServicess.get_event().subscribe(data=>{
+        this.dataevent=data
+      })
+      this.FactureServicess.get_servicedescription().subscribe(data=>{
+        this.servicedesc=data
+      })
+      this.s=data
+      this.dataall=data
  this. page = 1;
  this. pageSize = 8;
   this.collectionSize = this.s.length;
  
-    }
-  
-  
+    })
+  }
 
 }
 interface Country {

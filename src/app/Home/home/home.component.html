@@ -12,13 +12,19 @@
                 <br>
                 <div class="left-navigation">
                     <ul class="list">
-                        <h5><strong>WHEREABOUTS</strong></h5>
-                        <li routerLink="Services"> Services </li>
-                        <li routerLink="factures">Factures</li>
-                        <li routerLink="dashbord">Tableau de bord</li>
-                        <li routerLink="event"> events</li>
+                        <h5><strong>
 
-                        <li routerLink="upload">Excel</li>
+                            </strong></h5>
+                        <li routerLink="Services"> Service </li>
+                        <li routerLink="event">  Evenement </li>
+
+                        <li routerLink="factures">Facture reçue</li>
+                        <li routerLink="facutreprevison">Facture prévisionnelle</li>
+                        <li routerLink="dashbord"> Tableau de bord </li>
+                        
+                        <li routerLink="dashbordprv"> 	Tableau de bord prévisionnel</li>
+
+                        <li routerLink="upload">Chargement</li>
                         <li routerLink="/login" >Deconnexion</li>
                         
                     </ul>
@@ -33,7 +39,11 @@
             </div>
             <div class="col-md-10 col-sm-8 main-content">
             <!--Main content code to be written here --> 
-            <router-outlet></router-outlet>            
+            <router-outlet></router-outlet>       
+            <footer>
+                    <p style="color:blue;">©Effyis Partners</p>
+                    
+                </footer>     
         </div>
     </div>
     </div>
