@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UploadService {
-  Url:string="https://localhost:3000/Services"
+  Url:string="http://localhost:3000/Services"
 
   constructor() { }
 

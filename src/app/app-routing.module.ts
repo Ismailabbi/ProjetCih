@@ -9,6 +9,7 @@ import { TableaubordComponent } from './Home/home/tableaubord/tableaubord.compon
 import { ListeventComponent } from './Home/home/listevent/listevent.component';
 import { FacturePrevisionComponent } from './Home/home/facture-prevision/facture-prevision.component';
 import { DashbordprvComponent } from './Home/home/dashbordprv/dashbordprv.component';
+import { SurfboardComponent } from './Home/home/surfboard/surfboard.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path:'login',component:AuthentificationComponent},
   {path:'home',component:HomeComponent , children: [
     {path: '', redirectTo: 'Services',pathMatch:'full'},
-
+   {path:'a',component:SurfboardComponent},
     {path:'upload',component:UploadComponent},
     { path: 'factures', component: ListfactureComponent },
     {path:'Services',component:IntServiceComponent},

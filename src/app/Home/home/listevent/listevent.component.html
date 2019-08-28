@@ -6,16 +6,21 @@
     </div>
   </div>
     <div class="panel-body">
-        <tr *ngIf="filterbol" class="filters">
+        <div *ngIf="filterbol" class="filters">
+            <div class="s">
+        
+                <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> réinitialiser</button>
+            </div>
+
             <th>
   
-  
+               
                 
-                  
-                    <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
-                        <option  disabled selected hidden [ngValue]="undefined">Service Name		</option>
+                    Nom Event :
+                    <select class="form-control" id="exampleSelect1" [(ngModel)]="nomevent" >
+                        <option   selected  [ngValue]="undefined">All			</option>
   
-                      <option  *ngFor="let t of dataall"  >              {{ t.ServiceNAME }}
+                      <option  *ngFor="let t of namedata"  >              {{ t.NomEvent }}
                         
                       </option>
                       
@@ -31,12 +36,12 @@
   
   
                 
-                  
-                    <select class="form-control" id="exampleSelect1"  [(ngModel)]="typeservice" >
+                    Num Event :
+                    <select class="form-control" id="exampleSelect1"  [(ngModel)]="num" >
                      
-                        <option  disabled selected hidden [ngValue]="undefined"> Type de service		</option>
+                        <option   selected  [ngValue]="undefined"> All &shy;&shy;&shy;&shy;&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
   
-                        <option  *ngFor="let t of dataall"  >              {{ t.Typedeservice }}
+                        <option  *ngFor="let t of eventdata"  >              {{ t.NumEvent }}
                           
                         </option>
                       
@@ -46,10 +51,11 @@
   
             </th>
             <th>
-   
-                <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
-                    <option  disabled selected hidden [ngValue]="undefined">Classification		</option>
-                    <option  *ngFor="let t of dataall"  >              {{ t.Classification }}
+                Id:
+                <select class="form-control" id="exampleSelect1" [(ngModel)]="k"  >
+                        <option   selected  [ngValue]="undefined"> All&shy;&shy;&shy;&shy;&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
+                        
+                    <option  *ngFor="let t of ID"  >              {{ t.IDService }}
                           
                       </option>
                   
@@ -57,35 +63,34 @@
   
             </th>
           
-        </tr>
+          </div>
         <div class="scrollable">
         <table class="table table-striped">
             <thead>
             <tr>
              
              
+              <th scope="col">   ID Service	    </th>
              
-              <th scope="col">Nom Event	</th>
               <th scope="col">Num Event</th>
-             
-              <th scope="col">  &shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy; ID Service	    </th>
+              <th scope="col">Nom Event	</th>
+              
              
               <th scope="col">    RateNet      </th>
             </tr>
             </thead>
             <tbody >
-            <tr *ngFor="let country of countries">
+            <tr *ngFor="let country of countries|eventname:nomevent|eventnum:num|id:k">
             
               <td>
-                  {{ country.NomEvent }}&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy; 
+                  {{ country.IDService }}
               </td>
               <td>
 
-                  {{ country.NumEvent }}&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;              
+                  {{ country.NumEvent }}           
               <td>
 
-                  {{ country.IDService }}&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;
-             
+                  {{ country.NomEvent }}             
               <td>
 
                   {{ country.RateNet }}

@@ -4,6 +4,7 @@ import { Service } from 'src/app/Models/Service';
 import { Facture } from 'src/app/Models/Factures';
 import { FactureService } from 'src/app/Services/facture.service';
 import {Popup} from 'ng2-opd-popup';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-listfacture',

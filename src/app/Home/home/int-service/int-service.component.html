@@ -15,13 +15,14 @@
 
 
               
-                
+              Service Name :
                   <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
-                      <option  disabled selected hidden [ngValue]="undefined">Service Name		</option>
-
-                    <option  *ngFor="let t of dataname"  >              {{ t.ServiceNAME }}
+                      <option   selected  [ngValue]="undefined">All		</option>
+                     
+                      <option  *ngFor="let t of dataname"  >              {{ t.ServiceNAME }}
+                  
                       
-                    </option>
+                   
                     
                     
                     
@@ -35,10 +36,10 @@
 
 
               
-                
+                  Type de service:
                   <select class="form-control" id="exampleSelect1"  [(ngModel)]="typeservice" >
                    
-                      <option  disabled selected hidden [ngValue]="undefined"> Type de service		</option>
+                      <option   selected  [ngValue]="undefined">  All		</option>
 
                       <option  *ngFor="let t of datatype"  >              {{ t.Typedeservice }}
                         
@@ -50,9 +51,9 @@
 
           </th>
           <th>
- 
+              Classification:
               <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
-                  <option  disabled selected hidden [ngValue]="undefined">Classification		</option>
+                  <option   selected  [ngValue]="undefined">All		</option>
                   <option  *ngFor="let t of dataclassification"  >              {{ t.Classification }}
                         
                     </option>
@@ -61,9 +62,9 @@
 
           </th>
           <th>
- 
+              Acceptance:
             <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptance" >
-                <option  disabled selected hidden [ngValue]="undefined">Acceptance &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
+                <option   selected  [ngValue]="undefined">ALL &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
                 <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
                       
                   </option>
@@ -73,22 +74,30 @@
 
         </th>
         <th>
- 
+            Canal:
           <select class="form-control" id="exampleSelect1" [(ngModel)]="canal"  >
-              <option  disabled selected hidden [ngValue]="undefined">Canal	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
+              <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
               <option  *ngFor="let t of datacanal"  >              {{ t.Canal }}
                     
                 </option>
                
             </select>
-
+            Origin
+            <select class="form-control" id="exampleSelect1" [(ngModel)]="origine"  >
+                <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
+                <option  *ngFor="let t of dataorigine"  >              {{ t.Origine }}
+                      
+                  </option>
+                 
+              </select>
       </th>
+      <hr/>
     </div>
       <div class="scrollable">
       <table class="table table-striped">
           <thead>
           <tr>
-            <th >Service ID</th>
+            <th > ID</th>
             <th scope="col">Service Name</th>
             <th scope="col">Type des service</th>
             <th scope="col">Classification</th>
@@ -100,7 +109,7 @@
           </tr>
           </thead>
           <tbody >
-          <tr *ngFor="let country of countries |sercivnams:servicename|typeservice:typeservice|classification:classification|acceptance:acceptance|canal:canal">
+          <tr *ngFor="let country of countries |sercivnams:servicename|typeservice:typeservice|classification:classification|acceptance:acceptance|canal:canal|orginepipe:origine">
             <th scope="row">{{ country.ServiceID }}
               </th>
             <td>

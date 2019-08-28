@@ -13,6 +13,7 @@ import { SrvsService } from 'src/app/Services/srvs.service';
 })
 export class TableaubordComponent implements OnInit {
   datacceptance
+  
   classification
   dataclassification
   acceptancee:string
@@ -34,7 +35,7 @@ isAvailable:boolean=false
     
     plugins: {
       datalabels: {
-        display: true,
+        display: false,
 
         formatter: (value, ctx) => {
           const label = ctx.chart.data.labels[ctx.dataIndex];
@@ -98,8 +99,35 @@ isAvailable:boolean=false
 
 
  }
+ vider(){
+   this.classification=undefined
+   this.acceptancee=undefined
+   this.servicename=undefined
+   this.Annee=undefined
+ }
  tri(){
-   this.dash.post_canalP(this.acceptancee,this.Annee,this.classification,this.servicename).subscribe(data=>{
+if(this.acceptancee==undefined&&this.classification==undefined&&this.servicename==undefined){
+  if(this.Annee=="All"){
+    this.dash.get_dashbord1().subscribe(
+      (data)=>{this.pie=data
+        console.log(data)
+        this.pieChartLabels = Object.getOwnPropertyNames(data);
+        this.pieChartData=Object.values(data)
+        
+      
+      }
+
+    )
+  }
+  else{
+    this.dash.post_classification(this.Annee).subscribe(data=>{
+      this.pieChartLabels = Object.getOwnPropertyNames(data);
+      this.pieChartData=Object.values(data)
+
+    })}
+}
+
+  else{ this.dash.post_canalP(this.acceptancee,this.Annee,this.classification,this.servicename).subscribe(data=>{
      if(this.servicename==undefined){
        this.servicename=''
      }
@@ -109,10 +137,11 @@ isAvailable:boolean=false
      if(this.classification==undefined){
        this.classification=''
      }
-    this.pieChartLabels = [this.servicename+'-'+this.classification]
+    this.pieChartLabels = [this.servicename+'-'+this.classification+this.Annee]
     this.pieChartData=Object.values(data)
     console.log(data)
    })
+  }
  }
   ngOnInit() {
     this.services.getclassfication().subscribe(
@@ -322,13 +351,7 @@ if(this.mois=="Decembre"){
          this.pieChartData=Object.values(data)
       }))
   }
-  classfiable(){
-    this.dash.post_classification(this.Annee,this.m).subscribe((data=>{
-      console.log(data)
-      this.pieChartLabels = Object.getOwnPropertyNames(data);
-         this.pieChartData=Object.values(data)
-      }))
-  }
+
   servicefiable(){
     this.dash.post_service(this.Annee,this.m).subscribe((data=>{
       console.log(data)

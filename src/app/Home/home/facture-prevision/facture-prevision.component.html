@@ -77,9 +77,9 @@
                 <th>
                     
                    
-                    
+                    SERVICE CODE DESCRIPTION
                         <select class="form-control" id="exampleSelect1" [(ngModel)]="servicecode" >
-                          <option disabled selected hidden [ngValue]="undefined">SERVICECODEDESCRIPTION	</option>
+                          <option  selected  [ngValue]="undefined">ALL	</option>
                           <option  *ngFor="let t of servicedesc"  >              {{ t.ServiceCodeDescription }}
                           
                             </option>
@@ -88,8 +88,9 @@
                      
                 </th>
                 <th>	
+                    EVENT DESCRIPTION :
                     <select class="form-control" id="exampleSelect1" [(ngModel)]="event">
-                        <option disabled selected hidden [ngValue]="undefined">EVENTDESCRIPTION	</option>
+                        <option  selected  [ngValue]="undefined">ALL	</option>
                         <option  *ngFor="let t of dataevent"  >              {{ t.EventDescription }}
                           
                           </option>
@@ -101,9 +102,9 @@
                 </th>
                 <th>
                 
-                    
+                    Date:
                 <select class="form-control" id="exampleSelect1" [(ngModel)]="d">
-                    <option disabled selected hidden [ngValue]="undefined">Date	</option>
+                    <option disabled selected hidden [ngValue]="undefined">ALL	</option>
                     <option  *ngFor="let t of datadate">{{t.BillingCycleDate}}	</option>
                     
                   
@@ -116,10 +117,10 @@
                 <thead>
                 <tr>
                   <th scope="col">DOCUMENTTYPE</th>
-                  <th scope="col">SERVICECODEDESCRIPTION</th>
-                  <th scope="col">QUANTITYAMOUNT</th>
-                  <th scope="col">EVENTDESCRIPTION</th>
-                  <th scope="col">BILLINGCYCLEDATE</th>
+                  <th scope="col">SERVICE </th>
+                  <th scope="col">QUANTITY </th>
+                  <th scope="col">EVENT DESCRIPTION</th>
+                  <th scope="col">DATE</th>
                  <th scope="col">Montant</th>
     
                 </tr>

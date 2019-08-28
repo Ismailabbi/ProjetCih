@@ -18,10 +18,11 @@ import { AcceptancePipe } from 'src/app/Pipes/acceptance.pipe';
 export class IntServiceComponent implements OnInit {
   constructor(private _flashMessagesService: FlashMessagesService,private popup:Popup,private SrvSrvsService:SrvsService) {}
   s:Service[]
+  origin:string
   acceptance:string
   servicename:string;
   typeservice:string
-
+ dataorigine
   classification:string
   filterbol:boolean=false;
   dataall:any[]
@@ -43,16 +44,20 @@ export class IntServiceComponent implements OnInit {
   this.canal=undefined
  }
   ngOnInit() {
+    this.SrvSrvsService.getorigine().subscribe(data=>{
+      this.dataorigine=data
+      console.log(this.dataorigine)
+    })
     this.SrvSrvsService.get_services().subscribe((data)=>{
       this.s=data
       this.dataall=data
       this.SrvSrvsService.getservicename().subscribe(data=>{
         this.dataname=data
-        console.log(data)
+        
       })
       this.SrvSrvsService.gettypeservice().subscribe(data=>{
         this.datatype=data
-        console.log(data)
+      
       })
     this.SrvSrvsService.getclassfication().subscribe(
       data=>{

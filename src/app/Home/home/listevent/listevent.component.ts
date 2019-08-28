@@ -8,7 +8,13 @@ import { FactureService } from 'src/app/Services/facture.service';
 })
 export class ListeventComponent implements OnInit {
   data
+  nomevent
+  ID
+  num
+  k
+  namedata
   s:any[]
+  eventdata
   servicecode:string
   datadate;
   dataevent;
@@ -37,15 +43,34 @@ export class ListeventComponent implements OnInit {
       this.s=d.reverse()
       this.dataall=d
     }
+    
 
     )
+    this.FactureService.get_eventid_event().subscribe(data=>{
+       this.eventdata=data
+    })
+    this.FactureService.get_serviceId_event().subscribe(r=>{
+      this.ID=r
+      console.log(r)
+    })
+    this.FactureService.get_Name_event().subscribe(data=>{
+      this.namedata=data
+      console.log(data)
+    })
       
  this. page = 1;
  this. pageSize = 8;
   this.collectionSize = this.s.length;
  
     }
-  
+    affchfilter(){
+      this.filterbol=!this.filterbol
+     }
+     vider(){
+       this.k=undefined
+       this.num=undefined
+       this.nomevent=undefined
+     }
   
 
 }

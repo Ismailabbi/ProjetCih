@@ -12,13 +12,12 @@
    
     </div>
 
-    <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="username">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="submit"  routerLink="/home" class="fadeIn fourth" value="Log In">
-    </form>
 
+      <input type="text"   [(ngModel)]="name" placeholder="login">
+      <input type="text"  [(ngModel)]="logine"   placeholder="password">
+      <div *ngIf='a' ><p style="color:Tomato;"><b>*utilisateur ou mot de passe incorrect</b></p></div>
+      <input type="submit" (click)='login()'>
+    
     <!-- Remind Passowrd -->
     <div id="formFooter">
       <a class="underlineHover" href="#">
@@ -28,3 +27,4 @@
 
   </div>
 </div>
+

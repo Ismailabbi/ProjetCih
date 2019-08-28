@@ -19,6 +19,7 @@ import { ListfactureComponent } from './Home/home/listfacture/listfacture.compon
 import { UploadComponent } from './Home/home/upload/upload.component';
 import { TableaubordComponent } from './Home/home/tableaubord/tableaubord.component';
 
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { SercivnamsPipe } from './Pipes/sercivnams.pipe';
 import { TypeservicePipe } from './Pipes/typeservice.pipe';
 import { ClassificationPipe } from './Pipes/classification.pipe';
@@ -32,6 +33,12 @@ import { CanalPipe } from './Pipes/canal.pipe';
 import { FacturePrevisionComponent } from './Home/home/facture-prevision/facture-prevision.component';
 import { DashbordprvComponent } from './Home/home/dashbordprv/dashbordprv.component';
 import { PipedatePipe } from './Pipes/pipedate.pipe';
+import { EventnamePipe } from './Pipes/eventname.pipe';
+import { EventnumPipe } from './Pipes/eventnum.pipe';
+import { IdPipe } from './Pipes/id.pipe';
+import { SurfaceboardComponent } from './surfaceboard/surfaceboard.component';
+import { SurfboardComponent } from './Home/home/surfboard/surfboard.component';
+import { OrginepipePipe } from './Pipes/orginepipe.pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +59,13 @@ import { PipedatePipe } from './Pipes/pipedate.pipe';
     CanalPipe,
     FacturePrevisionComponent,
     DashbordprvComponent,
-    PipedatePipe
+    PipedatePipe,
+    EventnamePipe,
+    EventnumPipe,
+    IdPipe,
+    SurfaceboardComponent,
+    SurfboardComponent,
+    OrginepipePipe
   ],
   imports: [
     BrowserModule,
@@ -71,7 +84,7 @@ import { PipedatePipe } from './Pipes/pipedate.pipe';
 
 
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

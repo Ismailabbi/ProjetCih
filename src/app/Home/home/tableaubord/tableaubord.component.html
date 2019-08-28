@@ -29,8 +29,9 @@
           <div class="panel-body">
               <div class="row">
                   <div class="col-sm-3">
+                      Année:
                       <select class="form-control" id="exampleSelect1" [(ngModel)]="Annee" >
-                          <option disabled selected hidden [ngValue]="undefined">Année	</option>
+                          <option  selected  [ngValue]="All">All	</option>
                           
                           <option  *ngFor="let t of  years"  >              {{ t }}
                       
@@ -42,8 +43,10 @@
                         </select>
                   </div>
                   <div class="col-sm-3">
+                      Classification:
                       <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
-                          <option  disabled selected hidden [ngValue]="undefined">Classification		</option>
+
+                          <option   selected  [ngValue]="undefined">All		</option>
                           <option  *ngFor="let t of dataclassification"  >              {{ t.Classification }}
                                 
                             </option>
@@ -51,8 +54,9 @@
                         </select>
                   </div>
                   <div class="col-sm-3">
+                      Acceptance:
                       <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptancee" >
-                          <option  disabled selected hidden [ngValue]="undefined">Acceptance &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
+                          <option  disabled selected hidden [ngValue]="undefined">All &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
                           <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
                                 
                             </option>
@@ -61,8 +65,9 @@
                         </select>
                   </div>
                   <div class="col-sm-3">
+                      Service Name
                       <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
-                          <option  disabled selected hidden [ngValue]="undefined">Service Name		</option>
+                          <option  disabled selected hidden [ngValue]="undefined">All		</option>
     
                         <option  *ngFor="let t of servicenames"  >              {{ t.ServiceNAME }}
                           
@@ -74,6 +79,7 @@
                       </select>
                    
                   </div>
+
                   <button type="button" class="btn btn-secondary" (click)='tri()'>Chercher</button>
 
             

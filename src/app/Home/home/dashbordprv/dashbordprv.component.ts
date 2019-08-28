@@ -12,7 +12,10 @@ import { SrvsService } from 'src/app/Services/srvs.service';
   styleUrls: ['./dashbordprv.component.css']
 })
 export class DashbordprvComponent implements OnInit {
-
+  classification
+  acceptancee
+  servicename
+  
 m:number=null
 years:any[];
 mois:string
@@ -20,6 +23,53 @@ pie:any;
 Annee:any
 isA:boolean=false
 isAvailable:boolean=false
+dataclassification
+datacceptance
+servicenames
+vider(){
+  this.classification=undefined
+  this.acceptancee=undefined
+  this.servicename=undefined
+  this.Annee=undefined
+}
+tri(){
+  if(this.acceptancee==undefined&&this.classification==undefined&&this.servicename==undefined){
+    if(this.Annee=="All"){
+      this.dash.get_classffiable().subscribe(
+        (data)=>{this.pie=data
+          console.log(data)
+          this.pieChartLabels = Object.getOwnPropertyNames(data);
+          this.pieChartData=Object.values(data)
+          
+        
+        }
+  
+      )
+    }
+    else{
+      this.dash.post_classdate(this.Annee).subscribe(data=>{
+        this.pieChartLabels = Object.getOwnPropertyNames(data);
+        this.pieChartData=Object.values(data)
+  
+      })}
+  }
+  
+    else{ this.dash.post_canalP(this.acceptancee,this.Annee,this.classification,this.servicename).subscribe(data=>{
+       if(this.servicename==undefined){
+         this.servicename=''
+       }
+       if(this.acceptancee==undefined){
+         this.acceptancee=''
+       }
+       if(this.classification==undefined){
+         this.classification=''
+       }
+      this.pieChartLabels = [this.servicename+'-'+this.classification+this.Annee]
+      this.pieChartData=Object.values(data)
+      console.log(data)
+     })
+    }
+   }
 public pieChartOptions: ChartOptions = {
   responsive: true,
   legend: {
@@ -29,7 +79,7 @@ public pieChartOptions: ChartOptions = {
   
   plugins: {
     datalabels: {
-      display: true,
+      display: false,
 
       formatter: (value, ctx) => {
         const label = ctx.chart.data.labels[ctx.dataIndex];
@@ -94,7 +144,21 @@ this.pieChartOptions= {
 
 }
 ngOnInit() {
-  this.dash.get_dashbord1().subscribe(
+  this.services.getclassfication().subscribe(
+    data=>{
+      this.dataclassification=data
+    }
+  )
+  this.services.getAcceptance().subscribe(
+    data=>{
+      this.datacceptance=data
+    }
+  )
+  this.services.getservicename().subscribe(data=>{
+    this.servicenames=data
+    console.log(data)
+  })
+  this.dash.get_classffiable().subscribe(
     (data)=>{this.pie=data
       console.log(data)
       this.pieChartLabels = Object.getOwnPropertyNames(data);

@@ -5,27 +5,26 @@
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">DOCUMENTTYPE</th>
-                    <th scope="col">INVOICENUMBER</th>
-                    <th scope="col">CURRENCY</th>
-                    <th scope="col">BILLINGCYCLEDATE</th>
-                    <th scope="col">INVOICEICA</th>
-                    <th scope="col">ACTIVITYICA</th>
-                    <th scope="col">BILLABLEICA</th>
-                    <th scope="col">COLLECTIONMETHOD</th>
-                    <th scope="col">SERVICECODE</th>
-                    <th scope="col">SERVICECODEDESCRIPTION</th>
+                    <th >DOCUMENTTYPE</th>
+                    <th >INVOICENUMBER</th>
+                    <th >CURRENCY</th>
+                    <th > DATE</th>
+                    <th >INVOICEICA</th>
+                    <th >ACTIVITYICA</th>
+                    <th >BILLABLEICA</th>
+                    <th >COLLECTIONME </th>
+                    <th >SERVICE  CODE</th>
+                    <th >SERVICEDESCRIPTION</th>
                 
-                    <th scope="col">EVENTID</th>
-                    <th scope="col">EVENTDESCRIPTION</th>
-                    <th scope="col">AFFILIATE</th>
-                    <th scope="col">UOM</th>
-                    <th scope="col">QUANTITYAMOUNT</th>
-                    <th scope="col">RATE</th>
-                    <th scope="col">CHARGE</th>
-                    <th scope="col">TAXCHARGE</th>
-                    <th scope="col">TOTALCHARGE</th>
-                   <th scope="col">NetFinal</th>
+                    <th >EVENT ID</th>
+                    <th >EVENT DESCRIPTION</th>
+                    <th >UOM</th>
+                    <th >QUANTITY AMOUNT</th>
+                    <th>RATE</th>
+                    <th >CHARGE</th>
+                    <th>TAXCHARGE</th>
+                    <th >TOTAL CHARGE</th>
+                   <th>Net Final</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -42,13 +41,12 @@
                
                 <td>{{ factpop.EventID }}</td>   
                 <td>{{ factpop.EventDescription }}</td>
-                <td>{{ factpop.AFFILIATE }}</td>
                 <td>{{ factpop.UOM }}</td>
                 <td>{{ factpop.QuantityAmount }}</td>
                 <td>{{ factpop.Rate }}</td>
                 <td>{{ factpop.Charge }}</td>
                 <td>{{ factpop.TaxCharge }}</td>
-                <td>{{ factpop.TotalCharge }}</td>
+                <td>{{ factpop.TotalCharge }}0000</td>
                 <td>{{factpop.NetFinal}}</td>
 
 
@@ -75,9 +73,9 @@
                     <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>  réinitialiser</button>
                 </div>
 <th>
-                
+    SERVICE CODE DESCRIPTION:
                     <select class="form-control" id="exampleSelect1" [(ngModel)]="servicecode" >
-                      <option disabled selected hidden [ngValue]="undefined">SERVICECODEDESCRIPTION	</option>
+                      <option  selected  [ngValue]="undefined">All	</option>
                       <option  *ngFor="let t of servicedesc"  >              {{ t.ServiceCodeDescription }}
                       
                         </option>
@@ -86,8 +84,9 @@
                  
             </th>
             <th>	
+              EVENT DESCRIPTION :
                 <select class="form-control" id="exampleSelect1" [(ngModel)]="event">
-                    <option disabled selected hidden [ngValue]="undefined">EVENTDESCRIPTION	</option>
+                    <option  selected  [ngValue]="undefined">ALL	</option>
                     <option  *ngFor="let t of dataevent"  >              {{ t.EventDescription }}
                       
                       </option>
@@ -98,9 +97,9 @@
 
             </th>
             <th>
-            
+                Date:
                 <select class="form-control" id="exampleSelect1" [(ngModel)]="d">
-                    <option disabled selected hidden [ngValue]="undefined">Date	</option>
+                    <option  selected  [ngValue]="undefined">ALL	</option>
                     <option  *ngFor="let t of datadate">{{t.BillingCycleDate}}	</option>
                     
                   
@@ -113,10 +112,10 @@
             <thead>
             <tr>
               <th scope="col">DOCUMENTTYPE</th>
-              <th scope="col">SERVICECODEDESCRIPTION</th>
+              <th >SERVICE </th>
               <th scope="col">QUANTITYAMOUNT</th>
-              <th scope="col">EVENTDESCRIPTION</th>
-              <th scope="col">BILLINGCYCLEDATE</th>
+              <th scope="col">EVENT DESCRIPTION</th>
+              <th scope="col">DATE</th>
 
 
             </tr>
@@ -126,7 +125,7 @@
               <th scope="row">{{ country.DocumentType }}</th>
               <td>
                
-                {{ country.ServiceCodeDescription }}
+                {{ country.ServiceCodeDescription }}&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;
               </td>
               <td>{{ country.QuantityAmount }}</td>
               <td>{{ country.EventDescription  }}</td>
@@ -146,4 +145,5 @@
 
     </div>
   </div>
-  
+ 
+
