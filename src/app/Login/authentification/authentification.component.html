@@ -14,7 +14,7 @@
 
 
       <input type="text"   [(ngModel)]="name" placeholder="login">
-      <input type="text"  [(ngModel)]="logine"   placeholder="password">
+      <input type="password" [(ngModel)]="logine"   placeholder="password">
       <div *ngIf='a' ><p style="color:Tomato;"><b>*utilisateur ou mot de passe incorrect</b></p></div>
       <input type="submit" (click)='login()'>
     

@@ -7,35 +7,34 @@
   </div>
     <div class="panel-body">
         <div *ngIf="filterbol" class="filters">
-            <div class="s">
-        
-                <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> réinitialiser</button>
-            </div>
-
-            <th>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <th>
   
                
                 
-                    Nom Event :
-                    <select class="form-control" id="exampleSelect1" [(ngModel)]="nomevent" >
-                        <option   selected  [ngValue]="undefined">All			</option>
-  
-                      <option  *ngFor="let t of namedata"  >              {{ t.NomEvent }}
+                        Nom Event :
+                        <select class="form-control" id="exampleSelect1" [(ngModel)]="nomevent" >
+                            <option   selected  [ngValue]="undefined">All			</option>
+      
+                          <option  *ngFor="let t of namedata"  >              {{ t.NomEvent }}
+                            
+                          </option>
+                          
+                          
+                          
                         
-                      </option>
-                      
-                      
-                      
-                    
-                    </select>
-                 
-            
-            </th>
-            <th>
-                <th>
-  
-  
+                        </select>
+                     
                 
+                </th>
+                </div>
+              
+               
+           
+                <div class="col-md-3">
+                  <th>
                     Num Event :
                     <select class="form-control" id="exampleSelect1"  [(ngModel)]="num" >
                      
@@ -50,27 +49,39 @@
   
   
             </th>
-            <th>
-                Id:
-                <select class="form-control" id="exampleSelect1" [(ngModel)]="k"  >
-                        <option   selected  [ngValue]="undefined"> All&shy;&shy;&shy;&shy;&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
-                        
-                    <option  *ngFor="let t of ID"  >              {{ t.IDService }}
-                          
-                      </option>
-                  
-                  </select>
-  
-            </th>
-          
-          </div>
+                  </div>
+         
+            
+                  <div class="col-md-3">
+                      <th>
+                          Id:
+                          <select class="form-control" id="exampleSelect1" [(ngModel)]="k"  >
+                                  <option   selected  [ngValue]="undefined"> All&shy;&shy;&shy;&shy;&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
+                                  
+                              <option  *ngFor="let t of ID"  >              {{ t.IDService }}
+                                    
+                                </option>
+                            
+                            </select>
+            
+                      </th>
+                    </div>
+                    <div class="col-md-3">
+                        <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> réinitialiser</button>
+                      </div>
+                </div>
+                <hr class="new2">
+
+         
+              </div>
+         
         <div class="scrollable">
         <table class="table table-striped">
             <thead>
             <tr>
              
              
-              <th scope="col">   ID Service	    </th>
+              <th scope="col">   ID   	    </th>
              
               <th scope="col">Num Event</th>
               <th scope="col">Nom Event	</th>

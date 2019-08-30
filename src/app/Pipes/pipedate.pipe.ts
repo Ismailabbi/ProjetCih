@@ -15,7 +15,7 @@ export class PipedatePipe implements PipeTransform {
   console.log(event)
         let nvsercive:Facture[]=[];
         for(let i=0;i<tablefacture.length;i++){
-          if(tablefacture[i].BillingCycleDate.includes(event)){
+          if(tablefacture[i].BillingCycleDate==event){
            nvsercive.push(tablefacture[i])
            
           }

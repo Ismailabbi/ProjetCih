@@ -2,6 +2,7 @@ import { Component, OnInit ,ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
+import { DashbordService } from 'src/app/Services/dashbord.service';
 
 @Component({
   selector: 'app-surfboard',
@@ -9,21 +10,12 @@ import * as pluginAnnotations from 'chartjs-plugin-annotation';
   styleUrls: ['./surfboard.component.css']
 })
 export class SurfboardComponent implements OnInit {
-
-  public lineChartData: ChartDataSets[] = [
-    { data: [169, 59.00015, 96.041, 150.781 , 237.27, 136.467, 74.203, 43.65, 19, 139.224, 238.925, 267.032], label: 'Litige' },
-    { data: [379.3264, 53.445, 162.834, 19, 26.6667, 247.3334, 73.56, 140.7666, 12.445, 699, 140.99, 81.046], label: 'Risque & fraud management' },
-    { data: [84.6890, 36.1897, 156.806, 12.231, 15.899, 170.233, 36.332, 32.63, 31.333, 140.795, 128.443, 161.186], label: 'Gestion des autorisations' },
-    { data: [169.366, 42.3452, 82.869, 32.8364, 38.224, 240.663, 70.666, 20.21, 16.399, 105.868, 181.432, 182.352], label: 'Facturation' },
-    { data: [79.6, 40.333, 200.551, 67.3748, 17.4893, 20.773, 46.4421, 33.136, 28.366, 228.442, 221.946, 259.574], label: 'Gestion de compte' }, 
-    { data: [356.15, 59.1136, 104.144, 42.4873, 13.8935, 98.732, 79.4664, 176.321, 89.7566, 228.442, 118.959, 162.322], label: 'Services ATM' },
-	{ data: [196.436, 113.47, 259.4, 102.4242, 11.3784, 63.8432, 13.441, 66.321, 71.6805, 147.37, 136.316, 225.902], label: 'Gestion des transactions' },
-	{ data: [236.1211, 317.694, 176.81, 132.9734, 32.179642, 33.3332, 24.115, 74.6653, 217.972 , 73.185, 143.448], label: 'Compensation' },
-	{ data: [142.8140223, 10.333, 31.736, 19, 14.983, 8.1112, 68.364, 109.4651, 114.918 , 133.735, 94.496, 122.914], label: 'Equipements, Simulateurs & interfaces' },
-	{ data: [179.3264, 64.110, 191.264, 19, 20.2727, 54.10, 190.7411, 223.6661, 119.111 , 161.054, 160.885, 233.384], label: 'Gestion des flux' },
-	{ data: [25.3333, 17.633, 189.129, 19, 12.3389, 94.23, 136.744, 189.63, 158.51, 201.018, 193.849, 24.148], label: 'Publication, Consultations et Reporting' },
-	{ data: [139.9664, 265.1151, 235.678, 19, 22.2321, 15, 86.4445, 36.433, 254.441 , 47.806, 192.78, 204.781], label: 'formation' },
-  ];
+  public a: ChartDataSets={}
+  isDataAvailable:boolean = false;
+  date=2018
+  wait:boolean=true
+  
+  public lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Label[] = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
@@ -82,30 +74,253 @@ export class SurfboardComponent implements OnInit {
   public lineChartType = 'line';
   public lineChartPlugins = [pluginAnnotations];
 
-  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
+  @ViewChild(BaseChartDirective, { static:false }) chart: BaseChartDirective;
 
-  constructor() { }
-
+  constructor(public dash:DashbordService) { }
+  forceChartRefresh() {
+    setTimeout(() => {
+      this.chart.refresh();
+    }, 10);
+  }
   ngOnInit() {
-  }
+   
+      this.dash.post_surfaceclassification(this.date).subscribe(data=>{
+        let a:Array<any>=Object.values(data)
+        let labels:string[]=[]
+       
+        a.forEach(s=>{
+          labels.push(s.Classification)
+        })
+        let labelss:string[]=[]
+       let n:string
+          for(let i=0 ;i<labels.length;i++){
+            if(i==0){
+              n=labels[i]
+           labelss.push(n)
+            }
+            else{
+              if(labels[i]==n){}
+              else{
+                n=labels[i]
+                labelss.push(n)
+              }
+            }
+          }
+         
+          for(let i=0 ;i<labelss.length;i++){
+          let  d: ChartDataSets={}
+          d.label=labelss[i]
+          d.data=[0,0,0,0,0,0,0,0,0,0,0,0]
+      
+          for(let j=0;j<a.length;j++){
+            if(labelss[i]==a[j].Classification){
+              let m=a[j].month
+              let mf:number=+m
+               
+              d.data[mf-1]=+a[j].TotalCharge
+              
+            }
+            
+          }
+            this.lineChartData.push(d)
+          }
+          this.wait=false
+          this.isDataAvailable=true      
 
-  public randomize(): void {
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        this.lineChartData[i].data[j] = this.generateNumber(i);
-      }
-    }
-    this.chart.update();
-  }
+        
+        
+      })
 
-  private generateNumber(i: number) {
-    return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
+
+
+ 
+
+
+
+
+
+
+
+
+    
+        
+      
+      
+    
+        
+        }
+        origin(){
+          this.wait=true
+          this.lineChartData=[]
+       this.isDataAvailable=false
+                this.dash.post_surfaceceOrigin(this.date).subscribe(data=>{
+                  console.log(data)
+                  let a:Array<any>=Object.values(data)
+                  let labels:string[]=[]
+                 
+                  a.forEach(s=>{
+                    labels.push(s.Origine)
+                  })
+                  let labelss:string[]=[]
+                 let n:string
+                    for(let i=0 ;i<labels.length;i++){
+                      if(i==0){
+                        n=labels[i]
+                     labelss.push(n)
+                      }
+                      else{
+                        if(labels[i]==n){}
+                        else{
+                          n=labels[i]
+                          labelss.push(n)
+                        }
+                      }
+                    }
+                   
+                    for(let i=0 ;i<labelss.length;i++){
+                    let  d: ChartDataSets={}
+                    d.label=labelss[i]
+                    d.data=[0,0,0,0,0,0,0,0,0,0,0,0]
+                
+                    for(let j=0;j<a.length;j++){
+                      if(labelss[i]==a[j].Origine){
+                        let m=a[j].month
+                        let mf:number=+m
+                         
+                        d.data[mf-1]=+a[j].TotalCharge
+                      }
+                      
+                    }
+                    console.log(d)
+                      this.lineChartData.push(d)
+                    }
+                    console.log(this.lineChartData)
+                    this.isDataAvailable=true      
+          
+                  
+                  
+                })
+
+
+        }
+      
+        acceptancesurf(){
+          this.wait=true
+    this.lineChartData=[]
+ this.isDataAvailable=false
+          this.dash.post_surfacecAcceptance(this.date).subscribe(data=>{
+            console.log(data)
+            let a:Array<any>=Object.values(data)
+            let labels:string[]=[]
+           
+            a.forEach(s=>{
+              labels.push(s.Acceptance)
+            })
+            let labelss:string[]=[]
+           let n:string
+              for(let i=0 ;i<labels.length;i++){
+                if(i==0){
+                  n=labels[i]
+               labelss.push(n)
+                }
+                else{
+                  if(labels[i]==n){}
+                  else{
+                    n=labels[i]
+                    labelss.push(n)
+                  }
+                }
+              }
+             
+              for(let i=0 ;i<labelss.length;i++){
+              let  d: ChartDataSets={}
+              d.label=labelss[i]
+              d.data=[0,0,0,0,0,0,0,0,0,0,0,0]
+          
+              for(let j=0;j<a.length;j++){
+                if(labelss[i]==a[j].Acceptance){
+                  let m=a[j].month
+                  let mf:number=+m
+                   
+                  d.data[mf-1]=+a[j].TotalCharge
+                }
+                
+              }
+              console.log(d)
+                this.lineChartData.push(d)
+              }
+              console.log(this.lineChartData)
+              this.isDataAvailable=true      
+    
+            
+            
+          })
+          
+        }
+        
+  
+  
+
+  ok(){
+     this.wait=true
+    this.lineChartData=[]
+ this.isDataAvailable=false
+    this.dash.post_surfaceclassification(this.date).subscribe(data=>{
+      let a:Array<any>=Object.values(data)
+      let labels:string[]=[]
+     
+      a.forEach(s=>{
+        labels.push(s.Classification)
+      })
+      let labelss:string[]=[]
+     let n:string
+        for(let i=0 ;i<labels.length;i++){
+          if(i==0){
+            n=labels[i]
+         labelss.push(n)
+          }
+          else{
+            if(labels[i]==n){}
+            else{
+              n=labels[i]
+              labelss.push(n)
+            }
+          }
+        }
+       
+        for(let i=0 ;i<labelss.length;i++){
+        let  d: ChartDataSets={}
+        d.label=labelss[i]
+        d.data=[0,0,0,0,0,0,0,0,0,0,0,0]
+    
+        for(let j=0;j<a.length;j++){
+          if(labelss[i]==a[j].Classification){
+            let m=a[j].month
+            let mf:number=+m
+             
+            d.data[mf-1]=+a[j].TotalCharge
+            console.log(d.data)
+          }
+          
+        }
+          this.lineChartData.push(d)
+        }
+        this.wait=false
+
+        this.isDataAvailable=true      
+
+      
+      
+    })
   }
+  
+
+  
+
+
 
   // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
+
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
@@ -116,14 +331,7 @@ export class SurfboardComponent implements OnInit {
     this.chart.hideDataset(1, !isHidden);
   }
 
-  public pushOne() {
-    this.lineChartData.forEach((x, i) => {
-      const num = this.generateNumber(i);
-      const data: number[] = x.data as number[];
-      data.push(num);
-    });
-    this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
-  }
+
 
   public changeColor() {
     this.lineChartColors[2].borderColor = 'green';
@@ -135,4 +343,8 @@ export class SurfboardComponent implements OnInit {
     // this.chart.update();
   }
 
+}
+class A  {
+  data:Array<number>
+  label:string
 }

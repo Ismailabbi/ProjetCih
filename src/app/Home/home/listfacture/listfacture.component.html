@@ -5,16 +5,16 @@
             <table class="table">
                 <thead>
                   <tr>
-                    <th >DOCUMENTTYPE</th>
-                    <th >INVOICENUMBER</th>
+                    <th >DOCUMENT TYPE</th>
+                    <th >INVOICE NUMBER</th>
                     <th >CURRENCY</th>
                     <th > DATE</th>
                     <th >INVOICEICA</th>
-                    <th >ACTIVITYICA</th>
-                    <th >BILLABLEICA</th>
+                    <th >ACTIVITY ICA</th>
+                    <th >BILLABLE ICA</th>
                     <th >COLLECTIONME </th>
                     <th >SERVICE  CODE</th>
-                    <th >SERVICEDESCRIPTION</th>
+                    <th >SERVICE DESCRIPTION</th>
                 
                     <th >EVENT ID</th>
                     <th >EVENT DESCRIPTION</th>
@@ -24,7 +24,12 @@
                     <th >CHARGE</th>
                     <th>TAXCHARGE</th>
                     <th >TOTAL CHARGE</th>
-                   <th>Net Final</th>
+                   <th>Acceptance</th>
+                   <th>Canal</th>
+                   <th>ClASSIFICATION</th>
+                   <th> ORIGINE</th>
+                   <th> TYPE RATE</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -47,7 +52,12 @@
                 <td>{{ factpop.Charge }}</td>
                 <td>{{ factpop.TaxCharge }}</td>
                 <td>{{ factpop.TotalCharge }}0000</td>
-                <td>{{factpop.NetFinal}}</td>
+                
+                <td>{{factpop.Acceptance}}</td>
+                <td>{{factpop.Canal}}</td>
+                <td>{{factpop.Classification}}</td>
+                <td>{{factpop.Origine}}</td>
+                <td>{{factpop.TypeRate}}</td>
 
 
                 
@@ -69,9 +79,9 @@
     <div class="panel-body">
         <div *ngIf="filterbol" class="filters">
           
-                <div class="s">
-                    <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>  réinitialiser</button>
-                </div>
+            <div class="row">
+                
+                  <div class="col-md-4">
 <th>
     SERVICE CODE DESCRIPTION:
                     <select class="form-control" id="exampleSelect1" [(ngModel)]="servicecode" >
@@ -83,10 +93,13 @@
                     </select>
                  
             </th>
+            </div>
+
+            <div class="col-md-4">
             <th>	
               EVENT DESCRIPTION :
                 <select class="form-control" id="exampleSelect1" [(ngModel)]="event">
-                    <option  selected  [ngValue]="undefined">ALL	</option>
+                    <option  selected  [ngValue]="undefined">All	</option>
                     <option  *ngFor="let t of dataevent"  >              {{ t.EventDescription }}
                       
                       </option>
@@ -96,10 +109,12 @@
 
 
             </th>
+          </div>
+          <div class="col-md-4">
             <th>
                 Date:
                 <select class="form-control" id="exampleSelect1" [(ngModel)]="d">
-                    <option  selected  [ngValue]="undefined">ALL	</option>
+                    <option  selected  [ngValue]="undefined">All	</option>
                     <option  *ngFor="let t of datadate">{{t.BillingCycleDate}}	</option>
                     
                   
@@ -107,22 +122,77 @@
             </th>
            
           </div>
+         
+         
+          </div>
+          <div class="row">
+              <div class="col-md-4"> <th>
+                Acceptance:
+              <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptance" >
+                  <option   selected  [ngValue]="undefined">All &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
+                  <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
+                        
+                    </option>
+                
+                
+                </select>
+    
+          </th></div>
+              <div class="col-md-4">
+    
+         
+                <th>
+                  Canal:
+                <select class="form-control" id="exampleSelect1" [(ngModel)]="canal"  >
+                    <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
+                    <option  *ngFor="let t of datacanal"  >              {{ t.Canal }}
+                          
+                      </option>
+                     
+                  </select>
+                
+            </th>
+    
+              </div>
+              <div class="col-md-4">
+                <th>
+                Origin
+                <select class="form-control" id="exampleSelect1" [(ngModel)]="origine"  >
+                    <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
+                    <option  *ngFor="let t of dataorigine"  >              {{ t.Origine }}
+                          
+                      </option>
+                     
+                  </select>
+    
+    </th>
+    
+              </div>
+    
+            </div>
+          <hr class="new2">
+        </div>
         <div class="scrollable">
         <table class="table table-striped">
             <thead>
             <tr>
-              <th scope="col">DOCUMENTTYPE</th>
+            
               <th >SERVICE </th>
-              <th scope="col">QUANTITYAMOUNT</th>
+              <th scope="col">QUANTITY </th>
               <th scope="col">EVENT DESCRIPTION</th>
               <th scope="col">DATE</th>
-
+              <th scope="col">MONTANT</th>
+              <th scope="col">Acceptance</th>
+              <th scope="col">CANAL</th>
+              <th scope="col">ClASSIFICATION</th>
+              <th scope="col"> ORIGINE</th>
+              <th scope="col"> TYPE RATE</th>
 
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event|pipedate:d">
-              <th scope="row">{{ country.DocumentType }}</th>
+            <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event|pipedate:d|acceptance:acceptance|canal:canal|orginepipe:origine">
+              
               <td>
                
                 {{ country.ServiceCodeDescription }}&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;
@@ -130,7 +200,12 @@
               <td>{{ country.QuantityAmount }}</td>
               <td>{{ country.EventDescription  }}</td>
               <td>{{ country.BillingCycleDate  }}</td>
-             
+              <td>{{ country.TotalCharge  }}</td>
+              <td>{{country.Acceptance}}</td>
+              <td>{{country.Canal}}</td>
+              <td>{{country.Classification}}</td>
+              <td>{{country.Origine}}</td>
+              <td>{{country.TypeRate}}</td>
               <td>
                 <button type="button"(click)="show(country)" class="btn btn-info">Detail
 
@@ -146,4 +221,4 @@
     </div>
   </div>
  
-
+ 

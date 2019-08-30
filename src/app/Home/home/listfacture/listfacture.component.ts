@@ -15,12 +15,19 @@ export class ListfactureComponent implements OnInit {
   
   constructor(private SrvSrvsService:SrvsService,private FactureServicess:FactureService,private popup:Popup) { }
   s:Facture[]
+  dataorigine
+  dataclassification
   servicecode:string
   datadate;
+  acceptance
+  canal
+  origine
+  datacanal
   d:string
   dataevent;
   factpop:Facture
   filterbol:boolean=false;
+  datacceptance
   event:string;
   dataall:any[]
   servicedesc;
@@ -58,6 +65,25 @@ export class ListfactureComponent implements OnInit {
     this.filterbol=!this.filterbol
    }
   ngOnInit() {
+    this.SrvSrvsService.getCanal().subscribe(
+      data=>{
+        this.datacanal=data
+      }
+    )
+    this.SrvSrvsService.getAcceptance().subscribe(
+      data=>{
+        this.datacceptance=data
+      }
+    )
+    this.SrvSrvsService.getorigine().subscribe(data=>{
+      this.dataorigine=data
+      console.log(this.dataorigine)
+    })
+    this.SrvSrvsService.getclassfication().subscribe(
+      data=>{
+        this.dataclassification=data
+      }
+    )
     this.FactureServicess.get_factures().subscribe((data)=>{
       this.FactureServicess.get_date().subscribe(data=>{
         

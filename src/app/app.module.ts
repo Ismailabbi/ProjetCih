@@ -39,6 +39,8 @@ import { IdPipe } from './Pipes/id.pipe';
 import { SurfaceboardComponent } from './surfaceboard/surfaceboard.component';
 import { SurfboardComponent } from './Home/home/surfboard/surfboard.component';
 import { OrginepipePipe } from './Pipes/orginepipe.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AdminbordComponent } from './Home/home/adminbord/adminbord.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import { OrginepipePipe } from './Pipes/orginepipe.pipe';
     IdPipe,
     SurfaceboardComponent,
     SurfboardComponent,
-    OrginepipePipe
+    OrginepipePipe,
+    AdminbordComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ import { OrginepipePipe } from './Pipes/orginepipe.pipe';
     FlashMessagesModule.forRoot(),
     PopupModule.forRoot(),
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    FontAwesomeModule
 
 
 

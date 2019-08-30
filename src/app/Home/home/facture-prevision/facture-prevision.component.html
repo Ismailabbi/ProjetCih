@@ -5,26 +5,32 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">DOCUMENTTYPE</th>
-                        <th scope="col">INVOICENUMBER</th>
+                        <th scope="col">DOCUMENT TYPE</th>
+                        <th scope="col">INVOICE NUMBER</th>
                         <th scope="col">CURRENCY</th>
-                        <th scope="col">BILLINGCYCLEDATE</th>
-                        <th scope="col">INVOICEICA</th>
-                        <th scope="col">ACTIVITYICA</th>
-                        <th scope="col">BILLABLEICA</th>
-                        <th scope="col">COLLECTIONMETHOD</th>
-                        <th scope="col">SERVICECODE</th>
-                        <th scope="col">SERVICECODEDESCRIPTION</th>
+                        <th scope="col">BILLINGCYCLE DATE</th>
+                        <th scope="col">INVOICE ICA</th>
+                        <th scope="col">ACTIVITY ICA</th>
+                        <th scope="col">BILLABLE ICA</th>
+                        <th scope="col">COLLECTION METHOD</th>
+                        <th scope="col">SERVICE CODE</th>
+                        <th scope="col">SERVICE CODE DESCRIPTION</th>
                     
-                        <th scope="col">EVENTID</th>
-                        <th scope="col">EVENTDESCRIPTION</th>
+                        <th scope="col">EVENT ID</th>
+                        <th scope="col">EVENT DESCRIPTION</th>
                         <th scope="col">AFFILIATE</th>
                         <th scope="col">UOM</th>
-                        <th scope="col">QUANTITYAMOUNT</th>
+                        <th scope="col">QUANTITY AMOUNT</th>
                         <th scope="col">RATE</th>
                         <th scope="col">CHARGE</th>
-                        <th scope="col">TAXCHARGE</th>
-                        <th scope="col">TOTALCHARGE</th>
+                        <th scope="col">TAX CHARGE</th>
+                        <th scope="col">TOTAL CHARGE</th>
+                        <th scope="col">Acceptance</th>
+                   <th scope="col">Canal</th>
+                   <th scope="col">ClASSIFICATION</th>
+                   <th scope="col"> ORIGINE</th>
+                   <th scope="col"> TYPE RATE</th>
+
                        
                       </tr>
                     </thead>
@@ -49,7 +55,11 @@
                     <td>{{ factpop.Charge }}</td>
                     <td>{{ factpop.TaxCharge }}</td>
                     <td>{{ factpop.TotalCharge }}</td>
-             
+                    <td>{{factpop.Acceptance}}</td>
+                    <td>{{factpop.Canal}}</td>
+                    <td>{{factpop.Classification}}</td>
+                    <td>{{factpop.Origine}}</td>
+                    <td>{{factpop.TypeRate}}</td>
     
     
                     
@@ -69,17 +79,14 @@
       </div>
         <div class="panel-body">
             <div *ngIf="filterbol" class="filters">
-                <div class="s">
-                    <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><i class="fas fa-broom"></i>
-
-                      réinitialiser</button>
-                </div>
-                <th>
+          
+                <div class="row">
                     
-                   
-                    SERVICE CODE DESCRIPTION
+                      <div class="col-md-4">
+    <th>
+        SERVICE CODE DESCRIPTION:
                         <select class="form-control" id="exampleSelect1" [(ngModel)]="servicecode" >
-                          <option  selected  [ngValue]="undefined">ALL	</option>
+                          <option  selected  [ngValue]="undefined">All	</option>
                           <option  *ngFor="let t of servicedesc"  >              {{ t.ServiceCodeDescription }}
                           
                             </option>
@@ -87,10 +94,13 @@
                         </select>
                      
                 </th>
+                </div>
+    
+                <div class="col-md-4">
                 <th>	
-                    EVENT DESCRIPTION :
+                  EVENT DESCRIPTION :
                     <select class="form-control" id="exampleSelect1" [(ngModel)]="event">
-                        <option  selected  [ngValue]="undefined">ALL	</option>
+                        <option  selected  [ngValue]="undefined">All	</option>
                         <option  *ngFor="let t of dataevent"  >              {{ t.EventDescription }}
                           
                           </option>
@@ -100,18 +110,69 @@
     
     
                 </th>
+              </div>
+              <div class="col-md-4">
                 <th>
-                
                     Date:
-                <select class="form-control" id="exampleSelect1" [(ngModel)]="d">
-                    <option disabled selected hidden [ngValue]="undefined">ALL	</option>
-                    <option  *ngFor="let t of datadate">{{t.BillingCycleDate}}	</option>
-                    
-                  
-                  </select>
+                    <select class="form-control" id="exampleSelect1" [(ngModel)]="d">
+                        <option  selected  [ngValue]="undefined">All	</option>
+                        <option  *ngFor="let t of datadate">{{t.BillingCycleDate}}	</option>
+                        
+                      
+                      </select>
                 </th>
                
               </div>
+             
+             
+              </div>
+              <div class="row">
+                  <div class="col-md-4"> <th>
+                    Acceptance:
+                  <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptance" >
+                      <option   selected  [ngValue]="undefined">All &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
+                      <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
+                            
+                        </option>
+                    
+                    
+                    </select>
+        
+              </th></div>
+                  <div class="col-md-4">
+        
+             
+                    <th>
+                      Canal:
+                    <select class="form-control" id="exampleSelect1" [(ngModel)]="canal"  >
+                        <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
+                        <option  *ngFor="let t of datacanal"  >              {{ t.Canal }}
+                              
+                          </option>
+                         
+                      </select>
+                    
+                </th>
+        
+                  </div>
+                  <div class="col-md-4">
+                    <th>
+                    Origin
+                    <select class="form-control" id="exampleSelect1" [(ngModel)]="origine"  >
+                        <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
+                        <option  *ngFor="let t of dataorigine"  >              {{ t.Origine }}
+                              
+                          </option>
+                         
+                      </select>
+        
+        </th>
+        
+                  </div>
+        
+                </div>
+              <hr class="new2">
+            </div>
             <div class="scrollable">
             <table class="table table-striped">
                 <thead>
@@ -121,12 +182,12 @@
                   <th scope="col">QUANTITY </th>
                   <th scope="col">EVENT DESCRIPTION</th>
                   <th scope="col">DATE</th>
-                 <th scope="col">Montant</th>
+                 <th scope="col">MONTANT</th>
     
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event|pipedate:d">
+                <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event|pipedate:d|acceptance:acceptance|canal:canal|orginepipe:origine">
                   <th scope="row">{{ country.DocumentType }}</th>
                   <td>
                    

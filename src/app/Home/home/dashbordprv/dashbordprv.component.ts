@@ -34,7 +34,7 @@ vider(){
 }
 tri(){
   if(this.acceptancee==undefined&&this.classification==undefined&&this.servicename==undefined){
-    if(this.Annee=="All"){
+    if(this.Annee==undefined){
       this.dash.get_classffiable().subscribe(
         (data)=>{this.pie=data
           console.log(data)
@@ -108,41 +108,7 @@ en(){
 
  console.log("ok")
 }
-class(){
-this.dash.get_classffiable().subscribe(
-  (data)=>{this.pie=data
-    console.log(data)
-     this.pieChartLabels = Object.getOwnPropertyNames(data);
-     this.pieChartData=Object.values(data)
-    
-  
-  }
 
-)
-this.pieChartOptions= {
-  responsive: true,
-  legend: {
-    position: 'left',
-    display:true
-  },
-  
-  plugins: {
-    datalabels: {
-      display: true,
-
-      formatter: (value, ctx) => {
-        const label = ctx.chart.data.labels[ctx.dataIndex];
-        return label;
-      },
-    },
-    outlabels: {
-      display: true,
-     },
-  }
-};
-
-
-}
 ngOnInit() {
   this.services.getclassfication().subscribe(
     data=>{
@@ -175,56 +141,12 @@ ngOnInit() {
 }
 
 // events
-public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-  console.log(event, active);
-}
 
-public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-  console.log(event, active);
-}
 
-changeLabels() {
-  this.dash.get_servicefiable().subscribe((data=>{
-  console.log(data)
-  this.pieChartLabels = Object.getOwnPropertyNames(data);
-     this.pieChartData=Object.values(data)
-  }))
-  this.pieChartOptions= {
-    responsive: true,
-    legend: {
-      position: 'bottom',
-      display:true
-      
-    },
-    
-    plugins: {
-      datalabels: {
-        display: false,
 
-        formatter: (value, ctx) => {
-          const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label;
-        },
-      },
-      outlabels: {
-        display: true,
-       },
-    }
-  };
 
-}
 
-addSlice() {
-  this.pieChartLabels.push(['Line 1', 'Line 2', 'Line 3']);
-  this.pieChartData.push(400);
-  this.pieChartColors[0].backgroundColor.push('rgba(196,79,244,0.3)');
-}
 
-removeSlice() {
-  this.pieChartLabels.pop();
-  this.pieChartData.pop();
-  this.pieChartColors[0].backgroundColor.pop();
-}
 public barChartOptions: ChartOptions = {
   responsive: true,
   // We use these empty structures as placeholders for dynamic theming.
@@ -257,7 +179,7 @@ public origin(){
        this.pieChartData=Object.values(data)
     }))
 }
-public
+
 public ko(){
 
   console.log(this.mois)
@@ -331,58 +253,15 @@ this.m=11
     }
   };
 }
-public fiableAcc(){
-  console.log("salam")
-  this.dash.get_accfiable().subscribe((data=>{
-    
-    console.log(Object.getOwnPropertyNames(data))
-    this.pieChartLabels = Object.getOwnPropertyNames(data);
-       this.pieChartData=Object.values(data)
-    }))
-}
+
 public fiable(){
 this.isA=!this.isA
 
 }
-public canal(){
- 
-}
 
-fiableAccP(){
-  this.dash.post_accepP(this.Annee,this.m).subscribe((data=>{
-    console.log(data)
-    this.pieChartLabels = Object.getOwnPropertyNames(data);
-       this.pieChartData=Object.values(data)
-    }))
-}
-originfiableP(){
-  this.dash.post_originP(this.Annee,this.m).subscribe((data=>{
-    console.log(data)
-    this.pieChartLabels = Object.getOwnPropertyNames(data);
-       this.pieChartData=Object.values(data)
-    }))
-}
-public originfiable(){
-  console.log("ok")
-  this.dash.get_originfiable().subscribe((data=>{
-    console.log(data)
-    this.pieChartLabels = Object.getOwnPropertyNames(data);
-       this.pieChartData=Object.values(data)
-    }))
-}
-classfiableP(){
-  this.dash.post_classificationP(this.Annee,this.m).subscribe((data=>{
-    console.log(data)
-    this.pieChartLabels = Object.getOwnPropertyNames(data);
-       this.pieChartData=Object.values(data)
-    }))
-}
-servicefiableP(){
-  this.dash.post_serviceP(this.Annee,this.m).subscribe((data=>{
-    console.log(data)
-    this.pieChartLabels = Object.getOwnPropertyNames(data);
-       this.pieChartData=Object.values(data)
-    }))
-}
+
+
+
+
 
 }

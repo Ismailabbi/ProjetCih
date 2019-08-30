@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FactureService } from 'src/app/Services/facture.service';
 import {Popup} from 'ng2-opd-popup';
 import { Facture } from 'src/app/Models/Factures';
+import { SrvsService } from 'src/app/Services/srvs.service';
 
 @Component({
   selector: 'app-facture-prevision',
@@ -11,18 +12,25 @@ import { Facture } from 'src/app/Models/Factures';
 export class FacturePrevisionComponent implements OnInit {
   s:Facture[]
   servicecode:string
+  dataorigine
+  dataclassification
   datadate;
+  acceptance
+  canal
+  datacanal
+  origine
   d:string
   dataevent;
   factpop:Facture
   filterbol:boolean=false;
   event:string;
+  datacceptance
   dataall:any[]
   servicedesc;
   page ;
   pageSize ;
   collectionSize ;
-  constructor(private FactureServicess:FactureService,private popup:Popup) { }
+  constructor(private FactureServicess:FactureService,private popup:Popup,private SrvSrvsService:SrvsService) { }
   show(country:Facture){
     this.popup.options = {
       header: "Detail",
@@ -56,6 +64,25 @@ export class FacturePrevisionComponent implements OnInit {
     this.filterbol=!this.filterbol
    }
   ngOnInit() {
+    this.SrvSrvsService.getCanal().subscribe(
+      data=>{
+        this.datacanal=data
+      }
+    )
+    this.SrvSrvsService.getAcceptance().subscribe(
+      data=>{
+        this.datacceptance=data
+      }
+    )
+    this.SrvSrvsService.getclassfication().subscribe(
+      data=>{
+        this.dataclassification=data
+      }
+    )
+    this.SrvSrvsService.getorigine().subscribe(data=>{
+      this.dataorigine=data
+      console.log(this.dataorigine)
+    })
     this.FactureServicess.get_facutresP().subscribe((data)=>{
       this.FactureServicess.get_date().subscribe(data=>{
         

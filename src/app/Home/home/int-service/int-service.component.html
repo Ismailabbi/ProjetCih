@@ -6,12 +6,31 @@
   </div>
 </div>
   <div class="panel-body">
-      <div *ngIf="filterbol" class="filters"> <div class="s">
-        
-          <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> réinitialiser</button>
-      </div>
-
-          <th>
+    
+      <div *ngIf="filterbol"  > 
+     
+          <div class="row">
+              <div class="col-md-4">
+               
+              </div>
+              <div class="col-md-4">
+    
+    
+             
+    
+    
+              </div>
+              <div class="col-md-4">
+    
+    
+                  <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> réinitialiser</button>
+    
+              </div>
+    
+            </div>
+        <div class="row">
+          <div class="col-md-4">
+            <th>
 
 
               
@@ -31,26 +50,35 @@
                
           
           </th>
-        
-              <th>
+          </div>
+          <div class="col-md-4">
+
+
+            <th>
 
 
               
-                  Type de service:
-                  <select class="form-control" id="exampleSelect1"  [(ngModel)]="typeservice" >
-                   
-                      <option   selected  [ngValue]="undefined">  All		</option>
+              Type de service:
+              <select class="form-control" id="exampleSelect1"  [(ngModel)]="typeservice" >
+               
+                  <option   selected  [ngValue]="undefined">  All		</option>
 
-                      <option  *ngFor="let t of datatype"  >              {{ t.Typedeservice }}
-                        
-                      </option>
+                  <option  *ngFor="let t of datatype"  >              {{ t.Typedeservice }}
                     
-                  
-                  </select>
+                  </option>
+                
+              
+              </select>
 
 
-          </th>
-          <th>
+      </th>
+
+
+          </div>
+          <div class="col-md-4">
+
+
+            <th>
               Classification:
               <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
                   <option   selected  [ngValue]="undefined">All		</option>
@@ -61,27 +89,41 @@
                 </select>
 
           </th>
-          <th>
-              Acceptance:
-            <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptance" >
-                <option   selected  [ngValue]="undefined">ALL &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
-                <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
-                      
-                  </option>
-              
-              
-              </select>
 
-        </th>
-        <th>
-            Canal:
-          <select class="form-control" id="exampleSelect1" [(ngModel)]="canal"  >
-              <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
-              <option  *ngFor="let t of datacanal"  >              {{ t.Canal }}
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-4"> <th>
+            Acceptance:
+          <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptance" >
+              <option   selected  [ngValue]="undefined">All &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
+              <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
                     
                 </option>
-               
+            
+            
             </select>
+
+      </th></div>
+          <div class="col-md-4">
+
+     
+            <th>
+              Canal:
+            <select class="form-control" id="exampleSelect1" [(ngModel)]="canal"  >
+                <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
+                <option  *ngFor="let t of datacanal"  >              {{ t.Canal }}
+                      
+                  </option>
+                 
+              </select>
+            
+        </th>
+
+          </div>
+          <div class="col-md-4">
+            <th>
             Origin
             <select class="form-control" id="exampleSelect1" [(ngModel)]="origine"  >
                 <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
@@ -90,9 +132,23 @@
                   </option>
                  
               </select>
-      </th>
-      <hr/>
+
+</th>
+
+          </div>
+
+        </div>
+          
+
+
+  <hr class="new2">
+    
+          
+          
+    
+      
     </div>
+  
       <div class="scrollable">
       <table class="table table-striped">
           <thead>

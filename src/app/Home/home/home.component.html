@@ -10,7 +10,7 @@
                     <img src="https://www.h24info.ma/wp-content/uploads/2017/04/articlesprincipalescih.jpg" class="img-responsive center-block" alt="Logo">
                 </div>
                 <br>
-                <div class="left-navigation">
+                <div class="left-navigation op">
                     <ul class="list">
                         <h5><strong>
 
@@ -19,7 +19,9 @@
                        
                    
                                 
-                                <li   (click)="aks()">MasterCard</li>
+                                <li   (click)="aks()">MasterCard <span class="glyphicon glyphicon-chevron-down size"></span></li>
+
+
 
                                 <div *ngIf='ab' class="r">
                                         <li routerLink="Services"> &raquo;
@@ -32,15 +34,21 @@
                         <li routerLink="facutreprevison">&raquo;
                                 Facture prévisionnelle</li><br/>
                         <li  (click)="ass()"> &raquo;
-                                Tableau de bord </li><br/>
+                                Tableau de bord <span class="glyphicon glyphicon-chevron-down size"></span> </li><br/>
                                 <div *ngIf='at' class="r">
                                         <li routerLink="dashbord"> &raquo;
                                                         Domaine </li><br/>
                                                 <li routerLink="a"> &raquo;
                                                         Evolution </li><br/>
                                     </div>
-                        <li routerLink="dashbordprv"> &raquo;
-                                Tableau de bord prévisionnel</li><br/>
+                        <li (click)="add()"> &raquo;
+                                Tableau de bord prévisionnel <span class="glyphicon glyphicon-chevron-down size"></span></li><br/>
+                                <div *ngIf='ak' class="r">
+                                                <li routerLink="dashbordprv" > &raquo;
+                                                                Domaine </li><br/>
+                                                        <li routerLink="a"> &raquo;
+                                                                Evolution </li><br/>
+                                            </div>
                         <li routerLink="upload">&raquo;
                                 Chargement</li>
      
@@ -49,7 +57,7 @@
                        
                                 <li routerLink="/login" >Visa</li>
                                 <li routerLink="/login" >HPPS</li>
-                                <li routerLink="/login" >Administrateur</li>
+                                <li routerLink="adminboard" >Administrateur</li>
 
                         <li routerLink="/login" >Deconnexion</li>
                       
@@ -62,13 +70,10 @@
             </div>
 
             
-            <div class="col-md-10 col-sm-8 main-content">
+            <div class="col-md-10 col-sm-8  ka main-content">
             <!--Main content code to be written here --> 
             <router-outlet></router-outlet>       
-            <footer>
-                    <p style="color:blue;">©Effyis Partners</p>
-                    
-                </footer>     
+            
         </div>
     </div>
     </div>

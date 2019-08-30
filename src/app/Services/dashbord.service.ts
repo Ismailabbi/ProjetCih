@@ -97,4 +97,15 @@ post_dashP(a:string=null,b:number=null,c:string=null,d:string=null){
   return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/fiabilise/Dashboard_service_timed',{"Acceptance": a,"Annee":b,'Classification':c,'Service':d,'Canal':'','Origine':'','Mois':''})
 
 }
+post_surfaceclassification(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/classification',{"Annee": a})
+
+}
+post_surfacecAcceptance(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/acceptance',{"Annee": a})
+}
+post_surfaceceOrigin(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/origine',{"Annee": a})
+
+}
 }

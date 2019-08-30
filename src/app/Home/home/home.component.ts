@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 export class HomeComponent implements OnInit {
  ab:boolean=false
  at:boolean=false
-
+ak:boolean=false
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -21,6 +21,9 @@ export class HomeComponent implements OnInit {
   }
   ass(){
     this.at=!this.at
+  }
+  add(){
+    this.ak=!this.ak
   }
 
 }
