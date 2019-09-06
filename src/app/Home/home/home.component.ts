@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
  ab:boolean=false
  at:boolean=false
 ak:boolean=false
+an:boolean=false
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -25,5 +26,7 @@ ak:boolean=false
   add(){
     this.ak=!this.ak
   }
-
+  arr(){
+  this.an=!this.an
+  }
 }

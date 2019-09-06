@@ -15,6 +15,8 @@ export class ListfactureComponent implements OnInit {
   
   constructor(private SrvSrvsService:SrvsService,private FactureServicess:FactureService,private popup:Popup) { }
   s:Facture[]
+  chargetotal:number
+  nombrefacture:number
   dataorigine
   dataclassification
   servicecode:string
@@ -29,6 +31,7 @@ export class ListfactureComponent implements OnInit {
   filterbol:boolean=false;
   datacceptance
   event:string;
+  an;
   dataall:any[]
   servicedesc;
   page ;
@@ -51,7 +54,6 @@ export class ListfactureComponent implements OnInit {
   
   get countries(): any[] {
     COUNTRIES=this.s
-    console.log(COUNTRIES)
     return COUNTRIES
     
     
@@ -85,10 +87,17 @@ export class ListfactureComponent implements OnInit {
       }
     )
     this.FactureServicess.get_factures().subscribe((data)=>{
+      let a:number=0;
+      this.nombrefacture=data.length
+      data.forEach(s=>{
+        if(Number(s.TotalCharge)){
+         let b=Number(s.TotalCharge)
+         a=a+b
+      }})
+      this.chargetotal=a
       this.FactureServicess.get_date().subscribe(data=>{
         
         this.datadate=data
-        console.log(this.datadate)
       })
       this.FactureServicess.get_event().subscribe(data=>{
         this.dataevent=data

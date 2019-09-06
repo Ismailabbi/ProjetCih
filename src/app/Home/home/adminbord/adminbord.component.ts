@@ -8,6 +8,11 @@ import {Popup} from 'ng2-opd-popup';
   styleUrls: ['./adminbord.component.css']
 })
 export class AdminbordComponent implements OnInit {
+  profil:string
+  cr:boolean=false
+  up:boolean=false
+  user:string
+  mdp:string
  users:any[]
   constructor( public adminserive:AdminService,private popup:Popup) { }
 
@@ -25,10 +30,13 @@ export class AdminbordComponent implements OnInit {
   }
 
   show(){
+    this.cr=true
+  this.up=false
     this.popup.options = {
+      
       header: "Detail",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
+      color: "#0275d8", // red, blue....
+      widthProsentage: 30, // The with of the popou measured by browser width
       animationDuration: 1, // in seconds, 0 = no animation
       showButtons: false, // You can hide this in case you want to use custom buttons
       cancleBtnClass: "btn btn-default", // you class for styling the cancel button
@@ -36,6 +44,46 @@ export class AdminbordComponent implements OnInit {
   };
     this.popup.show(this.popup.options)
   }
+  show2(user:any){
+    this.cr=false
+  this.up=true
+    this.user=user.username
+    this.profil=user.Profile
+    this.mdp=user.password
+    this.popup.options = {
+      
+      header: "Detail",
+      color: "#0275d8", // red, blue....
+      widthProsentage: 30, // The with of the popou measured by browser width
+      animationDuration: 1, // in seconds, 0 = no animation
+      showButtons: false, // You can hide this in case you want to use custom buttons
+      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
+      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+  };
+    this.popup.show(this.popup.options)
+  }
+
+fermer(){
+  this.popup.hide()
+}
+creer(){
+  
+  this.adminserive.create(this.user,this.profil,this.mdp).subscribe(data=>{
+    console.log(data)
+    this.adminserive.get_users().subscribe(data=>{
+      this.users=data
+    })
+  })
+}
+update(){
+  
+  this.adminserive.create(this.user,this.profil,this.mdp).subscribe(data=>{
+    console.log(data)
+    this.adminserive.get_users().subscribe(data=>{
+      this.users=data
+    })
+  })
+}
 
  
 }

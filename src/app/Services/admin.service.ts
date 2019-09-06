@@ -15,8 +15,11 @@ export class AdminService {
 delete(id){
   return this.httpClient.delete('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/administration/suppression/'+id)
 }
-update( a:any){
-  return this.httpClient.put('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/administration/update',a)
+update( firstname:string ,Password:string,profil:string){
+  return this.httpClient.put('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/administration/update',{Username:firstname,Password:Password,Profile:profil})
 
+}
+create(firstname:string,profil:string,mdp:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/administration/creation',{Username:firstname,Password:mdp,Profile:profil})
 }
 }

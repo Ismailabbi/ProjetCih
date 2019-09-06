@@ -14,7 +14,7 @@ export class SurfboardComponent implements OnInit {
   isDataAvailable:boolean = false;
   date=2018
   wait:boolean=true
-  
+  choix:string;
   public lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Label[] = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -150,6 +150,7 @@ export class SurfboardComponent implements OnInit {
         
         }
         origin(){
+          this.choix='o'
           this.wait=true
           this.lineChartData=[]
        this.isDataAvailable=false
@@ -205,6 +206,7 @@ export class SurfboardComponent implements OnInit {
         }
       
         acceptancesurf(){
+          this.choix='a'
           this.wait=true
     this.lineChartData=[]
  this.isDataAvailable=false
@@ -262,6 +264,7 @@ export class SurfboardComponent implements OnInit {
   
 
   ok(){
+    this.choix="c"
      this.wait=true
     this.lineChartData=[]
  this.isDataAvailable=false
@@ -314,8 +317,17 @@ export class SurfboardComponent implements OnInit {
     })
   }
   
-
-  
+ch(){
+  if(this.choix=="a"){
+    this.acceptancesurf()
+  }
+  if(this.choix=='c'){
+    this.ok()
+  }
+  if(this.choix=="o"){
+    this.origin()
+  }
+}
 
 
 

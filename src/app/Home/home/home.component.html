@@ -24,10 +24,15 @@
 
 
                                 <div *ngIf='ab' class="r">
-                                        <li routerLink="Services"> &raquo;
-                                                Service </li><br/>
-                                        <li routerLink="event"> &raquo;
-                                                Evenement </li><br/>
+                                                <li (click)="arr()"> &raquo;
+                                                                Référentiel <span class="glyphicon glyphicon-chevron-down size"></span></li><br/>
+                                                                <div *ngIf='an' class="r">
+                                                                                <li routerLink="Services"> &raquo;
+                                                                                                Service </li><br/>
+                                                                                        <li routerLink="event"> &raquo;
+                                                                                                Evenement </li><br/>
+                                                                                                </div>
+                                       
                                              
                         <li routerLink="factures"> &raquo;
                                 Facture reçue</li><br/>
@@ -40,6 +45,8 @@
                                                         Domaine </li><br/>
                                                 <li routerLink="a"> &raquo;
                                                         Evolution </li><br/>
+                                                        <li routerLink="ab"> &raquo;Ventilation</li><br/>
+
                                     </div>
                         <li (click)="add()"> &raquo;
                                 Tableau de bord prévisionnel <span class="glyphicon glyphicon-chevron-down size"></span></li><br/>
@@ -48,6 +55,8 @@
                                                                 Domaine </li><br/>
                                                         <li routerLink="a"> &raquo;
                                                                 Evolution </li><br/>
+                                                                <li routerLink="ab"> &raquo;Ventilation</li>
+
                                             </div>
                         <li routerLink="upload">&raquo;
                                 Chargement</li>

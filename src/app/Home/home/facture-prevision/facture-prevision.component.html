@@ -1,3 +1,26 @@
+<div class="row soso">
+    <div class="col-md-6">
+      <div class="card-counter primary">
+        <i class="fa fa-file" aria-hidden="true"></i>
+
+
+        <span class="count-numbers">{{nombrefacture}}</span>
+        <span class="count-name">Nombre des frais</span>
+      </div>
+    </div>
+  
+    
+  
+    
+  
+    <div class="col-md-6">
+      <div class="card-counter info">
+        <i class="fa fa-usd" aria-hidden="true"></i>
+        <span class="count-numbers">{{chargetotal| currency:'':true:'1.2-2'}}</span>
+        <span class="count-name">Charge totale</span>
+      </div>
+    </div>
+  </div>
 
   <popup>
         <div>
@@ -82,7 +105,7 @@
           
                 <div class="row">
                     
-                      <div class="col-md-4">
+                      <div class="col-md-3">
     <th>
         SERVICE CODE DESCRIPTION:
                         <select class="form-control" id="exampleSelect1" [(ngModel)]="servicecode" >
@@ -96,7 +119,7 @@
                 </th>
                 </div>
     
-                <div class="col-md-4">
+                <div class="col-md-3">
                 <th>	
                   EVENT DESCRIPTION :
                     <select class="form-control" id="exampleSelect1" [(ngModel)]="event">
@@ -111,18 +134,43 @@
     
                 </th>
               </div>
-              <div class="col-md-4">
-                <th>
-                    Date:
-                    <select class="form-control" id="exampleSelect1" [(ngModel)]="d">
-                        <option  selected  [ngValue]="undefined">All	</option>
-                        <option  *ngFor="let t of datadate">{{t.BillingCycleDate}}	</option>
+              <div class="col-md-3">
+                  <th>
+                      Mois:
+                      <select class="form-control" id="exampleSelect1" [(ngModel)]="d">
+                          <option  selected  [ngValue]="undefined">All	</option>
                         
-                      
-                      </select>
-                </th>
+                          <option>Janvier</option>
+                          <option>Fevrier</option>
+                          <option>Mars</option>
+                          <option>Avril</option>
+                          <option>Mai</option>
+                          <option>Juin</option>
+                          <option>Juillet</option>
+                          <option>Aout</option>
+                          <option>Septembre</option>
+                          <option>Octobre</option>
+                          <option>Novembre</option>
+                          <option>Decembre</option>
+      
+                        </select>
+                  </th>
+                 
+                </div>
                
-              </div>
+                <div class="col-md-3">
+                  <th>
+                      Année:
+                      <select class="form-control" id="exampleSelect1" [(ngModel)]="an">
+                          <option  selected  [ngValue]="undefined">All	</option>
+                        
+                          <option>2018</option>
+                          <option>2019</option>
+      
+                        </select>
+                  </th>
+                 
+                </div>
              
              
               </div>
@@ -187,7 +235,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event|pipedate:d|acceptance:acceptance|canal:canal|orginepipe:origine">
+                <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event|pipedate:d|acceptance:acceptance|canal:canal|orginepipe:origine|datemois:an ">
                   <th scope="row">{{ country.DocumentType }}</th>
                   <td>
                    

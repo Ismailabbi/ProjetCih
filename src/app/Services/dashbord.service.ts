@@ -108,4 +108,8 @@ post_surfaceceOrigin(a:number){
   return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/origine',{"Annee": a})
 
 }
+post_surfacecanal(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/canal',{"Annee": a})
+
+}
 }

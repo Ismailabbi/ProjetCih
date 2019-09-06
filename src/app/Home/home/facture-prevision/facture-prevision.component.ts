@@ -12,10 +12,13 @@ import { SrvsService } from 'src/app/Services/srvs.service';
 export class FacturePrevisionComponent implements OnInit {
   s:Facture[]
   servicecode:string
+  an;
   dataorigine
   dataclassification
   datadate;
   acceptance
+  chargetotal:number
+  nombrefacture:number
   canal
   datacanal
   origine
@@ -84,6 +87,15 @@ export class FacturePrevisionComponent implements OnInit {
       console.log(this.dataorigine)
     })
     this.FactureServicess.get_facutresP().subscribe((data)=>{
+      let a:number=0;
+      this.nombrefacture=data.length
+      data.forEach(s=>{
+        if(Number(s.TotalCharge)){
+         let b=Number(s.TotalCharge)
+         a=a+b
+      }})
+      this.chargetotal=a
+
       this.FactureServicess.get_date().subscribe(data=>{
         
         this.datadate=data

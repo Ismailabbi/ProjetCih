@@ -1,0 +1,1591 @@
+
+<div class="row k">
+    <div class="col-md-4">
+  <select class="form-control" id="exampleSelect1"  [(ngModel)]="Anne">
+               
+    <option     [ngValue]="undefined">  Année		</option>
+
+    <option   >             2018
+      
+    </option>
+    <option   >             2019
+      
+      </option>
+  </select>
+
+  </div>
+  <div class="col-md-3">
+      <button type="button" (click)='ch()' class="btn btn-info">Chercher</button>
+
+  </div>
+</div>
+<div class="panel panel-primary t">
+  <div class="panel-heading">TableauMontant
+    
+ 
+</div>
+  <div class="panel-body">
+    
+    
+  
+      <div class="scrollable">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+            <th>Mois</th>
+            <th></th>
+            <th>Origine</th>
+            <th>Quantité</th>
+            <th>Montant</th>
+            <th></th>
+            <th>Acceptance</th>
+            <th>Quantité</th>
+            <th>Montant</th>
+            <th></th>
+            <th>Canal</th>
+            <th>Quantité</th>
+            <th>Montant</th>
+            </tr>
+            </thead>
+          <tbody>
+            <tr class="table-primary">
+              <td><b>Janvier</b></td>
+              <td></td>
+
+              <td>
+                 <div *ngFor="let a of labelorigine" >
+              <tr>
+                 {{a}}
+              </tr>
+              <hr>
+              
+              </div>
+              </td>
+
+              <td>
+                      <div *ngFor="let a of datallorigin" >
+                              <div *ngFor="let r of a.quantite ;let i = index">
+                              <div *ngIf='i==0'>
+                                      <tr>
+                                        {{r}}       
+                                      </tr>
+                                      <hr>
+                                  </div>
+                              </div>
+                                 
+                                  
+                                  </div>
+              
+              </td>
+              <td>
+                      <div *ngFor="let a of datallorigin" >
+                          <div *ngFor="let r of a.data ;let i = index">
+                          <div *ngIf='i==0'>
+                                  <tr>
+                                    {{r|number:'3.2-5'}}       
+                                  </tr>
+                                  <hr>
+                              </div>
+                          </div>
+                             
+                              
+                              </div>
+              
+              </td>
+              <td></td>
+              <td>
+                      <div *ngFor="let a of labelacceptance" >
+                   <tr>
+                      {{a}}
+                   </tr>
+                   <hr>
+                   
+                   </div>
+                   </td>
+                   <td>
+                           <div *ngFor="let a of datallacceptance" >
+                                   <div *ngFor="let r of a.quantite ;let i = index">
+                                   <div *ngIf='i==0'>
+                                           <tr>
+                                             {{r}}       
+                                           </tr>
+                                           <hr>
+                                       </div>
+                                   </div>
+                                      
+                                       
+                                       </div>
+                   
+                   </td>
+                   <td>
+                           <div *ngFor="let a of datallacceptance" >
+                               <div *ngFor="let r of a.data ;let i = index">
+                               <div *ngIf='i==0'>
+                                       <tr>
+                                         {{r|number:'3.2-5'}}       
+                                       </tr>
+                                       <hr>
+                                   </div>
+                               </div>
+                                  
+                                   
+                                   </div>
+                   
+                   </td>
+              
+              <td></td>
+                   <td>
+                          <div *ngFor="let a of labelcanal" >
+                       <tr>
+                          {{a}}
+                       </tr>
+                       <hr>
+                       </div>
+                       </td>
+                       <td>
+                               <div *ngFor="let a of datallcanal" >
+                                       <div *ngFor="let r of a.quantite ;let i = index">
+                                       <div *ngIf='i==0'>
+                                               <tr>
+                                                 {{r}}       
+                                               </tr>
+                                               <hr>
+                                           </div>
+                                       </div>
+                                          
+                                           
+                                           </div>
+                       
+                       </td>
+                       <td>
+                               <div *ngFor="let a of datallcanal" >
+                                   <div *ngFor="let r of a.data ;let i = index">
+                                   <div *ngIf='i==0'>
+                                           <tr>
+                                             {{r|number:'3.2-5'}}       
+                                           </tr>
+                                           <hr>
+                                       </div>
+                                   </div>
+                                      
+                                       
+                                       </div>
+                       
+                       </td>
+              
+              
+              
+              
+              
+              </tr>
+            
+              
+              
+              <tr>
+                      <td><b>Février</b></td>  
+                      <td></td>
+
+                      <td >
+                              <div *ngFor="let  b of labelorigine" >
+                           <tr>
+                              {{b}}
+                           </tr>
+                           <hr>
+                           
+                           </div>
+                      </td>
+                       <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                          <div *ngFor="let r of a.quantite ;let i = index">
+                                          <div *ngIf='i==1'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                      </td>
+                      <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                      <div *ngFor="let r of a.data ;let i = index">
+                                      <div *ngIf='i==1'>
+                                              <tr>
+                                                {{r|number:'3.2-5'}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                   </td>
+              
+              <td></td>
+                   <td >
+                          <div *ngFor="let  b of labelacceptance" >
+                       <tr>
+                          {{b}}
+                       </tr>
+                       <hr>
+                       </div>
+                       </td>
+                       <td>
+                              <div *ngFor="let a of datallacceptance" >
+                                      <div *ngFor="let r of a.quantite ;let i = index">
+                                      <div *ngIf='i==1'>
+                                              <tr>
+                                                {{r}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                          </td>
+                       <td>
+                              <div *ngFor="let a of datallacceptance" >
+                                  <div *ngFor="let r of a.data ;let i = index">
+                                  <div *ngIf='i==1'>
+                                          <tr>
+                                            {{r|number:'3.2-5'}}       
+                                          </tr>
+                                          <hr>
+                                      </div>
+                                  </div>
+                                     
+                                      
+                                      </div>
+                      
+                      </td>
+                      <td></td>
+              
+              
+              
+                      <td >
+                              <div *ngFor="let  b of labelcanal" >
+                           <tr>
+                              {{b}}
+                           </tr>
+                           <hr>
+                           </div>
+                           </td>
+                           <td>
+                                  <div *ngFor="let a of datallcanal" >
+                                          <div *ngFor="let r of a.quantite ;let i = index">
+                                          <div *ngIf='i==1'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+                           <td>
+                                  <div *ngFor="let a of datallcanal" >
+                                      <div *ngFor="let r of a.data ;let i = index">
+                                      <div *ngIf='i==1'>
+                                              <tr>
+                                                {{r|number:'3.2-5'}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                          </td> 
+              
+              
+              
+              
+                          
+              </tr>
+              
+              
+              <tr>
+                      <td><b>Mars</b></td>
+                      <td></td>
+
+                      <td >
+                              <div *ngFor="let  b of labelorigine" >
+                           <tr>
+                              {{b}}
+                           </tr>
+                           <hr>
+                           </div>
+                           </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                          <div *ngFor="let r of a.quantite ;let i = index">
+                                          <div *ngIf='i==2'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                      <div *ngFor="let r of a.data ;let i = index">
+                                      <div *ngIf='i==2'>
+                                              <tr>
+                                                {{r|number:'3.2-5'}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                          </td>
+              
+                      <td class="w"> </td>
+                          <td >
+                                  <div *ngFor="let  b of labelacceptance" >
+                               <tr>
+                                  {{b}}
+                               </tr>
+                               <hr>
+                               </div>
+                               </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                              <div *ngFor="let r of a.quantite ;let i = index">
+                                              <div *ngIf='i==2'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==2'>
+                                                  <tr>
+                                                    {{r|number:'3.2-5'}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+              
+                              <td></td>
+
+              
+                              <td >
+                                      <div *ngFor="let  b of labelcanal" >
+                                   <tr>
+                                      {{b}}
+                                   </tr>
+                                   <hr>
+                                   
+                                   </div>
+                                   </td>
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                                  <div *ngFor="let r of a.quantite ;let i = index">
+                                                  <div *ngIf='i==2'>
+                                                          <tr>
+                                                            {{r}}       
+                                                          </tr>
+                                                          <hr>
+                                                      </div>
+                                                  </div>
+                                                     
+                                                      
+                                                      </div>
+                                      
+                                      </td>
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==2'>
+                                                      <tr>
+                                                        {{r|number:'3.2-5'}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+              
+              
+              
+               
+              </tr>
+              
+              <tr>
+                      <td><b>Avril</b></td>
+                      <td></td>
+
+                      <td >
+                              <div *ngFor="let  b of labelorigine" >
+                           <tr>
+                              {{b}}
+                           </tr>
+                           <hr>
+                           
+                           </div>
+                           </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                          <div *ngFor="let r of a.quantite ;let i = index">
+                                          <div *ngIf='i==3'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                      <div *ngFor="let r of a.data ;let i = index">
+                                      <div *ngIf='i==3'>
+                                              <tr>
+                                                {{r|number:'3.2-5'}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                          </td>
+              
+              
+                          <td></td>
+
+              
+                          <td >
+                                  <div *ngFor="let  b of labelacceptance" >
+                               <tr>
+                                  {{b}}
+                               </tr>
+                               <hr>
+                               </div>
+                               </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                              <div *ngFor="let r of a.quantite ;let i = index">
+                                              <div *ngIf='i==3'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==3'>
+                                                  <tr>
+                                                    {{r|number:'3.2-5'}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>    
+              
+              
+              
+              
+              
+              
+              
+              
+              
+                              <td >
+                                      <div *ngFor="let  b of labelcanal" >
+                                   <tr>
+                                      {{b}}
+                                   </tr>
+                                   <hr>
+                                   </div>
+                                   </td>
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                                  <div *ngFor="let r of a.quantite ;let i = index">
+                                                  <div *ngIf='i==3'>
+                                                          <tr>
+                                                            {{r}}       
+                                                          </tr>
+                                                          <hr>
+                                                      </div>
+                                                  </div>
+                                                     
+                                                      
+                                                      </div>
+                                      
+                                      </td>
+                                      <td></td>
+
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==3'>
+                                                      <tr>
+                                                        {{r|number:'3.2-5'}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>  
+              
+              
+              
+              
+              
+              
+              </tr>
+              
+              <tr>
+              
+                      <td><b>Mai</b></td>
+                      <td></td>
+
+                      <td >
+                              <div *ngFor="let  b of labelorigine" >
+                           <tr>
+                              {{b}}
+                           </tr>
+                           <hr>
+                           
+                           </div>
+                           </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                          <div *ngFor="let r of a.quantite ;let i = index">
+                                          <div *ngIf='i==4'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                      <div *ngFor="let r of a.data ;let i = index">
+                                      <div *ngIf='i==4'>
+                                              <tr>
+                                                {{r|number:'3.2-5'}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                          </td>
+              
+              
+                          <td></td>
+
+              
+                          <td >
+                                  <div *ngFor="let  b of labelacceptance" >
+                               <tr>
+                                  {{b}}
+                               </tr>
+                               <hr>
+                               </div>
+                               </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                              <div *ngFor="let r of a.quantite ;let i = index">
+                                              <div *ngIf='i==4'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==4'>
+                                                  <tr>
+                                                    {{r|number:'3.2-5'}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+              
+              
+                              <td></td>
+
+              
+              
+                              <td >
+                                      <div *ngFor="let  b of labelcanal" >
+                                   <tr>
+                                      {{b}}
+                                   </tr>
+                                   <hr>
+                                   </div>
+                                   </td>
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                                  <div *ngFor="let r of a.quantite ;let i = index">
+                                                  <div *ngIf='i==4'>
+                                                          <tr>
+                                                            {{r}}       
+                                                          </tr>
+                                                          <hr>
+                                                      </div>
+                                                  </div>
+                                                     
+                                                      
+                                                      </div>
+                                      
+                                      </td>
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==4'>
+                                                      <tr>
+                                                        {{r|number:'3.2-5'}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+              
+              
+              
+              
+              
+              </tr>
+              
+              <tr>
+                      <td><b>Juin</b></td>
+                      <td></td>
+
+                      <td >
+                              <div *ngFor="let  b of labelorigine" >
+                           <tr>
+                              {{b}}
+                           </tr>
+                           <hr>
+                           </div>
+                           </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==5'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                      <div *ngFor="let r of a.data ;let i = index">
+                                      <div *ngIf='i==5'>
+                                              <tr>
+                                                {{r|number:'3.2-5'}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                          </td>
+                          <td></td>
+
+                          <td >
+                                  <div *ngFor="let  b of labelacceptance" >
+                               <tr>
+                                  {{b}}
+                               </tr>
+                               <hr>
+                               
+                               </div>
+                               </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==5'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==5'>
+                                                  <tr>
+                                                    {{r|number:'3.2-5'}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+              
+              
+              
+              
+              
+              
+              
+              
+                              <td></td>
+
+              
+                              <td >
+                                      <div *ngFor="let  b of labelcanal" >
+                                   <tr>
+                                      {{b}}
+                                   </tr>
+                                   <hr>
+                                   
+                                   </div>
+                                   </td>
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                                  <div *ngFor="let r of a.data ;let i = index">
+                                                  <div *ngIf='i==5'>
+                                                          <tr>
+                                                            {{r}}       
+                                                          </tr>
+                                                          <hr>
+                                                      </div>
+                                                  </div>
+                                                     
+                                                      
+                                                      </div>
+                                      
+                                      </td>
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==5'>
+                                                      <tr>
+                                                        {{r|number:'3.2-5'}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+              
+              
+              
+              
+              
+              
+              </tr>
+              
+              <tr>
+                      <td><b>Aout</b></td>
+                      <td></td>
+
+                      <td >
+                              <div *ngFor="let  b of labelacceptance" >
+                           <tr>
+                              {{b}}
+                           </tr>
+                           <hr>
+                           </div>
+                           </td>
+                         
+                                  <td>
+                                          <div *ngFor="let a of datallacceptance" >
+                                              <div *ngFor="let r of a.quantite ;let i = index">
+                                              <div *ngIf='i==6'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+                              
+                             
+                           <td>
+                                  <div *ngFor="let a of datallacceptance" >
+                                      <div *ngFor="let r of a.data ;let i = index">
+                                      <div *ngIf='i==6'>
+                                              <tr>
+                                                {{r|number:'3.2-5'}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                          </td>
+              
+                          <td></td>
+
+              
+              
+                          <td >
+                                  <div *ngFor="let  b of labelorigine" >
+                               <tr>
+                                  {{b}}
+                               </tr>
+                               <hr>
+                               </div>
+                               </td>
+                             
+                                      <td>
+                                              <div *ngFor="let a of datallorigin" >
+                                                  <div *ngFor="let r of a.quantite ;let i = index">
+                                                  <div *ngIf='i==6'>
+                                                          <tr>
+                                                            {{r}}       
+                                                          </tr>
+                                                          <hr>
+                                                      </div>
+                                                  </div>
+                                                     
+                                                      
+                                                      </div>
+                                      
+                                      </td>
+                                  
+                                 
+                               <td>
+                                      <div *ngFor="let a of datallorigin" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==6'>
+                                                  <tr>
+                                                    {{r|number:'3.2-5'}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+                              <td></td>
+
+              
+                              <td >
+                                      <div *ngFor="let  b of labelcanal" >
+                                   <tr>
+                                      {{b}}
+                                   </tr>
+                                   <hr>
+                                   </div>
+                                   </td>
+                                 
+                                          <td>
+                                                  <div *ngFor="let a of datallcanal" >
+                                                      <div *ngFor="let r of a.quantite ;let i = index">
+                                                      <div *ngIf='i==6'>
+                                                              <tr>
+                                                                {{r}}       
+                                                              </tr>
+                                                              <hr>
+                                                          </div>
+                                                      </div>
+                                                         
+                                                          
+                                                          </div>
+                                          
+                                          </td>
+                                      
+                                     
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==6'>
+                                                      <tr>
+                                                        {{r|number:'3.2-5'}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              </tr>
+              
+              
+              
+              <tr>
+                      <td><b>Septembre</b></td>
+                      <td></td>
+
+                      <td >
+                              <div *ngFor="let  b of labelorigine" >
+                           <tr>
+                              {{b}}
+                           </tr>
+                           <hr>
+                           
+                           </div>
+                           </td>   
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                          <div *ngFor="let r of a.quantite ;let i = index">
+                                          <div *ngIf='i==8'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                      <div *ngFor="let r of a.data ;let i = index">
+                                      <div *ngIf='i==8'>
+                                              <tr>
+                                                {{r}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                          </td>
+              
+              <td></td>
+              
+              
+              
+                          <td >
+                                  <div *ngFor="let  b of labelacceptance" >
+                               <tr>
+                                  {{b}}
+                               </tr>
+                               <hr>
+                               
+                               </div>
+                               </td>   
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                              <div *ngFor="let r of a.quantite ;let i = index">
+                                              <div *ngIf='i==8'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==8'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+              
+              
+                              <td></td>
+
+              
+                              <td >
+                                      <div *ngFor="let  b of labelcanal" >
+                                   <tr>
+                                      {{b}}
+                                   </tr>
+                                   <hr>
+                                   
+                                   </div>
+                                   </td>   
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                                  <div *ngFor="let r of a.quantite ;let i = index">
+                                                  <div *ngIf='i==8'>
+                                                          <tr>
+                                                            {{r}}       
+                                                          </tr>
+                                                          <hr>
+                                                      </div>
+                                                  </div>
+                                                     
+                                                      
+                                                      </div>
+                                      
+                                      </td>
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==8'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+              
+              
+              
+              </tr>
+              
+              <tr>
+                      <td><b>Octobre</b></td>
+                      <td></td>
+
+                      <td >
+                              <div *ngFor="let  b of labelorigine" >
+                           <tr>
+                              {{b}}
+                           </tr>
+                           <hr>
+                           
+                           </div>
+                           </td>   
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==9'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                      <div *ngFor="let r of a.data ;let i = index">
+                                      <div *ngIf='i==9'>
+                                              <tr>
+                                                {{r}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                          </td>
+              
+              
+              
+                          <td></td>
+
+              
+              
+              
+                          <td >
+                                  <div *ngFor="let  b of labelacceptance" >
+                               <tr>
+                                  {{b}}
+                               </tr>
+                               <hr>
+                               
+                               </div>
+                               </td>   
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==9'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==9'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+              
+              
+              
+              
+                              <td></td>
+
+              
+              
+                              <td >
+                                      <div *ngFor="let  b of labelcanal" >
+                                   <tr>
+                                      {{b}}
+                                   </tr>
+                                   <hr>
+                                   </div>
+                                   </td>   
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                                  <div *ngFor="let r of a.data ;let i = index">
+                                                  <div *ngIf='i==9'>
+                                                          <tr>
+                                                            {{r}}       
+                                                          </tr>
+                                                          <hr>
+                                                      </div>
+                                                  </div>
+                                                     
+                                                      
+                                                      </div>
+                                      
+                                      </td>
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==9'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+              
+              
+              </tr>
+              
+              <tr>
+                      <td><b>Novembre</b></td>
+                      <td></td>
+
+                      <td >
+                              <div *ngFor="let  b of labelorigine" >
+                           <tr>
+                              {{b}}
+                           </tr>
+                           <hr>
+                           
+                           </div>
+                           </td>   
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==10'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                      <div *ngFor="let r of a.data ;let i = index">
+                                      <div *ngIf='i==10'>
+                                              <tr>
+                                                {{r}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                          </td>
+                          <td></td>
+
+                          <td >
+                                  <div *ngFor="let  b of labelacceptance" >
+                               <tr>
+                                  {{b}}
+                               </tr>
+                               <hr>
+                               </div>
+                               </td>   
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==10'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==10'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+              
+              
+              
+              
+              
+              
+                              <td></td>
+
+              
+                              <td >
+                                      <div *ngFor="let  b of labelcanal" >
+                                   <tr>
+                                      {{b}}
+                                   </tr>
+                                   <hr>
+                                   </div>
+                                   </td>   
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                                  <div *ngFor="let r of a.data ;let i = index">
+                                                  <div *ngIf='i==10'>
+                                                          <tr>
+                                                            {{r}}       
+                                                          </tr>
+                                                          <hr>
+                                                      </div>
+                                                  </div>
+                                                     
+                                                      
+                                                      </div>
+                                      
+                                      </td>
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==10'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+              
+              
+              
+              
+              
+              </tr>
+              
+              
+              <tr>
+                      <td><b>Decembre</b></td>
+                      <td></td>
+
+                      <td >
+                              <div *ngFor="let  b of labelorigine" >
+                           <tr>
+                              {{b}}
+                           </tr>
+                           <hr>
+                           </div>
+                           </td>   
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==11'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+                           <td>
+                                  <div *ngFor="let a of datallorigin" >
+                                      <div *ngFor="let r of a.data ;let i = index">
+                                      <div *ngIf='i==11'>
+                                              <tr>
+                                                {{r}}       
+                                              </tr>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                         
+                                          
+                                          </div>
+                          
+                          </td>
+                          <td></td>
+
+                       
+                          <td >
+                                  <div *ngFor="let  b of labelacceptance" >
+                               <tr>
+                                  {{b}}
+                               </tr>
+                               <hr>
+                               
+                               </div>
+                               </td>   
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==11'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+                               <td>
+                                      <div *ngFor="let a of datallacceptance" >
+                                          <div *ngFor="let r of a.data ;let i = index">
+                                          <div *ngIf='i==11'>
+                                                  <tr>
+                                                    {{r}}       
+                                                  </tr>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                             
+                                              
+                                              </div>
+                              
+                              </td>
+              
+              
+                              <td></td>
+
+              
+              
+                              <td >
+                                      <div *ngFor="let  b of labelcanal" >
+                                   <tr>
+                                      {{b}}
+                                   </tr>
+                                   <hr>
+                                   </div>
+                                   </td>   
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                                  <div *ngFor="let r of a.data ;let i = index">
+                                                  <div *ngIf='i==11'>
+                                                          <tr>
+                                                            {{r}}       
+                                                          </tr>
+                                                          <hr>
+                                                      </div>
+                                                  </div>
+                                                     
+                                                      
+                                                      </div>
+                                      
+                                      </td>
+                                   <td>
+                                          <div *ngFor="let a of datallcanal" >
+                                              <div *ngFor="let r of a.data ;let i = index">
+                                              <div *ngIf='i==11'>
+                                                      <tr>
+                                                        {{r}}       
+                                                      </tr>
+                                                      <hr>
+                                                  </div>
+                                              </div>
+                                                 
+                                                  
+                                                  </div>
+                                  
+                                  </td>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              </tr>
+              
+          </tbody>
+        </table>
+      </div>
+        
+  </div>
+</div>
+
+

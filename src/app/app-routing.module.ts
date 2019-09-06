@@ -11,6 +11,7 @@ import { FacturePrevisionComponent } from './Home/home/facture-prevision/facture
 import { DashbordprvComponent } from './Home/home/dashbordprv/dashbordprv.component';
 import { SurfboardComponent } from './Home/home/surfboard/surfboard.component';
 import { AdminbordComponent } from './Home/home/adminbord/adminbord.component';
+import { TableaumontantComponent } from './Home/home/tableaumontant/tableaumontant.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'login',component:AuthentificationComponent},
   {path:'home',component:HomeComponent , children: [
     {path: '', redirectTo: 'Services',pathMatch:'full'},
+    {path:'ab',component:TableaumontantComponent},
 
    {path:'a',component:SurfboardComponent},
    {path:'adminboard',component:AdminbordComponent},

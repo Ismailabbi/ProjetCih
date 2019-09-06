@@ -1,10 +1,42 @@
-<popup>
-    <div>
+<popup  >
+    
+ 
+       
+       
+    <div class="row">
         
-            <div class="row"></div>
+        <label>Utilisateur  :</label>
+        <br/>
+        <input type="text" name="firstname"  [(ngModel)]="user"  class="span3">
+    </div>
+    <div class="row">
+               
+           
+
+            <label> Profile : </label> <br/>
+            <input type="text" name="firstname" class="span3" [(ngModel)]="profil" >
+            
+        </div>
+
+    <div class="row">
+     
+        <label>Mot de passe :
+            </label><br>
+        <input type="text" name="firstname"  [(ngModel)]="mdp"  class="span3">
+    </div>
+      
         
-   </div>
-   <button type="button" (click)='fermer()' class="btn btn-secondary">Fermer</button>
+       
+    <div class="row">
+
+        
+            <button type="button" *ngIf='cr' (click)='creer()' class="btn btn-info">Creer</button>
+            <button type="button" *ngIf='up' (click)='update()' class="btn btn-info">update</button>
+
+            <button type="button" (click)='fermer()' class="btn btn-danger">Fermer</button>
+        </div>
+        
+   
 
 
   </popup>
@@ -12,101 +44,20 @@
 
             <div class="row">
                 <div class="col-md-12">
-                        <button type="button" class="btn pos btn-info">Créer <span class="glyphicon glyphicon-user"></span></button>
+                        <button type="button" (click)='show()' class="btn pos btn-info">Créer <span class="glyphicon glyphicon-user"></span></button>
 
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Developers</h3>
+                            <h3 class="panel-title">Admin</h3>
                             <div class="pull-right">
                                 <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
                                     <i class="glyphicon glyphicon-filter"></i>
                                 </span>
                             </div>
                         </div>
-                        <div  class="filters">
-          
-                                <div class="row">
-                                    
-                                      
-                    
-                              
-                              <div class="col-md-3">
-                                <<div class="row">
-                                    <div class="col-sm-6 col-sm-offset-3">
-                                        <div id="imaginary_container"> 
-                                            <div class="input-group stylish-input-group">
-                                                <input type="text" class="form-control"  placeholder="Search" >
-                                                <span class="input-group-addon">
-                                                    <button type="submit">
-                                                        <span class="glyphicon glyphicon-search"></span>
-                                                    </button>  
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                              </div>
-                               
-                              </div>
-                              <div class="col-md-3">
-                    
-                                  <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>  réinitialiser</button>
-                              </div>
-                              </div>
-                              <hr class="new2">
-                            </div>
+                      
                         <div class="panel-body">
-                                <div  class="filters">
-          
-                                        <div class="row">
-                                            
-                                              <div class="col-md-3">
-                            <th>
-                                SERVICE CODE DESCRIPTION:
-                                                <select class="form-control" id="exampleSelect1" [(ngModel)]="servicecode" >
-                                                  <option  selected  [ngValue]="undefined">All	</option>
-                                                  <option  *ngFor="let t of servicedesc"  >              {{ t.ServiceCodeDescription }}
-                                                  
-                                                    </option>
-                                                
-                                                </select>
-                                             
-                                        </th>
-                                        </div>
-                            
-                                        <div class="col-md-3">
-                                        <th>	
-                                          EVENT DESCRIPTION :
-                                            <select class="form-control" id="exampleSelect1" [(ngModel)]="event">
-                                                <option  selected  [ngValue]="undefined">All	</option>
-                                                <option  *ngFor="let t of dataevent"  >              {{ t.EventDescription }}
-                                                  
-                                                  </option>
-                                              
-                                              </select>
-                            
-                            
-                            
-                                        </th>
-                                      </div>
-                                      <div class="col-md-3">
-                                        <th>
-                                            Date:
-                                            <select class="form-control" id="exampleSelect1" [(ngModel)]="d">
-                                                <option  selected  [ngValue]="undefined">All	</option>
-                                                <option  *ngFor="let t of datadate">{{t.BillingCycleDate}}	</option>
-                                                
-                                              
-                                              </select>
-                                        </th>
-                                       
-                                      </div>
-                                      <div class="col-md-3">
-                            
-                                          <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>  réinitialiser</button>
-                                      </div>
-                                      </div>
-                                      <hr class="new2">
-                                    </div>
+                               
                         </div>
                         <table class="table table-hover" id="dev-table">
                             <thead>
@@ -125,7 +76,7 @@
                                    
                                     <td>{{user.Profile}}</td>
                                     <td>{{user.password}}</td>
-                                    <td class="text-center"><a  class='btn btn-warning btn-xs' (click)='show()'><span class="glyphicon glyphicon-edit" (click)=show()></span> Edit</a></td>
+                                    <td class="text-center"><a  class='btn btn-warning btn-xs' (click)='show2(user)'><span class="glyphicon glyphicon-edit" (click)=show()></span> Edit</a></td>
                                     <td> <a (click)='supp(user.Id)' class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                                 </tr>
                                

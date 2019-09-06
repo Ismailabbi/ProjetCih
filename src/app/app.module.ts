@@ -41,6 +41,8 @@ import { SurfboardComponent } from './Home/home/surfboard/surfboard.component';
 import { OrginepipePipe } from './Pipes/orginepipe.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminbordComponent } from './Home/home/adminbord/adminbord.component';
+import { TableaumontantComponent } from './Home/home/tableaumontant/tableaumontant.component';
+import { DatemoisPipe } from './Pipes/datemois.pipe';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { AdminbordComponent } from './Home/home/adminbord/adminbord.component';
     SurfaceboardComponent,
     SurfboardComponent,
     OrginepipePipe,
-    AdminbordComponent
+    AdminbordComponent,
+    TableaumontantComponent,
+    DatemoisPipe
   ],
   imports: [
     BrowserModule,
