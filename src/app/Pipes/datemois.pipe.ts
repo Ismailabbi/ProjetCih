@@ -1,10 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Facture } from '../Models/Factures';
+import { FiltrageService } from '../Services/filtrage.service';
 
 @Pipe({
   name: 'datemois'
 })
 export class DatemoisPipe implements PipeTransform {
+  constructor( public filtreService:FiltrageService){}
+
   transform(tablefacture: Facture[], event:string): any {
     if(typeof event==='undefined'){
       return tablefacture;}
@@ -27,7 +30,7 @@ export class DatemoisPipe implements PipeTransform {
        }
  
          })
-        console.log("okkk")
+         this.filtreService.setmontantfiltre(nvsercive)
         return  nvsercive
       }
   }

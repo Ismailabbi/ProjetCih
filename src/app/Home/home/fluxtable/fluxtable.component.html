@@ -1,0 +1,80 @@
+
+<div class="panel panel-secondary t">
+        <div class="panel-heading"><img height="130px" width="350px" src="../../../../assets/MasterCard_Logo.svg.png"/>
+      
+      </div>
+        <div class="panel-body">
+            
+    
+    
+    
+            <div class="scrollable">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                
+                  <th >ADRESSE_TERMINAL </th>
+                  <th scope="col">CRYPTOGRAM </th>
+                  <th scope="col">INTERCHANGE_PROFILE</th>
+                  <th scope="col">CARDHOLDER_VERIFICATION_METHOD</th>
+                  <th scope="col">CODE_SERVICE</th>
+                  <th scope="col"> DATE_D_EXPIRATION</th>
+                  
+    
+                </tr>
+                </thead>
+                <tbody>
+    
+                <tr #myVar *ngFor="let facture of flux " >
+                  
+                  <td>{{ facture.ADRESSE_TERMINAL }}</td>
+                  <td>{{ facture.APPLICATION_CRYPTOGRAM  }}</td>
+                  <td>{{ facture.APPLICATION_INTERCHANGE_PROFILE  }}</td>
+                  <td>{{ facture.CARDHOLDER_VERIFICATION_METHOD  }}</td>
+                  <td>{{facture.CODE_SERVICE}}</td>
+                  <td>{{facture.DATE_D_EXPIRATION}}</td>
+                  <td>
+                    <button type="button"(click)="show(facture)" class="btn btn-warning">Detail
+    
+                    </button>
+    
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          
+    
+        </div>
+      </div>
+
+
+      <popup>
+        <div>
+            <div style='overflow-x:scroll;overflow-y:hidden;'>
+                <table class="table">
+                    <thead>
+                      <tr >
+                       
+                        <th *ngFor="let value of proportes" scope="col">{{value}} </th>
+                       
+                      </tr>
+                      <tr>
+                        <th *ngFor="let value of values" scope="col">{{value}} </th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                   
+    
+                    
+       
+                    </tbody>
+                  </table>
+            </div>
+       </div>
+       <button type="button" (click)='fermer()' class="btn btn-secondary">Fermer</button>
+    
+    
+      </popup>
+    

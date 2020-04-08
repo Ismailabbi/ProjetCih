@@ -1,0 +1,68 @@
+
+.scrollable {
+    height: 60vh;
+    overflow-y: scroll;
+  }
+  
+  .new2 {
+    border: 1px solid #f75a01;
+    text-align: center;
+   
+    width:85%; 
+    
+  
+    
+  }
+  .table {
+      width: 99%;}
+.k{
+    margin-bottom: 11px;
+}
+.t{
+  margin-top: 20px;  
+}
+.scrollable {
+  height: 70vh;
+  overflow-y: scroll;
+}
+.s{
+  margin-left: 900px
+}
+.new2 {
+  border: 1px solid #f75a01;
+  text-align: center;
+ 
+  width:85%; }
+  
+
+.a{
+  border:  solid
+}
+.vl {
+  border-left: 2px solid green;
+  height: 20px;
+ 
+  
+  top: 0;
+}
+.w{
+  width: 60px
+}
+.mm{
+  padding: 3px;
+}
+.panel{
+    box-shadow: 2px 5px 21px 0 #000080;
+
+
+
+  }
+
+  .panel-heading {
+    border-color:#cc0000;}
+    .btn-info {
+      color: #fff;
+      background-color: #188cc5;
+      border-color: #188cc5;
+    }
+    

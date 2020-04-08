@@ -5,6 +5,7 @@ import {SrvsService} from '../../../Services/srvs.service'
 import { Service } from 'src/app/Models/Service';
 import { SercivnamsPipe } from 'src/app/Pipes/sercivnams.pipe';
 import { AcceptancePipe } from 'src/app/Pipes/acceptance.pipe';
+import { ClassificationsService } from 'src/app/Services/classifications.service';
 
 @Component({
   selector: 'app-int-service',
@@ -16,8 +17,10 @@ import { AcceptancePipe } from 'src/app/Pipes/acceptance.pipe';
 
 
 export class IntServiceComponent implements OnInit {
-  constructor(private _flashMessagesService: FlashMessagesService,private popup:Popup,private SrvSrvsService:SrvsService) {}
+  constructor(private _flashMessagesService: FlashMessagesService,private popup:Popup,private SrvSrvsService:SrvsService,public classifications:ClassificationsService) {}
   s:Service[]
+  origine
+  k
   origin:string
   acceptance:string
   servicename:string;
@@ -35,6 +38,18 @@ export class IntServiceComponent implements OnInit {
  dataclassification
  datacceptance;
  datacanal;
+ keyword = 'ServiceNAME';
+ data = [];
+ datastype= [];
+ keywordtype='Typedeservice'
+ datasclass= [];
+ keywordclass='Classification'
+ datasclacceptance=[]
+ keywordacceptance='Acceptance'
+ datascanal=[]
+ keywordcanal='Canal'
+ dataorigin=[]
+ keywordorigin='Origine'
  vider(){
    console.log("salam")
   this.classification=undefined;
@@ -44,46 +59,114 @@ export class IntServiceComponent implements OnInit {
   this.canal=undefined
  }
   ngOnInit() {
-    this.SrvSrvsService.getorigine().subscribe(data=>{
-      this.dataorigine=data
+    this.classifications.getorigine().subscribe(data=>{
+      this.dataorigin=data
       console.log(this.dataorigine)
+      this.dataorigin.unshift({'Origine':'All'})
     })
     this.SrvSrvsService.get_services().subscribe((data)=>{
       this.s=data
       this.dataall=data
+      console.log(data)
       this.SrvSrvsService.getservicename().subscribe(data=>{
         this.dataname=data
-        
+        this.data=data
+        this.data.unshift({'ServiceNAME':'All'})
       })
       this.SrvSrvsService.gettypeservice().subscribe(data=>{
         this.datatype=data
+        this.datastype=data
+        this.datastype.unshift({'Typedeservice':'All'})
       
       })
-    this.SrvSrvsService.getclassfication().subscribe(
+    this.classifications.getclassfication().subscribe(
       data=>{
         this.dataclassification=data
+        this.datasclass=data
+        this.datasclass.unshift({'Classification':'All'})
       }
     )
-    this.SrvSrvsService.getAcceptance().subscribe(
+    this.classifications.getAcceptance().subscribe(
       data=>{
         this.datacceptance=data
+        this.datasclacceptance=data
+        this.datasclacceptance.unshift({'Acceptance':'All'})
       }
     )
-    this.SrvSrvsService.getCanal().subscribe(
+    this.classifications.getCanal().subscribe(
       data=>{
         this.datacanal=data
+        this.datascanal=data
+        this.datacanal.unshift({'Canal':'All'})
+        
       }
     )
  this. page = 3;
  this. pageSize = 8;
   this.collectionSize = this.s.length;
-  console.log(data)
  
     })
    
   }
- 
   
+  selectEventa(item){
+    if(item.Acceptance=="All"){
+          this.acceptance=undefined
+    }
+    else{
+    console.log(item)
+    this.acceptance=item.Acceptance}
+  }
+  selectEventca(item){
+    if(item.Canal=="All"){
+          this.canal=undefined
+    }
+    else{
+    console.log(item)
+    this.canal=item.Canal}
+  }
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+  selectEvent(item) {
+    if(item.ServiceNAME=="All"){
+      console.log("yamok")
+          this.servicename=undefined
+    }
+    else{
+    console.log(item)
+    this.servicename=item.ServiceNAME}
+  }
+  selectEventco(item){
+    if(item.Origine=="All"){
+      console.log("yamok")
+          this.origine=undefined
+    }
+    else{
+    console.log(item)
+    this.origine=item.Origine}
+  }
+
+  selectEventtype(item) {
+    if(item.Typedeservice=="All"){
+          this.typeservice=undefined
+    }
+    else{
+    console.log(item)
+    this.typeservice=item.Typedeservice}
+  }
+  selectEventc(item){
+    if(item.Classification=="All"){
+      console.log("yamok")
+          this.classification=undefined
+    }
+    else{
+    console.log(item)
+    this.classification=item.Classification}
+  }
+  
+
   affchfilter(){
    this.filterbol=!this.filterbol
   }

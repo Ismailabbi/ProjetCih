@@ -13,7 +13,14 @@
     border-radius: 0px / 0px;
     overflow: hidden;
     box-shadow: 0.5px 1px 2px hsla(0, 0%, 20%, 1);
+    background-color: white;
 }
 .h{
  height: 207px;
+}
+.row{
+    margin-top: 8% !important;
+}
+.container {
+    width: 994px !important;
 }

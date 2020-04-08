@@ -14,7 +14,28 @@
            
 
             <label> Profile : </label> <br/>
-            <input type="text" name="firstname" class="span3" [(ngModel)]="profil" >
+           
+             
+    
+    
+                  
+               
+                      <select class="form-control" id="exampleSelect1"   [(ngModel)]="profil">
+                         
+                         
+                          <option> Administrateur</option>
+                          <option> Utilisateur</option>
+
+                          
+                       
+                        
+                        
+                        
+                      
+                      </select>
+                   
+           
+            
             
         </div>
 
@@ -74,7 +95,7 @@
                                     <td>{{user.Id}}</td>
                                     <td>{{user.username}}</td>
                                    
-                                    <td>{{user.Profile}}</td>
+                                    <td>{{user.profile}}</td>
                                     <td>{{user.password}}</td>
                                     <td class="text-center"><a  class='btn btn-warning btn-xs' (click)='show2(user)'><span class="glyphicon glyphicon-edit" (click)=show()></span> Edit</a></td>
                                     <td> <a (click)='supp(user.Id)' class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>

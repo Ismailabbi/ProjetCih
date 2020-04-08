@@ -20,7 +20,7 @@ a:boolean=false
  this.a=true
      }
      else{
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home/ac']);
      }
    }
  }

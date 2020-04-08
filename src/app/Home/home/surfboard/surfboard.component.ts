@@ -15,10 +15,17 @@ export class SurfboardComponent implements OnInit {
   date=2018
   wait:boolean=true
   choix:string;
+  dataFamille
+  dataProcessus
+  dataOrigin
+  dataCategorie
+  dataAcceptance
+  dataClassification
   public lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Label[] = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       datalabels: {
         display: false,
@@ -83,8 +90,10 @@ export class SurfboardComponent implements OnInit {
     }, 10);
   }
   ngOnInit() {
-   
+   this.choix="c"
       this.dash.post_surfaceclassification(this.date).subscribe(data=>{
+        this.dataClassification=data
+        console.log(data)
         let a:Array<any>=Object.values(data)
         let labels:string[]=[]
        
@@ -130,6 +139,28 @@ export class SurfboardComponent implements OnInit {
         
         
       })
+      this.dash.post_surfaceFamille(this.date).subscribe(data=>{
+        
+         this.dataFamille=data
+      })
+      this.dash.post_surfaceProccessus(this.date).subscribe(data=>{
+       
+        this.dataProcessus=data
+        
+      })
+      this.dash.post_surfaceceOrigin(this.date).subscribe(data=>{
+       this.dataOrigin=data
+      })
+      this.dash.post_surfacecategorie(this.date).subscribe(data=>{
+          this.dataCategorie=data
+        
+        
+      })
+      this.dash.post_surfacecAcceptance(this.date).subscribe(data=>{
+        this.dataAcceptance=data
+        
+      })
+
 
 
 
@@ -149,14 +180,127 @@ export class SurfboardComponent implements OnInit {
     
         
         }
+
+        Famille(){
+          console.log('salam')
+          this.choix='cat'
+          this.wait=true
+          this.lineChartData=[]
+          this.isDataAvailable=false
+      
+            let a:Array<any>=Object.values(this.dataFamille)
+            let labels:string[]=[]
+           
+            a.forEach(s=>{
+              labels.push(s.Famille)
+            })
+            let labelss:string[]=[]
+           let n:string
+              for(let i=0 ;i<labels.length;i++){
+                if(i==0){
+                  n=labels[i]
+               labelss.push(n)
+                }
+                else{
+                  if(labels[i]==n){}
+                  else{
+                    n=labels[i]
+                    labelss.push(n)
+                  }
+                }
+              }
+             
+              for(let i=0 ;i<labelss.length;i++){
+              let  d: ChartDataSets={}
+              d.label=labelss[i]
+              d.data=[0,0,0,0,0,0,0,0,0,0,0,0]
+          
+              for(let j=0;j<a.length;j++){
+                if(labelss[i]==a[j].Famille){
+                  let m=a[j].month
+                  let mf:number=+m
+                   
+                  d.data[mf-1]=+a[j].TotalCharge
+                }
+                
+              }
+              console.log(d)
+                this.lineChartData.push(d)
+              }
+              console.log(this.lineChartData)
+              this.isDataAvailable=true   
+              this.wait=false   
+    
+            
+            
+          
+
+
+
+        }
+        Proccesus(){
+
+
+          this.choix='Proc'
+          this.wait=true
+          this.lineChartData=[]
+          this.isDataAvailable=false
+         
+            let a:Array<any>=Object.values(this.dataProcessus)
+            let labels:string[]=[]
+           
+            a.forEach(s=>{
+              labels.push(s.Processus)
+            })
+            let labelss:string[]=[]
+           let n:string
+              for(let i=0 ;i<labels.length;i++){
+                if(i==0){
+                  n=labels[i]
+               labelss.push(n)
+                }
+                else{
+                  if(labels[i]==n){}
+                  else{
+                    n=labels[i]
+                    labelss.push(n)
+                  }
+                }
+              }
+             
+              for(let i=0 ;i<labelss.length;i++){
+              let  d: ChartDataSets={}
+              d.label=labelss[i]
+              d.data=[0,0,0,0,0,0,0,0,0,0,0,0]
+          
+              for(let j=0;j<a.length;j++){
+                if(labelss[i]==a[j].Processus){
+                  let m=a[j].month
+                  let mf:number=+m
+                   
+                  d.data[mf-1]=+a[j].TotalCharge
+                }
+                
+              }
+          
+                this.lineChartData.push(d)
+              }
+            
+              this.isDataAvailable=true   
+              this.wait=false   
+    
+            
+            
+          
+
+        }
         origin(){
           this.choix='o'
           this.wait=true
           this.lineChartData=[]
        this.isDataAvailable=false
-                this.dash.post_surfaceceOrigin(this.date).subscribe(data=>{
-                  console.log(data)
-                  let a:Array<any>=Object.values(data)
+               
+                  let a:Array<any>=Object.values(this.dataOrigin)
                   let labels:string[]=[]
                  
                   a.forEach(s=>{
@@ -196,12 +340,67 @@ export class SurfboardComponent implements OnInit {
                       this.lineChartData.push(d)
                     }
                     console.log(this.lineChartData)
-                    this.isDataAvailable=true      
+                    this.isDataAvailable=true   
+                    this.wait=false   
           
                   
                   
-                })
+                
 
+
+        }
+        Categorie(){
+          this.choix='o'
+          this.wait=true
+          this.lineChartData=[]
+       this.isDataAvailable=false
+                
+                  let a:Array<any>=Object.values(this.dataCategorie)
+                  let labels:string[]=[]
+                 
+                  a.forEach(s=>{
+                    labels.push(s.categorie)
+                  })
+                  let labelss:string[]=[]
+                 let n:string
+                    for(let i=0 ;i<labels.length;i++){
+                      if(i==0){
+                        n=labels[i]
+                     labelss.push(n)
+                      }
+                      else{
+                        if(labels[i]==n){}
+                        else{
+                          n=labels[i]
+                          labelss.push(n)
+                        }
+                      }
+                    }
+                   
+                    for(let i=0 ;i<labelss.length;i++){
+                    let  d: ChartDataSets={}
+                    d.label=labelss[i]
+                    d.data=[0,0,0,0,0,0,0,0,0,0,0,0]
+                
+                    for(let j=0;j<a.length;j++){
+                      if(labelss[i]==a[j].categorie){
+                        let m=a[j].month
+                        let mf:number=+m
+                         
+                        d.data[mf-1]=+a[j].TotalCharge
+                      }
+                      
+                    }
+                    console.log(d)
+                      this.lineChartData.push(d)
+                    }
+                    console.log(this.lineChartData)
+                    this.isDataAvailable=true   
+                    this.wait=false   
+          
+                  
+                  
+              
 
         }
       
@@ -210,9 +409,9 @@ export class SurfboardComponent implements OnInit {
           this.wait=true
     this.lineChartData=[]
  this.isDataAvailable=false
-          this.dash.post_surfacecAcceptance(this.date).subscribe(data=>{
-            console.log(data)
-            let a:Array<any>=Object.values(data)
+         
+           
+            let a:Array<any>=Object.values(this.dataAcceptance)
             let labels:string[]=[]
            
             a.forEach(s=>{
@@ -252,11 +451,12 @@ export class SurfboardComponent implements OnInit {
                 this.lineChartData.push(d)
               }
               console.log(this.lineChartData)
-              this.isDataAvailable=true      
+              this.isDataAvailable=true
+              this.wait=false
     
             
             
-          })
+          
           
         }
         
@@ -268,8 +468,8 @@ export class SurfboardComponent implements OnInit {
      this.wait=true
     this.lineChartData=[]
  this.isDataAvailable=false
-    this.dash.post_surfaceclassification(this.date).subscribe(data=>{
-      let a:Array<any>=Object.values(data)
+   
+      let a:Array<any>=Object.values(this.dataClassification)
       let labels:string[]=[]
      
       a.forEach(s=>{
@@ -314,14 +514,17 @@ export class SurfboardComponent implements OnInit {
 
       
       
-    })
+ 
   }
   
 ch(){
+  console.log(this.choix)
+
   if(this.choix=="a"){
     this.acceptancesurf()
   }
   if(this.choix=='c'){
+
     this.ok()
   }
   if(this.choix=="o"){
@@ -331,32 +534,7 @@ ch(){
 
 
 
-  // events
 
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public hideOne() {
-    const isHidden = this.chart.isDatasetHidden(1);
-    this.chart.hideDataset(1, !isHidden);
-  }
-
-
-
-  public changeColor() {
-    this.lineChartColors[2].borderColor = 'green';
-    this.lineChartColors[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
-  }
-
-  public changeLabel() {
-    this.lineChartLabels[2] = ['1st Line', '2nd Line'];
-    // this.chart.update();
-  }
 
 }
-class A  {
-  data:Array<number>
-  label:string
-}
+

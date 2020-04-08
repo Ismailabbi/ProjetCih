@@ -72,3 +72,6 @@
   display: block;
   font-size: 18px;
 }
+.ng-autocomplete {
+  width: 285px;
+}

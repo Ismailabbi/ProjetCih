@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import {PopupModule} from 'ng2-opd-popup';
 import { ListfactureComponent } from './Home/home/listfacture/listfacture.component';
 import { UploadComponent } from './Home/home/upload/upload.component';
 import { TableaubordComponent } from './Home/home/tableaubord/tableaubord.component';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { SercivnamsPipe } from './Pipes/sercivnams.pipe';
@@ -43,6 +45,38 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminbordComponent } from './Home/home/adminbord/adminbord.component';
 import { TableaumontantComponent } from './Home/home/tableaumontant/tableaumontant.component';
 import { DatemoisPipe } from './Pipes/datemois.pipe';
+import { SurfaceprvComponent } from './Home/home/surfaceprv/surfaceprv.component';
+import { TablaumontantpComponent } from './Home/home/tablaumontantp/tablaumontantp.component';
+import { ComparaisonAComponent } from './Home/home/comparaison-a/comparaison-a.component';
+import { CompprvComponent } from './Home/home/compprv/compprv.component';
+import { RapprochementComponent } from './Home/home/rapprochement/rapprochement.component';
+import { VisafactureComponent } from './Home/home/visafacture/visafacture.component';
+import { VisamoisPipe } from './Pipes/visamois.pipe';
+import { AnnevisaPipe } from './Pipes/annevisa.pipe';
+import { RatevisaPipe } from './Pipes/ratevisa.pipe';
+import { EntityvisaPipe } from './Pipes/entityvisa.pipe';
+import { ProcessusPipe } from './Pipes/processus.pipe';
+import { CategoriePipe } from './Pipes/categorie.pipe';
+import { ProcessusmasterPipe } from './Pipes/processusmaster.pipe';
+import { AccueilComponent } from './Home/home/accueil/accueil.component';
+import { EventprocessusPipe } from './Pipes/eventprocessus.pipe';
+import { EventfamillePipe } from './Pipes/eventfamille.pipe';
+import { EventcategoriePipe } from './Pipes/eventcategorie.pipe';
+import { AcceptanceservicePipe } from './Pipes/acceptanceservice.pipe';
+import { OriginservicePipe } from './Pipes/originservice.pipe';
+import { CanalservicePipe } from './Pipes/canalservice.pipe';
+import { FluxtableComponent } from './Home/home/fluxtable/fluxtable.component';
+import { VueGeneralComponent } from './Home/home/Visa/vue-general/vue-general.component';
+import { TypeBaseComponent } from './Home/home/Visa/type-base/type-base.component';
+import { LitigesComponent } from './Home/home/Visa/litiges/litiges.component';
+import { TypesdeTransactionsComponent } from './Home/home/Visa/typesde-transactions/typesde-transactions.component';
+import { UploadvisaComponent } from './Home/home/Visa/uploadvisa/uploadvisa.component';
+import { FluxvisaComponent } from './Home/home/Visa/fluxvisa/fluxvisa.component';
+import { DomainechartComponent } from './Home/home/Visa/domainechart/domainechart.component';
+import { SurfacevisaComponent } from './Home/home/Visa/surfacevisa/surfacevisa.component';
+import { VentilationvisaComponent } from './Home/home/Visa/ventilationvisa/ventilationvisa.component';
+import { ComparaisonvisaComponent } from './Home/home/Visa/comparaisonvisa/comparaisonvisa.component';
+import { RapprochementvisaComponent } from './Home/home/Visa/rapprochementvisa/rapprochementvisa.component';
 
 @NgModule({
   declarations: [
@@ -72,10 +106,43 @@ import { DatemoisPipe } from './Pipes/datemois.pipe';
     OrginepipePipe,
     AdminbordComponent,
     TableaumontantComponent,
-    DatemoisPipe
+    DatemoisPipe,
+    SurfaceprvComponent,
+    TablaumontantpComponent,
+    ComparaisonAComponent,
+    CompprvComponent,
+    RapprochementComponent,
+    VisafactureComponent,
+    VisamoisPipe,
+    AnnevisaPipe,
+    RatevisaPipe,
+    EntityvisaPipe,
+    ProcessusPipe,
+    CategoriePipe,
+    ProcessusmasterPipe,
+    AccueilComponent,
+    EventprocessusPipe,
+    EventfamillePipe,
+    EventcategoriePipe,
+    AcceptanceservicePipe,
+    OriginservicePipe,
+    CanalservicePipe,
+    FluxtableComponent,
+    VueGeneralComponent,
+    TypeBaseComponent,
+    LitigesComponent,
+    TypesdeTransactionsComponent,
+    UploadvisaComponent,
+    FluxvisaComponent,
+    DomainechartComponent,
+    SurfacevisaComponent,
+    VentilationvisaComponent,
+    ComparaisonvisaComponent,
+    RapprochementvisaComponent
   ],
   imports: [
     BrowserModule,
+    AutocompleteLibModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTableModule,
@@ -86,7 +153,9 @@ import { DatemoisPipe } from './Pipes/datemois.pipe';
     PopupModule.forRoot(),
     HttpClientModule,
     ChartsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    Ng2GoogleChartsModule,
+
 
 
 

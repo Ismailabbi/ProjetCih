@@ -7,8 +7,10 @@ import { Facture } from '../Models/Factures';
   providedIn: 'root'
 })
 export class FactureService {
+
   Url:string="http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/facture"
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { 
+  }
   get_factures():Observable<Facture[]>{
     return this.httpClient.get<Facture[]>(this.Url)
   }
@@ -40,5 +42,15 @@ export class FactureService {
 get_eventid_event():Observable<any[]>{
   return this.httpClient.get<any[]>('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/unique/EventID')
 
+}
+
+
+
+
+
+
+
+get_flux():Observable<any[]>{
+  return this.httpClient.get<any[]>('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/flux')
 }
 }

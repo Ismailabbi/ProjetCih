@@ -1,6 +1,5 @@
-<div class="panel panel-primary t">
-    <div class="panel-heading">Evenement
-      
+<div class="panel panel-warning t">
+  <div class="panel-heading"><img height="100px" width="350px" src="../../../../assets/MasterCard_Logo.svg.png"/>
     <div class="pull-right">
         <button  (click)="affchfilter()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
     </div>
@@ -15,18 +14,25 @@
                
                 
                         Nom Event :
-                        <select class="form-control" id="exampleSelect1" [(ngModel)]="nomevent" >
-                            <option   selected  [ngValue]="undefined">All			</option>
-      
-                          <option  *ngFor="let t of namedata"  >              {{ t.NomEvent }}
-                            
-                          </option>
+                        <ng-autocomplete 
+                        [data]="dataeventt"
+                        placeHolder="All"
+                        [searchKeyword]="keywordnom"
+                        (selected)='selectEvent($event)'
+                        (inputChanged)='onChangeSearch($event)'
+                        (inputFocused)='onFocused($event)'
+                        [itemTemplate]="data"
+                        [notFoundTemplate]="notFoundTemplatez">                                 
+                      </ng-autocomplete>
+                       
+                      <ng-template #data let-item>
                           
-                          
-                          
-                        
-                        </select>
-                     
+                      <a [innerHTML]="item.NomEvent"></a>
+                      </ng-template>
+                       
+                      <ng-template #notFoundTemplatez let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                      </ng-template>
                 
                 </th>
                 </div>
@@ -36,16 +42,25 @@
                 <div class="col-md-3">
                   <th>
                     Num Event :
-                    <select class="form-control" id="exampleSelect1"  [(ngModel)]="num" >
-                     
-                        <option   selected  [ngValue]="undefined"> All &shy;&shy;&shy;&shy;&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
-  
-                        <option  *ngFor="let t of eventdata"  >              {{ t.NumEvent }}
-                          
-                        </option>
+                    <ng-autocomplete 
+                    [data]="datanum"
+                    placeHolder="All"
+                    [searchKeyword]="keywordnum"
+                    (selected)='selectEventnum($event)'
+                    (inputChanged)='onChangeSearch($event)'
+                    (inputFocused)='onFocused($event)'
+                    [itemTemplate]="itemTemplatenum"
+                    [notFoundTemplate]="notFoundTemplate">                                 
+                  </ng-autocomplete>
+                   
+                  <ng-template #itemTemplatenum let-item>
                       
-                    
-                    </select>
+                  <a [innerHTML]="item.NumEvent"></a>
+                  </ng-template>
+                   
+                  <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                  </ng-template>
   
   
             </th>
@@ -54,24 +69,112 @@
             
                   <div class="col-md-3">
                       <th>
-                          Id:
-                          <select class="form-control" id="exampleSelect1" [(ngModel)]="k"  >
-                                  <option   selected  [ngValue]="undefined"> All&shy;&shy;&shy;&shy;&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
-                                  
-                              <option  *ngFor="let t of ID"  >              {{ t.IDService }}
-                                    
-                                </option>
+                          ID:
+                          <ng-autocomplete 
+                          [data]="dataid"
+                          placeHolder="All"
+                          [searchKeyword]="keywordId"
+                          (selected)='selectEventId($event)'
+                          (inputChanged)='onChangeSearch($event)'
+                          (inputFocused)='onFocused($event)'
+                          [itemTemplate]="itemTemplateId"
+                          [notFoundTemplate]="notFoundTemplate">                                 
+                        </ng-autocomplete>
+                         
+                        <ng-template #itemTemplateId let-item>
                             
-                            </select>
+                        <a [innerHTML]="item.IDService"></a>
+                        </ng-template>
+                         
+                        <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                        </ng-template>
             
                       </th>
                     </div>
-                    <div class="col-md-3">
-                        <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> réinitialiser</button>
+                  
+                </div>
+              
+                <div class="row">
+  
+  
+                  <div class="col-md-4">
+                    <th>
+                      Processus
+                      <ng-autocomplete 
+                      placeHolder="All"
+                      [data]="dataprocessus"
+                      [searchKeyword]="keywordProcessus"
+                      (selected)='selectprocessus($event)'
+                      (inputChanged)='onChangeSearch($event)'
+                      (inputFocused)='onFocused($event)'
+                      [itemTemplate]="itemTemplate"
+                      [notFoundTemplate]="notFoundTemplate">                                 
+                    </ng-autocomplete>
+                     
+                    <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.Processus"></a>
+                    </ng-template>
+                     
+                    <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                
+                </th>
+                
+                  </div>
+                  <div class="col-md-4">
+                      <th>
+                          Categorie
+                        <ng-autocomplete 
+                        placeHolder="All"
+                        [data]="datacategorie"
+                        [searchKeyword]="keywordcategorie"
+                        (selected)='categorieselect($event)'
+                        (inputChanged)='b($event)'
+                        (inputFocused)='c($event)'
+                        [itemTemplate]="itemTemplatee"
+                        [notFoundTemplate]="notFoundTemplatee">                                 
+                      </ng-autocomplete>
+                       
+                      <ng-template #itemTemplatee let-iteme>
+                      <a [innerHTML]="iteme.Categorie"></a>
+                      </ng-template>
+                       
+                      <ng-template #notFoundTemplatee let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                      </ng-template>
+                  
+                  </th>
+                  
+                    </div>
+                    <div class="col-md-4">
+                        <th>
+                            Famille
+                          <ng-autocomplete 
+                          placeHolder="All"
+                          [data]="datafamille"
+                          [searchKeyword]="keywordfamille"
+                          (selected)='selectedfamille($event)'
+                          (inputChanged)='bb($event)'
+                          (inputFocused)='cb($event)'
+                          [itemTemplate]="itemTemplateee"
+                          [notFoundTemplate]="notFoundTemplateee">                                 
+                        </ng-autocomplete>
+                         
+                        <ng-template #itemTemplateee let-iteme>
+                        <a [innerHTML]="iteme.Famille"></a>
+                        </ng-template>
+                         
+                        <ng-template #notFoundTemplateee let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                    
+                    </th>
+                    
                       </div>
                 </div>
                 <hr class="new2">
-
          
               </div>
          
@@ -91,7 +194,7 @@
             </tr>
             </thead>
             <tbody >
-            <tr *ngFor="let country of countries|eventname:nomevent|eventnum:num|id:k">
+            <tr *ngFor="let country of countries|eventname:nomevent|eventnum:num|id:k|eventfamille:familleselected|eventcategorie:categorieselected|eventprocessus:processusselected">
             
               <td>
                   {{ country.IDService }}
@@ -108,6 +211,9 @@
               </td>
              
             </tr>
+            <div *ngIf="(countries|eventname:nomevent|eventnum:num|id:k|eventfamille:familleselected|eventcategorie:categorieselected|eventprocessus:processusselected).length === 0">
+              Aucun résultat trouvé
+           </div>
             </tbody>
           </table>
         </div>

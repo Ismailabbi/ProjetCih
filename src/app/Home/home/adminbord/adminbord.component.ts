@@ -13,12 +13,14 @@ export class AdminbordComponent implements OnInit {
   up:boolean=false
   user:string
   mdp:string
+  id:string
  users:any[]
   constructor( public adminserive:AdminService,private popup:Popup) { }
 
   ngOnInit() {
     this.adminserive.get_users().subscribe(data=>{
        this.users=data
+       console.log(data)
     })
   }
   supp(id){
@@ -50,6 +52,7 @@ export class AdminbordComponent implements OnInit {
     this.user=user.username
     this.profil=user.Profile
     this.mdp=user.password
+    this.id=user.Id
     this.popup.options = {
       
       header: "Detail",
@@ -77,8 +80,8 @@ creer(){
 }
 update(){
   
-  this.adminserive.create(this.user,this.profil,this.mdp).subscribe(data=>{
-    console.log(data)
+  this.adminserive.update(this.user,this.mdp,this.profil,this.id).subscribe(data=>{
+    console.log(this.profil)
     this.adminserive.get_users().subscribe(data=>{
       this.users=data
     })

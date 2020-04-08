@@ -16,7 +16,7 @@
     <div class="col-md-6">
       <div class="card-counter info">
         <i class="fa fa-usd" aria-hidden="true"></i>
-        <span class="count-numbers">{{chargetotal| currency:'':true:'1.2-2'}}</span>
+        <span class="count-numbers">{{chargetotal| currency:'':true:'1.2-2'}}k</span>
         <span class="count-name">Charge totale</span>
       </div>
     </div>
@@ -100,163 +100,267 @@
             <button  (click)="affchfilter()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
         </div>
       </div>
-        <div class="panel-body">
-            <div *ngIf="filterbol" class="filters">
-          
-                <div class="row">
-                    
-                      <div class="col-md-3">
-    <th>
-        SERVICE CODE DESCRIPTION:
-                        <select class="form-control" id="exampleSelect1" [(ngModel)]="servicecode" >
-                          <option  selected  [ngValue]="undefined">All	</option>
-                          <option  *ngFor="let t of servicedesc"  >              {{ t.ServiceCodeDescription }}
-                          
-                            </option>
-                        
-                        </select>
-                     
-                </th>
-                </div>
-    
-                <div class="col-md-3">
-                <th>	
-                  EVENT DESCRIPTION :
-                    <select class="form-control" id="exampleSelect1" [(ngModel)]="event">
-                        <option  selected  [ngValue]="undefined">All	</option>
-                        <option  *ngFor="let t of dataevent"  >              {{ t.EventDescription }}
-                          
-                          </option>
-                      
-                      </select>
-    
-    
-    
-                </th>
-              </div>
-              <div class="col-md-3">
-                  <th>
-                      Mois:
-                      <select class="form-control" id="exampleSelect1" [(ngModel)]="d">
-                          <option  selected  [ngValue]="undefined">All	</option>
-                        
-                          <option>Janvier</option>
-                          <option>Fevrier</option>
-                          <option>Mars</option>
-                          <option>Avril</option>
-                          <option>Mai</option>
-                          <option>Juin</option>
-                          <option>Juillet</option>
-                          <option>Aout</option>
-                          <option>Septembre</option>
-                          <option>Octobre</option>
-                          <option>Novembre</option>
-                          <option>Decembre</option>
-      
-                        </select>
-                  </th>
-                 
-                </div>
-               
-                <div class="col-md-3">
-                  <th>
-                      Année:
-                      <select class="form-control" id="exampleSelect1" [(ngModel)]="an">
-                          <option  selected  [ngValue]="undefined">All	</option>
-                        
-                          <option>2018</option>
-                          <option>2019</option>
-      
-                        </select>
-                  </th>
-                 
-                </div>
-             
-             
-              </div>
+      <div class="panel-body">
+          <div *ngIf="filterbol" class="filters">
               <div class="row">
-                  <div class="col-md-4"> <th>
-                    Acceptance:
-                  <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptance" >
-                      <option   selected  [ngValue]="undefined">All &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
-                      <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
-                            
-                        </option>
-                    
-                    
-                    </select>
+  
+              <div class="col-md-4"> 
+   </div>
+   <div class="col-md-4"> 
+  </div>
+  <div class="col-md-4"> 
+      <button type="button" (click)='calcul()' class="btn btn-primary">Actualiser</button>
+  </div>
+               </div>
+              <div class="row">
+                  
+                    <div class="col-md-4">
+  <th>
+      SERVICE CODE DESCRIPTION:
+      <div class="ng-autocomplete">
+      <ng-autocomplete 
+      [data]="datacode"
+      placeHolder="All"
+       (event)='ah()'
+      [searchKeyword]="keywordcode"
+      (selected)='selectcode($event)'
+      (inputChanged)='onChangeSearch($event)'
+      (inputFocused)='onFocused($event)'
+      [itemTemplate]="itemTemplatecode"
+      [notFoundTemplate]="notFoundTemplate">                                 
+    </ng-autocomplete>
+     </div>
+    <ng-template #itemTemplatecode let-item>
         
-              </th></div>
-                  <div class="col-md-4">
-        
+    <a [innerHTML]="item.ServiceCodeDescription"></a>
+    </ng-template>
+     
+    <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound"></div>
+    </ng-template>
+                
+              </th>
+              </div>
              
-                    <th>
-                      Canal:
-                    <select class="form-control" id="exampleSelect1" [(ngModel)]="canal"  >
-                        <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
-                        <option  *ngFor="let t of datacanal"  >              {{ t.Canal }}
-                              
-                          </option>
-                         
-                      </select>
-                    
-                </th>
-        
-                  </div>
-                  <div class="col-md-4">
-                    <th>
-                    Origin
-                    <select class="form-control" id="exampleSelect1" [(ngModel)]="origine"  >
-                        <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
-                        <option  *ngFor="let t of dataorigine"  >              {{ t.Origine }}
-                              
-                          </option>
-                         
-                      </select>
-        
-        </th>
-        
-                  </div>
-        
+              <div class="col-md-4">
+              <th>	
+                EVENT DESCRIPTION :
+                <div class="ng-autocomplete">
+                <ng-autocomplete 
+                [data]="dataeventds"
+                placeHolder="All"
+            
+                [searchKeyword]="keywordevent"
+                (selected)='selectevent($event)'
+                (inputChanged)='onChangeSearch($event)'
+                (inputFocused)='onFocused($event)'
+                [itemTemplate]="itemTemplatevent"
+                [notFoundTemplate]="notFoundTemplate">                                 
+              </ng-autocomplete>
+              </div>
+               
+              <ng-template #itemTemplatevent let-item>
+                  
+              <a [innerHTML]="item.EventDescription"></a>
+              </ng-template>
+               
+              <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+              </ng-template>
+  
+  
+  
+              </th>
+            </div>
+            <div class="col-md-4">
+              <th>
+                  Mois:
+                 <div class="ng-autocomplete">
+                  <div class="ng-autocomplete">
+                  <ng-autocomplete 
+                  [data]="datamois"
+                  placeHolder="All"
+              
+                  [searchKeyword]="keywordmois"
+                  (selected)='selectdate($event)'
+                  (inputChanged)='onChangeSearch($event)'
+                  (inputFocused)='onFocused($event)'
+                  [itemTemplate]="itemTemplatdate"
+                  [notFoundTemplate]="notFoundTemplate">                                 
+                </ng-autocomplete>
                 </div>
-              <hr class="new2">
+                 </div>
+                <ng-template #itemTemplatdate let-item>
+                    
+                <a [innerHTML]="item"></a>
+                </ng-template>
+                 
+                <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </th>
+             
             </div>
-            <div class="scrollable">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                  <th scope="col">DOCUMENTTYPE</th>
-                  <th scope="col">SERVICE </th>
-                  <th scope="col">QUANTITY </th>
-                  <th scope="col">EVENT DESCRIPTION</th>
-                  <th scope="col">DATE</th>
-                 <th scope="col">MONTANT</th>
-    
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let country of countries |servicecode:servicecode |eventdescription:event|pipedate:d|acceptance:acceptance|canal:canal|orginepipe:origine|datemois:an ">
-                  <th scope="row">{{ country.DocumentType }}</th>
-                  <td>
+           
+            
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <th>
+                        Année:
+                        
+                        <ng-autocomplete 
+                        [data]="datann"
+                        placeHolder="All"
+                    
+                        [searchKeyword]="keywordann"
+                        (selected)='selectann($event)'
+                        (inputChanged)='onChangeSearch($event)'
+                        (inputFocused)='onFocused($event)'
+                        [itemTemplate]="itemTemplatann"
+                        [notFoundTemplate]="notFoundTemplate">                                 
+                      </ng-autocomplete>
+                       
+                      <ng-template #itemTemplatann let-item>
+                          
+                      <a [innerHTML]="item"></a>
+                      </ng-template>
+                       
+                      <ng-template #notFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                      </ng-template>
+                    </th>
                    
-                    {{ country.ServiceCodeDescription }}
-                  </td>
-                  <td>{{ country.QuantityAmount }}</td>
-                  <td>{{ country.EventDescription  }}</td>
-                  <td>{{ country.BillingCycleDate  }}</td>
-                 <td>{{country.TotalCharge}}</td>
-                  <td>
-                    <button type="button"(click)="show(country)" class="btn btn-info">Detail
+                  </div>
+                <div class="col-md-3"> <th>
+                  Acceptance:
+                  <ng-autocomplete 
+                  [data]="datasclacceptance"
+                  placeHolder="All"
+                  [searchKeyword]="keywordacceptance"
+                  (selected)='selectEventa($event)'
+                  (inputChanged)='onChangeSearch($event)'
+                  (inputFocused)='onFocused($event)'
+                  [itemTemplate]="itemTemplatea"
+                  [notFoundTemplate]="notFoundTemplate">                                 
+                </ng-autocomplete>
+                 
+                <ng-template #itemTemplatea let-item>
+                    
+                <a [innerHTML]="item.Acceptance"></a>
+                </ng-template>
+                 
+                <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+      
+            </th></div>
+                <div class="col-md-3">
+      
+           
+                  <th>
+                    Canal:
+                    <ng-autocomplete 
+                    [data]="datascanal"
+                    placeHolder="All"
+      
+                    [searchKeyword]="keywordcanal"
+                    (selected)='selectEventca($event)'
+                    (inputChanged)='onChangeSearch($event)'
+                    (inputFocused)='onFocused($event)'
+                    [itemTemplate]="itemTemplateca"
+                    [notFoundTemplate]="notFoundTemplate">                                 
+                  </ng-autocomplete>
+                   
+                  <ng-template #itemTemplateca let-item>
+                      
+                  <a [innerHTML]="item.Canal"></a>
+                  </ng-template>
+                   
+                  <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                  
+              </th>
+      
+                </div>
+                <div class="col-md-3">
+                  <th>
+                  Origin
+                  <ng-autocomplete 
+                  [data]="dataorigin"
+                  placeHolder="All"
     
-                    </button>
-    
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          
-    
+                  [searchKeyword]="keywordorigin"
+                  (selected)='selectEventco($event)'
+                  (inputChanged)='onChangeSearch($event)'
+                  (inputFocused)='onFocused($event)'
+                  [itemTemplate]="itemTemplateoo"
+                  [notFoundTemplate]="notFoundTemplate">                                 
+                </ng-autocomplete>
+                 
+                <ng-template #itemTemplateoo let-item>
+                    
+                <a [innerHTML]="item.Origine"></a>
+                </ng-template>
+                 
+                <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+      
+      </th>
+      
+                </div>
+            
+              </div>
+            <hr class="new2">
+          </div>
+        <div class="scrollable">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            
+              <th >SERVICE </th>
+              <th scope="col">QUANTITY </th>
+              <th scope="col">EVENT DESCRIPTION</th>
+              <th scope="col">DATE</th>
+              <th scope="col">MONTANT</th>
+              <th scope="col">Acceptance</th>
+              <th scope="col">CANAL</th>
+              <th scope="col">ClASSIFICATION</th>
+              <th scope="col"> ORIGINE</th>
+              <th scope="col"> TYPE RATE</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr #myVar *ngFor="let country of(countries |servicecode:servicecode | pipedate:d |eventdescription:event|acceptance:acceptance|canal:canal|orginepipe:origine|datemois:an) " >
+              <td>
+               
+                {{ country.ServiceCodeDescription }}&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;&shy;
+              </td>
+              <td>{{ country.QuantityAmount }}</td>
+              <td>{{ country.EventDescription  }}</td>
+              <td>{{ country.BillingCycleDate  }}</td>
+              <td>{{ country.TotalCharge  }}</td>
+              <td>{{country.Acceptance}}</td>
+              <td>{{country.Canal}}</td>
+              <td>{{country.Classification}}</td>
+              <td>{{country.Origine}}</td>
+              <td>{{country.TypeRate}}</td>
+              <td>
+                <button type="button"(click)="show(country)" class="btn btn-info">Detail
+
+                </button>
+
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
+      
+
+    </div>
       </div>
       

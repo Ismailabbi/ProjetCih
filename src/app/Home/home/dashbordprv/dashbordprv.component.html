@@ -1,89 +1,177 @@
-<div>
-        <div>
-          <div class="chart">
-            <canvas baseChart
-            
-              [data]="pieChartData"
-              [labels]="pieChartLabels"
-              [chartType]="pieChartType"
-              [options]="pieChartOptions"
-              [plugins]="pieChartPlugins"
-              [colors]="pieChartColors"
-            >
-            </canvas>
-          </div>
-        </div>
+
+
+<div  *ngIf="isDataAvailable" class="flex">
+  
+  <div class="item">
+    <div class="panel-heading"><img height="130px" width="350px" src="../../../../assets/MasterCard_Logo.svg.png"/>
+      <div class="pull-right">
+        <button type="button" class="btn btn-warning " (click)="Popacvtive()"> Filtrer</button>
+  
       </div>
-      <div>
-    
-        
-          <button type="button" class="btn btn-primary" (click)="ok()"> Filtrer</button>
-         
-      
-      </div>
-    
-      
-     
-      <div *ngIf="isAvailable" class="panel panel-default">
-          
-          <div class="panel-body">
-              <div class="row">
-                  <div class="col-sm-3">
-                      Année:
-                      <select class="form-control" id="exampleSelect1" [(ngModel)]="Annee" >
-                          <option  selected  [ngValue]="All">All	</option>
-                          
-                          <option  *ngFor="let t of  years"  >              {{ t }}
-                      
-                          </option>
-                        
-                          
-                           
-                        
-                        </select>
-                  </div>
-                  <div class="col-sm-3">
-                      Classification:
-                      <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
-
-                          <option   selected  [ngValue]="undefined">All		</option>
-                          <option  *ngFor="let t of dataclassification"  >              {{ t.Classification }}
-                                
-                            </option>
-                        
-                        </select>
-                  </div>
-                  <div class="col-sm-3">
-                      Acceptance:
-                      <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptancee" >
-                          <option  disabled selected hidden [ngValue]="undefined">All &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
-                          <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
-                                
-                            </option>
-                        
-                        
-                        </select>
-                  </div>
-                  <div class="col-sm-3">
-                      Service Name
-                      <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
-                          <option  disabled selected hidden [ngValue]="undefined">All		</option>
-    
-                        <option  *ngFor="let t of servicenames"  >              {{ t.ServiceNAME }}
-                          
-                        </option>
-                        
-                        
-                        
-                      
-                      </select>
-                   
-                  </div>
-
-                  <button type="button" class="btn btn-secondary" (click)='tri()'>Chercher</button>
-
-            
-          </div>
-        </div>
     </div>
+    
+  
+          <div>
+            <div class="chart">
+              <canvas baseChart
+              width="1140"
+          height="300"
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"
+                [colors]="pieChartColors"
+              >
+              </canvas>
+            </div>
+          </div>
+        </div>
+        <div>
       
+          
+           
+        
+        </div>
+      
+        
+       
+        <div *ngIf="isAvailable" class="panel panel-default">
+            
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        Année:
+                        <select class="form-control" id="exampleSelect1" [(ngModel)]="Annee" >
+                            <option  selected  [ngValue]="All">All	</option>
+                            
+                            <option  *ngFor="let t of  years"  >              {{ t }}
+                        
+                            </option>
+                          
+                            
+                             
+                          
+                          </select>
+                    </div>
+                    <div class="col-sm-3">
+                        Classification:
+                        <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
+  
+                            <option   selected  [ngValue]="undefined">All		</option>
+                            <option  *ngFor="let t of dataclassification"  >              {{ t.Classification }}
+                                  
+                              </option>
+                          
+                          </select>
+                    </div>
+                    <div class="col-sm-3">
+                        Acceptance:
+                        <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptancee" >
+                            <option  selected  [ngValue]="undefined">All &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
+                            <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
+                                  
+                              </option>
+                          
+                          
+                          </select>
+                    </div>
+                    <div class="col-sm-3">
+                        Service Name
+                        <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
+                            <option   selected  [ngValue]="undefined">All		</option>
+      
+                          <option  *ngFor="let t of servicenames"  >              {{ t.ServiceNAME }}
+                            
+                          </option>
+                          
+                          
+                          
+                        
+                        </select>
+                     
+                    </div>
+  
+                    <button type="button" class="btn btn-secondary" (click)='tri()'>Chercher</button>
+  
+              
+            </div>
+          </div>
+      </div>
+    </div>     
+    <div  *ngIf="wait">
+  
+      <div class="google-loader">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+    <h4 class="text-center"> Calcul en cours</h4>
+    </div>
+  
+  
+    <popup>
+      <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-3">
+                Année:
+                <select class="form-control" id="exampleSelect1" [(ngModel)]="Annee" >
+                    <option  selected  [ngValue]="All">All	</option>
+                    
+                    <option  *ngFor="let t of  years"  >              {{ t }}
+                
+                    </option>
+                  
+                    
+                     
+                  
+                  </select>
+            </div>
+            <div class="col-sm-3">
+                Classification:
+                <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
+  
+                    <option   selected  [ngValue]="undefined">All		</option>
+                    <option  *ngFor="let t of dataclassification"  >              {{ t.Classification }}
+                          
+                      </option>
+                  
+                  </select>
+            </div>
+            <div class="col-sm-3">
+                Acceptance:
+                <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptancee" >
+                    <option  selected  [ngValue]="undefined">All &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
+                    <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
+                          
+                      </option>
+                  
+                  
+                  </select>
+            </div>
+            <div class="col-sm-3">
+                Service Name
+                <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
+                    <option   selected  [ngValue]="undefined">All		</option>
+  
+                  <option  *ngFor="let t of servicenames"  >              {{ t.ServiceNAME }}
+                    
+                  </option>
+                  
+                  
+                  
+                
+                </select>
+             
+            </div>
+  
+            
+  
+      
+    </div>
+  </div>
+     <button type="button" (click)='tri()' class="btn btn-secondary">Filtrer</button>
+  
+  
+    </popup>

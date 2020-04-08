@@ -6,6 +6,9 @@ import { from } from 'rxjs';
 import {ChartDataSets} from 'chart.js'
 import { DashbordService } from 'src/app/Services/dashbord.service';
 import { SrvsService } from 'src/app/Services/srvs.service';
+import { ClassificationsService } from 'src/app/Services/classifications.service';
+import {Popup} from 'ng2-opd-popup';
+
 @Component({
   selector: 'app-dashbordprv',
   templateUrl: './dashbordprv.component.html',
@@ -15,7 +18,8 @@ export class DashbordprvComponent implements OnInit {
   classification
   acceptancee
   servicename
-  
+  isDataAvailable:boolean = false;
+  wait:boolean=true
 m:number=null
 years:any[];
 mois:string
@@ -32,7 +36,21 @@ vider(){
   this.servicename=undefined
   this.Annee=undefined
 }
+public Popacvtive(){
+  this.popup.options = {
+    header: "Detail",
+    color: "#f65900", // red, blue....
+    widthProsentage: 80, // The with of the popou measured by browser width
+    animationDuration: 1, // in seconds, 0 = no animation
+    showButtons: false, // You can hide this in case you want to use custom buttons
+    cancleBtnClass: "btn btn-default", // you class for styling the cancel button
+    animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+};
+this.popup.show(this.popup.options);
+
+}
 tri(){
+  
   if(this.acceptancee==undefined&&this.classification==undefined&&this.servicename==undefined){
     if(this.Annee==undefined){
       this.dash.get_classffiable().subscribe(
@@ -47,7 +65,9 @@ tri(){
       )
     }
     else{
+      
       this.dash.post_classdate(this.Annee).subscribe(data=>{
+        console.log(data)
         this.pieChartLabels = Object.getOwnPropertyNames(data);
         this.pieChartData=Object.values(data)
   
@@ -55,23 +75,36 @@ tri(){
   }
   
     else{ this.dash.post_canalP(this.acceptancee,this.Annee,this.classification,this.servicename).subscribe(data=>{
-       if(this.servicename==undefined){
-         this.servicename=''
-       }
-       if(this.acceptancee==undefined){
-         this.acceptancee=''
-       }
-       if(this.classification==undefined){
-         this.classification=''
-       }
-      this.pieChartLabels = [this.servicename+'-'+this.classification+this.Annee]
+     let sername,clasname,acptanme,ane:string
+     sername=this.servicename
+     clasname=this.classification
+     acptanme=this.acceptancee
+     console.log(sername,clasname,acptanme)
+     if(this.servicename==undefined){
+      sername=''
+    }
+    if(this.acceptancee==undefined){
+      acptanme=''
+    }
+    if(this.classification==undefined){
+      clasname=''
+    }
+    if(this.Annee==undefined){
+      ane=''
+    }
+    console.log(sername,clasname,acptanme)
+   this.pieChartLabels = [sername+'-'+acptanme+clasname+ane]
+    
       this.pieChartData=Object.values(data)
       console.log(data)
      })
     }
+    this.popup.hide()
    }
 public pieChartOptions: ChartOptions = {
   responsive: true,
+    maintainAspectRatio: false,
+ 
   legend: {
     position: 'left',
     display:true
@@ -103,19 +136,20 @@ public pieChartColors = [
   },
 ];
 
-constructor(public dash:DashbordService,public services:SrvsService) { }
+constructor(public dash:DashbordService,public services:SrvsService,public classifications:ClassificationsService,private popup:Popup) { }
 en(){
 
  console.log("ok")
 }
 
 ngOnInit() {
-  this.services.getclassfication().subscribe(
+  this.classifications.getclassfication().subscribe(
     data=>{
       this.dataclassification=data
+      console.log(data)
     }
   )
-  this.services.getAcceptance().subscribe(
+  this.classifications.getAcceptance().subscribe(
     data=>{
       this.datacceptance=data
     }
@@ -129,7 +163,8 @@ ngOnInit() {
       console.log(data)
       this.pieChartLabels = Object.getOwnPropertyNames(data);
       this.pieChartData=Object.values(data)
-      
+      this.isDataAvailable=true
+      this.wait=false
     
     }
 
@@ -169,6 +204,7 @@ public acceptance(){
     console.log(data)
     this.pieChartLabels = Object.getOwnPropertyNames(data);
        this.pieChartData=Object.values(data)
+      
     }))
     
 }
@@ -177,6 +213,7 @@ public origin(){
     console.log(data)
     this.pieChartLabels = Object.getOwnPropertyNames(data);
        this.pieChartData=Object.values(data)
+   
     }))
 }
 
@@ -225,9 +262,10 @@ this.m=11
 
   this.dash.post_dashbord(this.Annee,this.m).subscribe(
     data=>{
-        console.log(Object.values(data))
+      console.log("yes")
+        console.log(Object.values(data)+"1")
         this.pieChartData=Object.values(data)
-        console.log(Object.getOwnPropertyNames(data))
+        console.log(Object.getOwnPropertyNames(data)+"2")
         this.pieChartLabels=Object.getOwnPropertyNames(data)
     }
   )

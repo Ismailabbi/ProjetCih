@@ -15,7 +15,7 @@ export class DashbordService {
     return this.httpClient.get<any[]>(this.Url2)
 }
 post_dashbord(a:number,b:number){
-  console.log(b)
+ 
   return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/Dashboard_service_timed',{"Mois": b,"Annee":a,'Critere':'Origine'})
  
 }
@@ -112,4 +112,95 @@ post_surfacecanal(a:number){
   return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/canal',{"Annee": a})
 
 }
+post_surfacePclassification(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/fiabilise/classification',{"Annee": a})
+
+}
+post_surfacePOrigin(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/fiabilise/origine',{"Annee": a})
+}
+post_surfacePacanal(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/fiabilise/canal',{"Annee": a})
+
+}
+post_surfacePcAcceptance(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/fiabilise/acceptance',{"Annee": a})
+
+}
+post_comparaison(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/Classification',{"Annee": a,"Classification":b})
+
+}
+post_comparaisonorigin(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/origine',{"Annee": a,"Origine":b})
+
+}
+post_comparaisoncanal(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/Canal',{"Annee": a,"Canal":b})
+
+}
+post_comparaisonacceptance(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/Acceptance',{"Annee": a,"Acceptance":b})
+}
+
+post_comparaisonPrv(a:number,b:string){
+  
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/fiabilise/Classification',{"Annee": a,"Classification":b})
+
+}
+post_comparaisonoriginPrv(a:number,b:string){
+  if(b=='All'){
+    b=''
+  }
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/fiabilise/origine',{"Annee": a,"Origine":b})
+
+}
+post_comparaisoncanalPrv(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/fiabilise/Canal',{"Annee": a,"Canal":b})
+
+}
+post_comparaisonacceptancePrv(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/fiabilise/Acceptance',{"Annee": a,"Acceptance":b})
+}
+post_surfaceFamille(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/famille',{"Annee": a})
+
+}
+post_surfaceProccessus(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/processus',{"Annee": a})
+}
+post_surfacecategorie(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/categorie',{"Annee": a})
+}
+post_comparaisoncategorie(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/categorie',{"Annee": a,"Categorie":b})
+}
+post_comparaisonfamille(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/famille',{"Annee": a,"Famille":b})
+}
+post_comparaisonProcessus(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/processus',{"Annee": a,"Processus":b})
+}
+post_surfaceFamillePv(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/fiabilise/famille',{"Annee": a})
+
+}
+post_surfaceProccessusPv(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/fiabilise/processus',{"Annee": a})
+}
+post_surfacecategoriePv(a:number){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/surface/fiabilise/categorie',{"Annee": a})
+}
+post_comparaisoncategoriePv(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/categorie',{"Annee": a,"Categorie":b})
+}
+post_comparaisonfamillePv(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/famille',{"Annee": a,"Famille":b})
+}
+post_comparaisonProcessusPv(a:number,b:string){
+  return this.httpClient.post('http://www.effyis-partners.ma/ProjetFacturation/CodeIgniter3/api/column/processus',{"Annee": a,"Processus":b})
+}
+
+
+
 }

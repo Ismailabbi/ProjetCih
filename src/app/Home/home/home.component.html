@@ -7,10 +7,10 @@
         <div class="row">
             <div class="col-md-2 col-sm-4 sidebar1">
                 <div class="logo">
-                    <img src="https://www.h24info.ma/wp-content/uploads/2017/04/articlesprincipalescih.jpg" class="img-responsive center-block" alt="Logo">
+                    <img src="../../../assets/CIH.jpg" class="img-responsive center-block" alt="Logo">
                 </div>
-                <br>
-                <div class="left-navigation op">
+                <br> 
+                <div class="left-navigation op  scrollable scrollable-element">
                     <ul class="list">
                         <h5><strong>
 
@@ -18,53 +18,122 @@
                       
                        
                    
-                                
+                            <li   routerLink="Acceuil" >Acceuil</li>
                                 <li   (click)="aks()">MasterCard <span class="glyphicon glyphicon-chevron-down size"></span></li>
 
 
 
                                 <div *ngIf='ab' class="r">
-                                                <li (click)="arr()"> &raquo;
+                                        <li routerLink="comparaisonprv"> Vision globale</li><br/>
+
+                                                <li (click)="arr()">
                                                                 Référentiel <span class="glyphicon glyphicon-chevron-down size"></span></li><br/>
                                                                 <div *ngIf='an' class="r">
-                                                                                <li routerLink="Services"> &raquo;
+                                                                                <li routerLink="Services"> 
                                                                                                 Service </li><br/>
-                                                                                        <li routerLink="event"> &raquo;
+                                                                                        <li routerLink="event"> 
                                                                                                 Evenement </li><br/>
                                                                                                 </div>
                                        
                                              
-                        <li routerLink="factures"> &raquo;
+                        <li routerLink="factures">
                                 Facture reçue</li><br/>
-                        <li routerLink="facutreprevison">&raquo;
-                                Facture prévisionnelle</li><br/>
-                        <li  (click)="ass()"> &raquo;
+                                <li routerLink="flux">
+                                                Flux</li><br/>
+                        <li routerLink="facutreprevison">
+                                Simulation de facture</li><br/>
+                        <li  (click)="ass()"> 
                                 Tableau de bord <span class="glyphicon glyphicon-chevron-down size"></span> </li><br/>
                                 <div *ngIf='at' class="r">
-                                        <li routerLink="dashbord"> &raquo;
+                                        <li routerLink="Domaine"> 
                                                         Domaine </li><br/>
-                                                <li routerLink="a"> &raquo;
+                                                <li routerLink="Evolution"> 
                                                         Evolution </li><br/>
-                                                        <li routerLink="ab"> &raquo;Ventilation</li><br/>
+                                                        <li routerLink="Ventilation"> Ventilation</li><br/>
+                                                        <li routerLink="comparaison"> Historique</li><br/>
+                                                        <li routerLink="rapprochement"> Rapprochement</li><br/>
 
                                     </div>
-                        <li (click)="add()"> &raquo;
-                                Tableau de bord prévisionnel <span class="glyphicon glyphicon-chevron-down size"></span></li><br/>
+                        <li (click)="add()"> 
+                                Vision Simulée<span class="glyphicon glyphicon-chevron-down size"></span></li><br/>
                                 <div *ngIf='ak' class="r">
-                                                <li routerLink="dashbordprv" > &raquo;
+                                                <li routerLink="DomainePrevisionnel" > 
                                                                 Domaine </li><br/>
-                                                        <li routerLink="a"> &raquo;
+                                                        <li routerLink="EvolutionPrevisionnel"> 
                                                                 Evolution </li><br/>
-                                                                <li routerLink="ab"> &raquo;Ventilation</li>
+                                                                <li routerLink="VentilationPrevisionnel"> Ventilation</li><br/>
+                                                                <li routerLink="comparaisonprv"> Historique</li><br/>
 
+                                                                <li routerLink="rapprochement"> Rapprochement</li><br/>
+
+                                                                
                                             </div>
-                        <li routerLink="upload">&raquo;
+                        <li routerLink="upload">
+                                Chargement</li>
+     
+                                </div>
+                                <li   (click)="visa()">Visa <span class="glyphicon glyphicon-chevron-down size"></span></li>
+
+
+
+                                <div *ngIf='vs' class="r">
+                                        <li routerLink="comparaisonprv"> Vision globale</li><br/>
+
+                                                <li (click)="refvisa()"> 
+                                                                Référentiel <span class="glyphicon glyphicon-chevron-down size"></span></li><br/>
+                                                                <div *ngIf='wo' class="r">
+                                                                                <li  (click)="typevisa()" > 
+                                                                                        Type de charges <span class="glyphicon glyphicon-chevron-down size"></span></li><br/> 
+                                                                                        <div *ngIf='wa' class="r">
+                                                                                                <li routerLink="vuegenerale"> 
+                                                                                                        Vue generale   </li><br/>
+                                                                                                        <li routerLink="typebase"> 
+                                                                                                                Type base II </li><br/>
+                                                                                        </div>
+                                                                                        <li routerLink="litiges"> 
+                                                                                                Litiges  </li><br/>
+                                                                                                <li routerLink="TypesdeTransactions"> 
+                                                                                                        Types de Transactions  </li><br/>
+                                                                                                </div>
+                                       
+                                             
+                        <li routerLink="visa"> 
+                                Facture reçue</li><br/>
+                        <li routerLink="facutreprevison">
+                                Simulation de facture</li><br/>
+                        <li  (click)="ass()"> 
+                                Tableau de bord <span class="glyphicon glyphicon-chevron-down size"></span> </li><br/>
+                                <div *ngIf='at' class="r">
+                                        <li routerLink="domainevisa"> 
+                                                        Domaine </li><br/>
+                                                <li routerLink="Surfacevisa"> 
+                                                        Evolution </li><br/>
+                                                        <li routerLink="Ventilationvisa"> Ventilation</li><br/>
+                                                        <li routerLink="comparaisonvisa"> Historique</li><br/>
+                                                        <li routerLink="rapprochementvisa"> Rapprochement</li><br/>
+
+                                    </div>
+                        <li (click)="add()"> 
+                                Vision Simulée<span class="glyphicon glyphicon-chevron-down size"></span></li><br/>
+                                <div *ngIf='ak' class="r">
+                                                <li routerLink="DomainePrevisionnel" > 
+                                                                Domaine </li><br/>
+                                                        <li routerLink="EvolutionPrevisionnel"> 
+                                                                Evolution </li><br/>
+                                                                <li routerLink="Ventilation"> Ventilation</li><br/>
+                                                                <li routerLink="rapprochement"> Rapprochement</li><br/>
+
+                                                                
+                                            </div>
+                                            <li routerLink="fluxvisa">
+                                                Flux</li>
+                        <li routerLink="uploadvisa">
                                 Chargement</li>
      
                                 </div>
                              
                        
-                                <li routerLink="/login" >Visa</li>
+                       
                                 <li routerLink="/login" >HPPS</li>
                                 <li routerLink="adminboard" >Administrateur</li>
 

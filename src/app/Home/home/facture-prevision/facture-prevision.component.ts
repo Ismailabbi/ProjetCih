@@ -3,6 +3,15 @@ import { FactureService } from 'src/app/Services/facture.service';
 import {Popup} from 'ng2-opd-popup';
 import { Facture } from 'src/app/Models/Factures';
 import { SrvsService } from 'src/app/Services/srvs.service';
+import { AcceptancePipe } from 'src/app/Pipes/acceptance.pipe';
+import { CanalPipe } from 'src/app/Pipes/canal.pipe';
+import { ServicecodePipe } from 'src/app/Pipes/servicecode.pipe';
+import { EventdescriptionPipe } from 'src/app/Pipes/eventdescription.pipe';
+import { OrginepipePipe } from 'src/app/Pipes/orginepipe.pipe';
+import { PipedatePipe } from 'src/app/Pipes/pipedate.pipe';
+import { DatemoisPipe } from 'src/app/Pipes/datemois.pipe';
+import { DatePipe } from '@angular/common';
+import { ClassificationsService } from 'src/app/Services/classifications.service';
 
 @Component({
   selector: 'app-facture-prevision',
@@ -11,6 +20,20 @@ import { SrvsService } from 'src/app/Services/srvs.service';
 })
 export class FacturePrevisionComponent implements OnInit {
   s:Facture[]
+  dataeventds=[]
+  datacode=[]
+  keywordcode="ServiceCodeDescription"
+  datasclacceptance=[]
+  keywordacceptance='Acceptance'
+  keywordevent="EventDescription"
+  keywordcanal='Canal'
+  dataorigin=[]
+  datascanal=[]
+  datann=['All','2018','2019']
+  keywordann='annee'
+  datamois=['All','Janvier','Fevrier','Mars','Avril','Mai','Juin','Aout','Septembre','Octobre','Novembre','Decembre']
+  keywordorigin='Origine'
+  keywordmois="mois"
   servicecode:string
   an;
   dataorigine
@@ -33,7 +56,7 @@ export class FacturePrevisionComponent implements OnInit {
   page ;
   pageSize ;
   collectionSize ;
-  constructor(private FactureServicess:FactureService,private popup:Popup,private SrvSrvsService:SrvsService) { }
+  constructor(private FactureServicess:FactureService,private popup:Popup,private SrvSrvsService:SrvsService ,public classifications:ClassificationsService) { }
   show(country:Facture){
     this.popup.options = {
       header: "Detail",
@@ -51,6 +74,99 @@ export class FacturePrevisionComponent implements OnInit {
   fermer(){
     this.popup.hide()
   }
+  calcul(){
+   /* let datat:any[]=[this.countries]
+    let a=new ServicecodePipe()
+    datat=a.transform(this.countries,this.servicecode)
+    let b=new EventdescriptionPipe()
+    datat=b.transform(datat,this.event)
+    let c=new AcceptancePipe()
+    datat=c.transform(datat,this.acceptance)
+    let d=new CanalPipe()
+    datat=d.transform(datat,this.canal)
+  let e=new OrginepipePipe()
+  datat=d.transform(datat,this.origine)
+  let f=new PipedatePipe()
+  datat=f.transform(datat,this.d)
+  let g=new DatemoisPipe()
+  datat=g.transform(datat,this.an)
+  this.nombrefacture=datat.length
+  let at:number=0
+  datat.forEach(s=>{
+    if(Number(s.TotalCharge)){
+     let b=Number(s.TotalCharge)
+     at=at+b
+  }})
+
+  this.chargetotal=at
+
+
+
+  
+*/
+
+  }
+  selectcode(item){
+    if(item.ServiceCodeDescription=="All"){
+      this.servicecode=undefined
+}
+else{
+  
+    this.servicecode=item.ServiceCodeDescription
+
+      
+  
+  
+  }}
+  selectann(item){
+    if(item=="All"){
+      this.an=undefined
+}
+else{
+console.log(item)
+this.an=item}
+  }
+  selectdate(item){
+    if(item=="All"){
+          this.d=undefined
+    }
+    else{
+    console.log(item)
+    this.d=item}
+  }
+  selectEventco(item){
+    if(item.Origine=="All"){
+      console.log("yamok")
+          this.origine=undefined
+    }
+    else{
+    console.log(item)
+    this.origine=item.Origine}
+  }
+  selectevent(item){
+    if(item.EventDescription=="All"){
+      this.event=undefined
+}
+else{
+console.log(item)
+this.event=item.EventDescription}
+  }
+  selectEventca(item){
+    if(item.Canal=="All"){
+          this.canal=undefined
+    }
+    else{
+    console.log(item)
+    this.canal=item.Canal}
+  }
+   selectEventa(item){
+    if(item.Acceptance=="All"){
+          this.acceptance=undefined
+    }
+    else{
+    console.log(item)
+    this.acceptance=item.Acceptance}
+  }
   get countries(): any[] {
     COUNTRIES=this.s
     console.log(COUNTRIES)
@@ -67,24 +183,29 @@ export class FacturePrevisionComponent implements OnInit {
     this.filterbol=!this.filterbol
    }
   ngOnInit() {
-    this.SrvSrvsService.getCanal().subscribe(
+    this.classifications.getCanal().subscribe(
       data=>{
         this.datacanal=data
+        this.datascanal=data
+        this.datacanal.unshift({'Canal':'All'})
       }
     )
-    this.SrvSrvsService.getAcceptance().subscribe(
+    this.classifications.getAcceptance().subscribe(
       data=>{
         this.datacceptance=data
+        this.datasclacceptance=data
+        this.datasclacceptance.unshift({'Acceptance':'All'})
       }
     )
-    this.SrvSrvsService.getclassfication().subscribe(
+    this.classifications.getclassfication().subscribe(
       data=>{
         this.dataclassification=data
       }
     )
-    this.SrvSrvsService.getorigine().subscribe(data=>{
+    this.classifications.getorigine().subscribe(data=>{
       this.dataorigine=data
-      console.log(this.dataorigine)
+       this.dataorigin=this.dataorigine
+      this.dataorigin.unshift({'Origine':'All'})
     })
     this.FactureServicess.get_facutresP().subscribe((data)=>{
       let a:number=0;
@@ -94,7 +215,7 @@ export class FacturePrevisionComponent implements OnInit {
          let b=Number(s.TotalCharge)
          a=a+b
       }})
-      this.chargetotal=a
+      this.chargetotal=a/1000
 
       this.FactureServicess.get_date().subscribe(data=>{
         
@@ -103,9 +224,13 @@ export class FacturePrevisionComponent implements OnInit {
       })
       this.FactureServicess.get_event().subscribe(data=>{
         this.dataevent=data
+        this.dataeventds=this.dataevent
+        this.dataeventds.unshift({'EventDescription':'All'})
       })
       this.FactureServicess.get_servicedescription().subscribe(data=>{
         this.servicedesc=data
+        this.datacode=this.servicedesc
+        this.datacode.unshift({'ServiceCodeDescription':'All'})
       })
       this.s=data
       this.dataall=data

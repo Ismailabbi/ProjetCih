@@ -1,0 +1,185 @@
+
+
+
+
+<div class="panel panel-secondary t">
+    <div class="panel-heading"><img  height="100px" src="../../../../assets/Visa_Inc._logo.svg"/>
+    <div class="pull-right">
+        <button  (click)="affchfilter()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+    </div>
+  </div>
+    <div class="panel-body">
+        <div *ngIf="filterbol" class="filters">
+            <div class="row">
+
+            <div class="col-md-4"> 
+ </div>
+ <div class="col-md-4"> 
+</div>
+<div class="col-md-4"> 
+    <button type="button" (click)='calcul()' class="btn btn-primary">Actualiser</button>
+</div>
+             </div>
+         
+          <div class="row">
+            
+            
+              <div class="col-md-3">
+    
+         
+                <th>
+                  Canal:
+                  <ng-autocomplete 
+                  [data]="datascanal"
+                  placeHolder="All"
+    
+                  [searchKeyword]="keywordcanal"
+                  (selected)='selectEventca($event)'
+                  (inputChanged)='onChangeSearch($event)'
+                  (inputFocused)='onFocused($event)'
+                  [itemTemplate]="itemTemplateca"
+                  [notFoundTemplate]="notFoundTemplate">                                 
+                </ng-autocomplete>
+                 
+                <ng-template #itemTemplateca let-item>
+                    
+                <a [innerHTML]="item.Canal"></a>
+                </ng-template>
+                 
+                <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+                
+            </th>
+    
+              </div>
+              <div class="col-md-3">
+                <th>
+                Origin
+                <ng-autocomplete 
+                [data]="dataorigin"
+                placeHolder="All"
+  
+                [searchKeyword]="keywordorigin"
+                (selected)='selectEventco($event)'
+                (inputChanged)='onChangeSearch($event)'
+                (inputFocused)='onFocused($event)'
+                [itemTemplate]="itemTemplateoo"
+                [notFoundTemplate]="notFoundTemplate">                                 
+              </ng-autocomplete>
+               
+              <ng-template #itemTemplateoo let-item>
+                  
+              <a [innerHTML]="item.Origine"></a>
+              </ng-template>
+               
+              <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+              </ng-template>
+    
+    </th>
+    
+              </div>
+          
+            </div>
+          <hr class="new2">
+        </div>
+        <div class="scrollable">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            
+              <th >Code </th>
+              <th >Business_Transaction_Type </th>
+             
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr #myVar *ngFor="let general of (data)" >
+              
+              <td>{{ general.Code }}</td>
+              <td>{{ general.Business_Transaction_Type  }}</td>
+              
+             
+             
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      
+
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+  <popup>
+    <div>
+        <div style='overflow-x:scroll;overflow-y:hidden;'>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th >BillingCurrency</th>
+                    <th >BillingLine</th>
+                    <th >BillingPeriod</th>
+                    <th > CurrentOrPrevious</th>
+                    <th >Description</th>
+                    <th >EntityID</th>
+                    <th > EntityName</th>
+                    <th >EntityType </th>
+                    <th >InvoiceAccount</th>
+                    <th >InvoiceDate</th>
+                
+                    <th >InvoiceID</th>
+                    <th >Name</th>
+                    <th >RateCur</th>
+                    <th >RateType</th>
+                    <th>SettlementID</th>
+                    <th >SubInvoice</th>
+                    <th>Total</th>
+                    <th >Type</th>
+                 
+
+                  </tr>
+                </thead>
+                <tbody>
+                <td>{{ factpop.BillingCurrency }}</td>
+                <td>{{ factpop.BillingLine }}</td>
+                <td>{{ factpop.BillingPeriod }}</td>
+                <td>{{ factpop.CurrentOrPrevious }}</td>
+                <td>{{ factpop.Description }}</td>
+                <td>{{ factpop.EntityID }}</td>
+                <td>{{ factpop.EntityName }}</td>
+                <td>{{ factpop.EntityType }}</td>
+                <td>{{ factpop.InvoiceAccount }}</td> 
+                <td>{{ factpop.InvoiceDate }}</td> 
+               
+                <td>{{ factpop.InvoiceID }}</td>   
+                <td>{{ factpop.Name }}</td>
+                <td>{{ factpop.RateCur }}</td>
+                <td>{{ factpop.RateType }}</td>
+                <td>{{ factpop.SettlementID }}</td>
+                <td>{{ factpop.SubInvoice }}</td>
+                <td>{{ factpop.Total }}</td>
+                <td>{{ factpop.Type }}0000</td>
+                
+               
+
+
+                
+   
+                </tbody>
+              </table>
+        </div>
+   </div>
+   <button type="button" (click)='fermer()' class="btn btn-secondary">Fermer</button>
+
+
+  </popup>

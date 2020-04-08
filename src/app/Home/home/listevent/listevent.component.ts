@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FactureService } from 'src/app/Services/facture.service';
+import { ClassificationsService } from 'src/app/Services/classifications.service';
 
 @Component({
   selector: 'app-listevent',
@@ -8,9 +9,22 @@ import { FactureService } from 'src/app/Services/facture.service';
 })
 export class ListeventComponent implements OnInit {
   data
+  datacategorie
+  keywordcategorie='Categorie'
+  datafamille
+  dataprocessus
+  keywordfamille='Famille'
+  processusselected
+  keywordProcessus='Processus'
+  datanum=[]
+  keywordnum="NumEvent"
+  dataeventt=[]
   nomevent
+  keywordnom="NomEvent"
   ID
   num
+  dataid=[]
+  keywordId="IDService"
   k
   namedata
   s:any[]
@@ -25,42 +39,92 @@ export class ListeventComponent implements OnInit {
   page ;
   pageSize ;
   collectionSize ;
-  
+  familleselected
+  categorieselected
   
   get countries(): any[] {
     COUNTRIES=this.s
-    console.log(COUNTRIES)
     return COUNTRIES
     
     
   }
+  
+  categorieselect(item){
+    if(item.Categorie=='All'){
+             this.categorieselected=undefined
+    }
+    else{
+      this.categorieselected=item.Categorie
 
+    }
 
-  constructor( public FactureService:FactureService) { }
+  }
+  selectprocessus(item){
+    if(item.Processus=='All'){
+        this.processusselected=undefined
+    }
+    else{
+      this.processusselected=item.Processus
+    }
+  }
+  selectedfamille(item){
+    if(item.Famille=="All"){
+
+      this.familleselected=undefined
+}
+else{
+ 
+this.familleselected=item.Famille}
+}
+  constructor( private FactureServicess:FactureService,public classifications:ClassificationsService) { }
 
   ngOnInit() {
-    this.FactureService.get_events().subscribe(d=>{
+    this.FactureServicess.get_events().subscribe(d=>{
+     console.log(d)
       this.s=d.reverse()
       this.dataall=d
-    }
+    })
+    this.classifications.get_Categorie().subscribe(data=>{
+      this.datacategorie=data
+      this.datacategorie.unshift({'Categorie':'All'})
+      console.log(this.datacategorie);
+     
+    
+    })
+    this.classifications.get_Processus().subscribe(data=>{
+      this.dataprocessus=data
+      this.dataprocessus.unshift({'Processus':'All'})
+   })
+   this.classifications.get_Famille().subscribe(data=>{
+   
+     this.datafamille=data
+     this.datafamille.unshift({'Famille':'All'})
+   })
     
 
-    )
-    this.FactureService.get_eventid_event().subscribe(data=>{
+    
+    this.FactureServicess.get_eventid_event().subscribe(data=>{
        this.eventdata=data
+       this.datanum=this.eventdata
+       this.datanum.unshift({'NumEvent':'All'})
     })
-    this.FactureService.get_serviceId_event().subscribe(r=>{
-      this.ID=r
+    this.FactureServicess.get_serviceId_event().subscribe(r=>{
       console.log(r)
+      this.ID=r
+      this.dataid=this.ID
+      this.dataid.unshift({'IDService':'All'})
     })
-    this.FactureService.get_Name_event().subscribe(data=>{
+    this.FactureServicess.get_Name_event().subscribe(data=>{
+      
       this.namedata=data
-      console.log(data)
+      this.dataeventt=this.namedata
+      this.dataeventt.unshift({'NomEvent':'All'})
+      console.log(this.dataeventt)
     })
       
  this. page = 1;
  this. pageSize = 8;
-  this.collectionSize = this.s.length;
+  this.collectionSize = this.s.length-4;
  
     }
     affchfilter(){
@@ -71,9 +135,34 @@ export class ListeventComponent implements OnInit {
        this.num=undefined
        this.nomevent=undefined
      }
+     selectEvent(item){
+      if(item.NomEvent=="All"){
+        this.nomevent=undefined
+  }
+  else{
+  console.log(item)
+  this.nomevent=item.NomEvent}
+     }
+     selectEventnum(item){
+      if(item.NumEvent=="All"){
+        this.num=undefined
+  }
+  else{
+  this.num=item.NumEvent}
+     }
+
+     selectEventId(item){
+      if(item.IDService=="All"){
+        this.k=undefined
+  }
+  else{
+  this.k=item.IDService}
+     }
+     }
+     
   
 
-}
+
 interface Country {
   id?: number;
   name: string;

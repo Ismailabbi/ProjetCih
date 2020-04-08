@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {Facture} from '../../../src/app/Models/Factures'
+import { FiltrageService } from '../Services/filtrage.service';
 
 @Pipe({
   name: 'pipedate'
 })
 export class PipedatePipe implements PipeTransform {
-
+       constructor( public filtrService:FiltrageService){}
   transform(tablefacture: Facture[], event:string): any {
     if(typeof event==='undefined'){
       return tablefacture;}
@@ -53,12 +54,12 @@ export class PipedatePipe implements PipeTransform {
          let a:String=new String(s.BillingCycleDate)
        let c=a[0]+a[1]
        if(c==event){
-        console.log("salam")
        nvsercive.push(s)
       
       }
 
         })
+        this.filtrService.setmontantfiltre(nvsercive)
         return  nvsercive           
         }
        

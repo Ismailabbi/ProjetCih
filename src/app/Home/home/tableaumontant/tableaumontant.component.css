@@ -1,8 +1,5 @@
 
-.scrollable {
-    height: 60vh;
-    overflow-y: scroll;
-  }
+
   
   .new2 {
     border: 1px solid #f75a01;
@@ -13,6 +10,12 @@
   
     
   }
+  .col-lg-4 {
+    width:30%;
+    margin-left: 2%;
+    margin-top: 1%;
+    background-color: white;
+}
   .table {
       width: 99%;}
 .k{
@@ -22,7 +25,7 @@
   margin-top: 20px;  
 }
 .scrollable {
-  height: 70vh;
+  height: 54vh;
   overflow-y: scroll;
 }
 .s{
@@ -51,3 +54,20 @@
 .mm{
   padding: 3px;
 }
+.panel{
+  box-shadow: 1px 1px 10px 2px #cc0000;
+
+
+
+  }
+
+  .panel-heading {
+    border-color:#cc0000;}
+    .btn-info {
+      color: #fff;
+      background-color: #188cc5;
+      border-color: #188cc5;
+    }
+    
+    .btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
+.icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}

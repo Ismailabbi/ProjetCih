@@ -8,7 +8,6 @@ export class SercivnamsPipe implements PipeTransform {
 
   transform(tableService: Service[],name: string): any {
     if(typeof name==='undefined'){
-      console.log("salam")
     return tableService;}
     else {
       let nvsercive:Service[]=[];

@@ -6,6 +6,9 @@ import { from } from 'rxjs';
 import {ChartDataSets} from 'chart.js'
 import { DashbordService } from 'src/app/Services/dashbord.service';
 import { SrvsService } from 'src/app/Services/srvs.service';
+import { ClassificationsService } from 'src/app/Services/classifications.service';
+import {Popup} from 'ng2-opd-popup';
+
 @Component({
   selector: 'app-tableaubord',
   templateUrl: './tableaubord.component.html',
@@ -13,7 +16,9 @@ import { SrvsService } from 'src/app/Services/srvs.service';
 })
 export class TableaubordComponent implements OnInit {
   datacceptance
-  
+  isDataAvailable:boolean = false;
+  wait:boolean=true
+
   classification
   dataclassification
   acceptancee:string
@@ -59,7 +64,7 @@ isAvailable:boolean=false
     },
   ];
 
-  constructor(public dash:DashbordService,public services:SrvsService) { }
+  constructor(public dash:DashbordService,private popup:Popup,public services:SrvsService,public classifications:ClassificationsService) { }
  en(){
   
    console.log("ok")
@@ -106,50 +111,26 @@ isAvailable:boolean=false
    this.Annee=undefined
  }
  tri(){
-if(this.acceptancee==undefined&&this.classification==undefined&&this.servicename==undefined){
-  if(this.Annee=="All"){
-    this.dash.get_dashbord1().subscribe(
-      (data)=>{this.pie=data
-        console.log(data)
-        this.pieChartLabels = Object.getOwnPropertyNames(data);
-        this.pieChartData=Object.values(data)
-        
-      
-      }
+  this.popup.options = {
+    header: "Detail",
+    color: "#f65900", // red, blue....
+    widthProsentage: 80, // The with of the popou measured by browser width
+    animationDuration: 1, // in seconds, 0 = no animation
+    showButtons: false, // You can hide this in case you want to use custom buttons
+    cancleBtnClass: "btn btn-default", // you class for styling the cancel button
+    animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+};
+this.popup.show(this.popup.options);
 
-    )
-  }
-  else{
-    this.dash.post_classification(this.Annee).subscribe(data=>{
-      this.pieChartLabels = Object.getOwnPropertyNames(data);
-      this.pieChartData=Object.values(data)
 
-    })}
-}
-
-  else{ this.dash.post_canalP(this.acceptancee,this.Annee,this.classification,this.servicename).subscribe(data=>{
-     if(this.servicename==undefined){
-       this.servicename=''
-     }
-     if(this.acceptancee==undefined){
-       this.acceptancee=''
-     }
-     if(this.classification==undefined){
-       this.classification=''
-     }
-    this.pieChartLabels = [this.servicename+'-'+this.classification+this.Annee]
-    this.pieChartData=Object.values(data)
-    console.log(data)
-   })
-  }
  }
   ngOnInit() {
-    this.services.getclassfication().subscribe(
+    this.classifications.getclassfication().subscribe(
       data=>{
         this.dataclassification=data
       }
     )
-    this.services.getAcceptance().subscribe(
+    this.classifications.getAcceptance().subscribe(
       data=>{
         this.datacceptance=data
       }
@@ -163,7 +144,8 @@ if(this.acceptancee==undefined&&this.classification==undefined&&this.servicename
         console.log(data)
         this.pieChartLabels = Object.getOwnPropertyNames(data);
         this.pieChartData=Object.values(data)
-        
+        this.isDataAvailable=true
+        this.wait=false
       
       }
 
@@ -175,13 +157,7 @@ if(this.acceptancee==undefined&&this.classification==undefined&&this.servicename
   }
 
   // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
+  
 
   changeLabels() {
     this.dash.get_dashbord2().subscribe((data=>{
@@ -213,17 +189,9 @@ if(this.acceptancee==undefined&&this.classification==undefined&&this.servicename
   
   }
 
-  addSlice() {
-    this.pieChartLabels.push(['Line 1', 'Line 2', 'Line 3']);
-    this.pieChartData.push(400);
-    this.pieChartColors[0].backgroundColor.push('rgba(196,79,244,0.3)');
-  }
 
-  removeSlice() {
-    this.pieChartLabels.pop();
-    this.pieChartData.pop();
-    this.pieChartColors[0].backgroundColor.pop();
-  }
+
+
   public barChartOptions: ChartOptions = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
@@ -237,8 +205,17 @@ if(this.acceptancee==undefined&&this.classification==undefined&&this.servicename
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
 
-  public ok(){
-    this.isAvailable=!this.isAvailable
+  public Popacvtive(){
+    this.popup.options = {
+      header: "Detail",
+      color: "#f65900", // red, blue....
+      widthProsentage: 80, // The with of the popou measured by browser width
+      animationDuration: 1, // in seconds, 0 = no animation
+      showButtons: false, // You can hide this in case you want to use custom buttons
+      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
+      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+  };
+  this.popup.show(this.popup.options);
 
   }
   public acceptance(){
@@ -374,6 +351,59 @@ if(this.mois=="Decembre"){
       this.pieChartLabels = Object.getOwnPropertyNames(data);
          this.pieChartData=Object.values(data)
       }))
+  }
+  fermer(){
+   
+    if(this.acceptancee==undefined&&this.classification==undefined&&this.servicename==undefined){
+      if(this.Annee==undefined){
+        this.dash.get_dashbord1().subscribe(
+          (data)=>{this.pie=data
+            console.log(data)
+            this.pieChartLabels = Object.getOwnPropertyNames(data);
+            this.pieChartData=Object.values(data)
+            
+          
+          }
+    
+        )
+      
+    
+        
+      }
+      else{
+        this.dash.post_classification(this.Annee).subscribe(data=>{
+          this.pieChartLabels = Object.getOwnPropertyNames(data);
+          this.pieChartData=Object.values(data)
+    
+        })
+        
+    }}
+    
+      else{ this.dash.post_canalP(this.acceptancee,this.Annee,this.classification,this.servicename).subscribe(data=>{
+        let sername,clasname,acptanme,ane:string
+         sername=this.servicename
+         clasname=this.classification
+         acptanme=this.acceptancee
+         console.log(sername,clasname,acptanme)
+         if(this.servicename==undefined){
+          sername=''
+        }
+        if(this.acceptancee==undefined){
+          acptanme=''
+        }
+        if(this.classification==undefined){
+          clasname=''
+        }
+        if(this.Annee==undefined){
+          ane=''
+        }
+        console.log(sername,clasname,acptanme)
+       this.pieChartLabels = [sername+'-'+acptanme+clasname+ane]
+        this.pieChartData=Object.values(data)
+        console.log(data)
+       })
+      }
+    this.popup.hide()
   }
 
 }

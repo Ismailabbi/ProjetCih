@@ -1,0 +1,84 @@
+
+
+
+  
+
+<div  *ngIf="wait">
+
+    <div class="google-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+  <h4 class="text-center"> Calcul en cours</h4>
+  </div>
+  
+  <div   class="flex">
+    
+    <div class="item">
+     
+      <div class="panel-heading"><img height="130px" width="350px" src="../../../../../assets/Visa_Inc._logo.svg"/>
+       
+      </div>
+      <div class="row k">
+  
+   
+        <div class="col-md-5">
+           
+              
+           
+          <div class="row">
+     
+  
+     
+            <div class="col-md-7">
+               
+                  
+               
+                    <select class="form-control" id="exampleSelect1" [(ngModel)]="date">
+                      
+                      <option   disabled hidden  [ngValue]="undefined">	</option>
+          
+                        <option> 2018</option>
+                        <option> 2019</option>
+                      
+                      </select>
+          
+          
+                </div>
+                <div class="col-md-2">
+                  <div >
+                    <button type="button" class="btn btn-info" (click)='ch()' >chercher</button>
+                </div>
+               
+          
+          </div>
+    </div>
+    
+      
+            </div>
+            
+      
+      </div>
+   
+  
+        <div class="flex-item">
+          <div>
+           
+              <canvas baseChart
+              width="1140"
+             height="300"
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+              </canvas>
+            
+        </div>
+       </div>
+  
+     
+  </div>

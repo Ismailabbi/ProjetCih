@@ -1,0 +1,151 @@
+.t{
+    margin-top: 20px;  
+  }
+  .scrollable {
+    height: 47vh;
+    overflow-y: scroll;
+  }
+  .s{
+    margin-left: 900px
+  }
+  .new2 {
+    border: 1px solid #f75a01;
+    text-align: center;
+   
+    width:85%; 
+  }
+  .card-counter{
+    box-shadow: 2px 2px 10px #DADADA;
+    margin: 5px;
+    padding: 20px 10px;
+    background-color: #fff;
+    height: 100px;
+    border-radius: 5px;
+    transition: .3s linear all;
+  }
+
+  .card-counter:hover{
+    box-shadow: 4px 4px 20px #DADADA;
+    transition: .3s linear all;
+  }
+
+  .card-counter.primary{
+    background-color: #007bff;
+    color: #FFF;
+  }
+
+  .card-counter.danger{
+    background-color: #ef5350;
+    color: #FFF;
+  }  
+
+  .card-counter.success{
+    background-color: #66bb6a;
+    color: #FFF;
+  }  
+
+  .card-counter.info{
+    background-color: #26c6da;
+    color: #FFF;
+  }  
+
+  .card-counter i{
+    font-size: 5em;
+    opacity: 0.2;
+  }
+
+  .card-counter .count-numbers{
+    position: absolute;
+    right: 35px;
+    top: 20px;
+    font-size: 32px;
+    display: block;
+  }
+
+  .card-counter .count-name{
+    position: absolute;
+    right: 35px;
+    top: 65px;
+    font-style: italic;
+    text-transform: capitalize;
+    opacity: 0.5;
+    display: block;
+    font-size: 18px;
+  }
+  .ng-autocomplete {
+    width: 285px;
+}
+.panel{
+  box-shadow: 1px 1px 10px 2px #cc0000;
+
+
+
+  }
+
+ 
+ 
+    .card-counter.primary {
+        background: linear-gradient(90deg, #fda76e, #f08058, #ff0000);
+            color: #FFF;
+  }
+  .btn-warning {
+    color: #fff;
+    background-color: #ff9900;
+    border-color: #eea236;
+}
+
+
+
+
+
+  .card-counter.infoo {
+    background: linear-gradient(90deg, #e8c2a9, #fd6d1abf, #ff5d00);
+
+    color: #FFF;
+}
+.panel-body {
+ padding: 5px;
+}
+.ng-autocomplete[_ngcontent-pvv-c2] {
+  width: 222px !important;
+}
+.panel-heading {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.panel-heading{
+  height: 112px;
+}
+.card-counter.visa {
+    background: linear-gradient(90deg, #a3b9d0, #188cc5, #0e65aa);
+
+          color:white;
+}
+.card-counter.visa2 {
+ 
+  background: linear-gradient(90deg, #c8faff, #74cfea, #01c4ff);
+
+          color:white;
+}
+.business-card {
+    border: 1px solid #cccccc;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .profile-img {
+    height: 120px;
+    background: white;
+  }
+  .job {
+    color: #666666;
+    font-size: 17px;
+  }
+  .mail {
+    font-size: 16px;
+   }
+   .img-circle {
+    border-radius: 0%;
+}

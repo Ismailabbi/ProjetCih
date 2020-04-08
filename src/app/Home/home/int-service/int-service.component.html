@@ -1,10 +1,13 @@
-<div class="panel panel-primary t">
-  <div class="panel-heading">Services
-    
-  <div class="pull-right">
-      <button  (click)="affchfilter()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
-  </div>
+<div class="row">
+
+  
 </div>
+<div class="panel panel-warning t">
+ <div class="panel-heading"><img height="100px" width="350px" src="../../../../assets/MasterCard_Logo.svg.png"/>
+    <div class="pull-right">
+        <button  (click)="affchfilter()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+    </div>
+  </div> 
   <div class="panel-body">
     
       <div *ngIf="filterbol"  > 
@@ -20,12 +23,7 @@
     
     
               </div>
-              <div class="col-md-4">
-    
-    
-                  <button  (click)="vider()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> réinitialiser</button>
-    
-              </div>
+           
     
             </div>
         <div class="row">
@@ -35,18 +33,27 @@
 
               
               Service Name :
-                  <select class="form-control" id="exampleSelect1" [(ngModel)]="servicename" >
-                      <option   selected  [ngValue]="undefined">All		</option>
-                     
-                      <option  *ngFor="let t of dataname"  >              {{ t.ServiceNAME }}
-                  
-                      
-                   
-                    
-                    
-                    
-                  
-                  </select>
+
+    <ng-autocomplete 
+      [data]="data"
+      placeHolder="All"
+      [searchKeyword]="keyword"
+      (selected)='selectEvent($event)'
+      (inputChanged)='onChangeSearch($event)'
+      (inputFocused)='onFocused($event)'
+      [itemTemplate]="itemTemplate"
+      [notFoundTemplate]="notFoundTemplate">                                 
+    </ng-autocomplete>
+     
+    <ng-template #itemTemplate let-item>
+        
+    <a [innerHTML]="item.ServiceNAME"></a>
+    </ng-template>
+     
+    <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound"></div>
+    </ng-template>
+ 
                
           
           </th>
@@ -54,21 +61,33 @@
           <div class="col-md-4">
 
 
+
+            
             <th>
 
 
               
               Type de service:
-              <select class="form-control" id="exampleSelect1"  [(ngModel)]="typeservice" >
-               
-                  <option   selected  [ngValue]="undefined">  All		</option>
+              <ng-autocomplete 
+              [data]="datastype"
+              placeHolder="All"
 
-                  <option  *ngFor="let t of datatype"  >              {{ t.Typedeservice }}
-                    
-                  </option>
+              [searchKeyword]="keywordtype"
+              (selected)='selectEventtype($event)'
+              (inputChanged)='onChangeSearch($event)'
+              (inputFocused)='onFocused($event)'
+              [itemTemplate]="itemTemplatetype"
+              [notFoundTemplate]="notFoundTemplate">                                 
+            </ng-autocomplete>
+             
+            <ng-template #itemTemplatetype let-item>
                 
-              
-              </select>
+            <a [innerHTML]="item.Typedeservice"></a>
+            </ng-template>
+             
+            <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+            </ng-template>
 
 
       </th>
@@ -80,13 +99,25 @@
 
             <th>
               Classification:
-              <select class="form-control" id="exampleSelect1" [(ngModel)]="classification"  >
-                  <option   selected  [ngValue]="undefined">All		</option>
-                  <option  *ngFor="let t of dataclassification"  >              {{ t.Classification }}
-                        
-                    </option>
+              <ng-autocomplete 
+              [data]="datasclass"
+              placeHolder="All"
+              [searchKeyword]="keywordclass"
+              (selected)='selectEventc($event)'
+              (inputChanged)='onChangeSearch($event)'
+              (inputFocused)='onFocused($event)'
+              [itemTemplate]="itemTemplatec"
+              [notFoundTemplate]="notFoundTemplate">                                 
+            </ng-autocomplete>
+             
+            <ng-template #itemTemplatec let-item>
                 
-                </select>
+            <a [innerHTML]="item.Classification"></a>
+            </ng-template>
+             
+            <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+            </ng-template>
 
           </th>
 
@@ -96,42 +127,79 @@
         <div class="row">
           <div class="col-md-4"> <th>
             Acceptance:
-          <select class="form-control" id="exampleSelect1" [(ngModel)]="acceptance" >
-              <option   selected  [ngValue]="undefined">All &shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;			</option>
-              <option  *ngFor="let t of datacceptance"  >              {{ t.Acceptance }}
-                    
-                </option>
-            
-            
-            </select>
-
+            <ng-autocomplete 
+            [data]="datasclacceptance"
+            placeHolder="All"
+            [searchKeyword]="keywordacceptance"
+            (selected)='selectEventa($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatea"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatea let-item>
+              
+          <a [innerHTML]="item.Acceptance"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        
       </th></div>
           <div class="col-md-4">
 
      
             <th>
               Canal:
-            <select class="form-control" id="exampleSelect1" [(ngModel)]="canal"  >
-                <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
-                <option  *ngFor="let t of datacanal"  >              {{ t.Canal }}
-                      
-                  </option>
-                 
-              </select>
+              <ng-autocomplete 
+              [data]="datascanal"
+              placeHolder="All"
+
+              [searchKeyword]="keywordcanal"
+              (selected)='selectEventca($event)'
+              (inputChanged)='onChangeSearch($event)'
+              (inputFocused)='onFocused($event)'
+              [itemTemplate]="itemTemplateca"
+              [notFoundTemplate]="notFoundTemplate">                                 
+            </ng-autocomplete>
+             
+            <ng-template #itemTemplateca let-item>
+                
+            <a [innerHTML]="item.Canal"></a>
+            </ng-template>
+             
+            <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+            </ng-template>
             
         </th>
 
           </div>
           <div class="col-md-4">
             <th>
-            Origin
-            <select class="form-control" id="exampleSelect1" [(ngModel)]="origine"  >
-                <option   selected  [ngValue]="undefined">All	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;	&shy;		</option>
-                <option  *ngFor="let t of dataorigine"  >              {{ t.Origine }}
-                      
-                  </option>
-                 
-              </select>
+            Origine
+            <ng-autocomplete 
+              [data]="dataorigin"
+              placeHolder="All"
+
+              [searchKeyword]="keywordorigin"
+              (selected)='selectEventco($event)'
+              (inputChanged)='onChangeSearch($event)'
+              (inputFocused)='onFocused($event)'
+              [itemTemplate]="itemTemplateoo"
+              [notFoundTemplate]="notFoundTemplate">                                 
+            </ng-autocomplete>
+             
+            <ng-template #itemTemplateoo let-item>
+                
+            <a [innerHTML]="item.Origine"></a>
+            </ng-template>
+             
+            <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+            </ng-template>
 
 </th>
 
@@ -165,21 +233,30 @@
           </tr>
           </thead>
           <tbody >
-          <tr *ngFor="let country of countries |sercivnams:servicename|typeservice:typeservice|classification:classification|acceptance:acceptance|canal:canal|orginepipe:origine">
-            <th scope="row">{{ country.ServiceID }}
-              </th>
-            <td>
-             
-              {{ country.ServiceNAME }}
-            </td>
-            <td>{{ country.Typedeservice }}</td>
-            <td>{{ country.Classification  }}</td>
-            <td>{{country.Acceptance}}</td>
-            <td>{{country.Canal}}</td>
-            <td>{{country.Origine}}</td>
-            <td>{{country.Rate}}</td>
-            <td>{{country.TypeRate}}</td>
+          <tr *ngFor="let country of countries |sercivnams:servicename|typeservice:typeservice|classification:classification|acceptanceservice:acceptance|canalservice:canal|originservice:origine ">
+          
+     
+           
+            
+              <td>{{country.ServiceID}}</td>
+              <td>{{country.ServiceNAME}}</td>
+              <td>{{country.Typedeservice}}</td>
+              <td>{{country.Rate}}</td>
+              <td>{{country.TypeRate}}</td>
+              <td>{{country.Classification}}</td>
+              <td>{{country.Acceptance}}</td>
+
+              <td>{{country.Canal}}</td>
+              <td>{{country.Origine}}</td>
+
+            
+           
+               
+          
           </tr>
+          <div *ngIf="( countries |sercivnams:servicename|typeservice:typeservice|classification:classification|acceptanceservice:acceptance|canalservice:canal|originservice:origine).length === 0">
+            Aucun résultat trouvé
+         </div>
           </tbody>
         </table>
       </div>

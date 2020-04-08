@@ -12,9 +12,22 @@ export class HomeComponent implements OnInit {
  at:boolean=false
 ak:boolean=false
 an:boolean=false
+vi:boolean=false
+vs:boolean=false
+wo:boolean=false
+wa:boolean=false
+
+  
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+  }
+  visa(){
+    this.vs=!this.vs
+  }
+  avi(){
+    this.vi=!this.vi
   }
   aks(){
    this.ab=!this.ab
@@ -29,4 +42,11 @@ an:boolean=false
   arr(){
   this.an=!this.an
   }
+refvisa(){
+  this.wo=!this.wo
+}
+typevisa(){
+  this.wa=!this.wa
+}
+
 }
