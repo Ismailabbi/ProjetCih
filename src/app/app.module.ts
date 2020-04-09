@@ -77,6 +77,8 @@ import { SurfacevisaComponent } from './Home/home/Visa/surfacevisa/surfacevisa.c
 import { VentilationvisaComponent } from './Home/home/Visa/ventilationvisa/ventilationvisa.component';
 import { ComparaisonvisaComponent } from './Home/home/Visa/comparaisonvisa/comparaisonvisa.component';
 import { RapprochementvisaComponent } from './Home/home/Visa/rapprochementvisa/rapprochementvisa.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -155,6 +157,8 @@ import { RapprochementvisaComponent } from './Home/home/Visa/rapprochementvisa/r
     ChartsModule,
     FontAwesomeModule,
     Ng2GoogleChartsModule,
+    ModalModule.forRoot(),
+    AlertModule.forRoot(),
 
 
 

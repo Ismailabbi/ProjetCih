@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild  } from '@angular/core';
+import { Component, OnInit,ViewChild,TemplateRef   } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Label,Color } from 'ng2-charts';
@@ -7,6 +7,8 @@ import { SrvsService } from 'src/app/Services/srvs.service';
 import { FactureService } from 'src/app/Services/facture.service';
 import { ClassificationsService } from 'src/app/Services/classifications.service';
 import {Popup} from 'ng2-opd-popup';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ListKeyManager } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-compprv',
@@ -14,8 +16,11 @@ import {Popup} from 'ng2-opd-popup';
   styleUrls: ['./compprv.component.css']
 })
 export class CompprvComponent implements OnInit {
+  affiche:boolean=false
   choixCalcule='Accepetance'
   datacategorie
+  modalRef: BsModalRef;
+
 /*   diblaed buttons*/
   classficationdiasabled:boolean=true
   origindisabled:boolean=false
@@ -204,56 +209,60 @@ canalactive(){
  
  /*CalculeMethode Debut*/
   calculprocessus(){
+    let ver:boolean
+
+    this.affiche=false
     this.choixCalcule='Processus'
     this.barChartData=[]
     this.isDataAvailable=false
-    console.log(this.data1)
-    console.log(this.choix)
+  
   this.dash.post_comparaisonProcessusPv(Number(this.data1),this.choix).subscribe(data=>{
-      console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
          d.data[Number(s.month)-1]=Number(s.TotalCharge)
        })
-       console.log(d)
+       
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
 
-       this.barChartData.push(d)
-       this.isDataAvailable=true
-       this.wait=false
-
-
+      d.data.forEach(element => {
+             console.log(element)
+           if(element!='0'){
+             ver=true
+           }  
+          });
+        if(ver){
+          this.barChartData.push(d)
+          if(this.data1!=this.data2){
+            this.dash.post_comparaisonProcessusPv(Number(this.data2),this.choix).subscribe(data=>{
+               
+               let  d:any={}
+               d.data=[0,0,0,0,0,0,0,0,0]
+                let dataArray:Array<any>=Object.values(data)
+                dataArray.forEach(s=>{
+                  d.data[Number(s.month)-1]=Number(s.TotalCharge)
+                })
+                
+               d.label=this.data2
+               d.backgroundColor='rgba(51,106,241)'
+       
+                this.barChartData.push(d)
+                this.isDataAvailable=true
+              this.wait=false
+       
+       
+            
+              })}
+          this.isDataAvailable=true
+        }
+        else {
+          this.affiche=true
+        }  
    
      })
-     if(this.data1!=this.data2){
-     this.dash.post_comparaisonProcessusPv(Number(this.data2),this.choix).subscribe(data=>{
-        console.log(data)
-        let  d:any={}
-        d.data=[0,0,0,0,0,0,0,0,0]
-         let dataArray:Array<any>=Object.values(data)
-         dataArray.forEach(s=>{
-           d.data[Number(s.month)-1]=Number(s.TotalCharge)
-         })
-         console.log(d)
-        d.label=this.data2
-        d.backgroundColor='rgba(51,106,241)'
-
-         this.barChartData.push(d)
-         this.isDataAvailable=true
-       this.wait=false
-    this.popup1.hide()
-    this.popup2.hide()
-    this.popup3.hide()
-    this.popup4.hide()
-    this.popup5.hide()
-    this.popup6.hide()
-    this.popup7.hide()
-
-     
-       })}
+    
 
 
 
@@ -261,318 +270,350 @@ canalactive(){
   }
 
   calculfamille(){
+    let ver:boolean
+
+    this.affiche=false
     this.choixCalcule='Famille'
     this.barChartData=[]
     this.isDataAvailable=false
-    console.log(this.data1)
-    console.log(this.choix)
+    
   this.dash.post_comparaisonfamillePv(Number(this.data1),this.choix).subscribe(data=>{
-      console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
          d.data[Number(s.month)-1]=Number(s.TotalCharge)
        })
-       console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
 
-       this.barChartData.push(d)
-       this.isDataAvailable=true
-       this.wait=false
+      
+      d.data.forEach(element => {
+             console.log(element)
+           if(element!='0'){
+             ver=true
+           }  
+          });
+        if(ver){
+          this.barChartData.push(d)
+          if(this.data1!=this.data2){
+            this.dash.post_comparaisonfamillePv(Number(this.data2),this.choix).subscribe(data=>{
+              
+               let  d:any={}
+               d.data=[0,0,0,0,0,0,0,0,0]
+                let dataArray:Array<any>=Object.values(data)
+                dataArray.forEach(s=>{
+                  d.data[Number(s.month)-1]=Number(s.TotalCharge)
+                })
+              
+               d.label=this.data2
+               d.backgroundColor='rgba(51,106,241)'
+       
+                this.barChartData.push(d)
+                this.isDataAvailable=true
+                this.wait=false
+         
+         
+            
+              })}
+       
+          this.isDataAvailable=true
+        }
+        else {
+          this.affiche=true
+        }  
 
 
    
      })
-     if(this.data1!=this.data2){
-     this.dash.post_comparaisonfamillePv(Number(this.data2),this.choix).subscribe(data=>{
-        console.log(data)
-        let  d:any={}
-        d.data=[0,0,0,0,0,0,0,0,0]
-         let dataArray:Array<any>=Object.values(data)
-         dataArray.forEach(s=>{
-           d.data[Number(s.month)-1]=Number(s.TotalCharge)
-         })
-         console.log(d)
-        d.label=this.data2
-        d.backgroundColor='rgba(51,106,241)'
-
-         this.barChartData.push(d)
-         this.isDataAvailable=true
-         this.wait=false
-  
-  
-     
-       })}
-       this.popup1.hide()
-       this.popup2.hide()
-       this.popup3.hide()
-       this.popup4.hide()
-       this.popup5.hide()
-       this.popup6.hide()
-       this.popup7.hide()
+   
 
   }
   calculcategorie(){
+    let ver:boolean
+
+    this.affiche=false
     this.choixCalcule='Categorie'
     this.barChartData=[]
     this.isDataAvailable=false
-    console.log(this.data1)
-    console.log(this.choix)
+  
   this.dash.post_comparaisoncategoriePv(Number(this.data1),this.choix).subscribe(data=>{
-      console.log(data)
+  
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
          d.data[Number(s.month)-1]=Number(s.TotalCharge)
        })
-       console.log(d)
+     
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
 
-       this.barChartData.push(d)
-       this.isDataAvailable=true
-       this.wait=false
+      d.data.forEach(element => {
+             console.log(element)
+           if(element!='0'){
+             ver=true
+           }  
+          });
+        if(ver){
+          this.barChartData.push(d)
+          if(this.data1!=this.data2){
+            this.dash.post_comparaisoncategoriePv(Number(this.data2),this.choix).subscribe(data=>{
+                  
+                  let  d:any={}
+                  d.data=[0,0,0,0,0,0,0,0,0]
+                   let dataArray:Array<any>=Object.values(data)
+                   dataArray.forEach(s=>{
+                     d.data[Number(s.month)-1]=Number(s.TotalCharge)
+                   })
+                  
+                  d.label=this.data2
+                  d.backgroundColor='rgba(51,106,241)'
+          
+                   this.barChartData.push(d)
+                   this.isDataAvailable=true
+                   this.wait=false
+            
+            
+               
+                 }
+              )}
+             
+          this.isDataAvailable=true
+        }
+        else {
+          this.affiche=true
+        }  
 
 
    
      })
-     if(this.data1!=this.data2){
-  this.dash.post_comparaisoncategoriePv(Number(this.data2),this.choix).subscribe(data=>{
-        console.log(data)
-        let  d:any={}
-        d.data=[0,0,0,0,0,0,0,0,0]
-         let dataArray:Array<any>=Object.values(data)
-         dataArray.forEach(s=>{
-           d.data[Number(s.month)-1]=Number(s.TotalCharge)
-         })
-         console.log(d)
-        d.label=this.data2
-        d.backgroundColor='rgba(51,106,241)'
-
-         this.barChartData.push(d)
-         this.isDataAvailable=true
-         this.wait=false
-  
-  
-     
-       }
-    )}
-    this.popup1.hide()
-    this.popup2.hide()
-    this.popup3.hide()
-    this.popup4.hide()
-    this.popup5.hide()
-    this.popup6.hide()
-    this.popup7.hide()
-
+   
 
 
 
   }
   calculacceptance(){
+    let ver:boolean
+
+    this.affiche=false
     this.choixCalcule='Acceptance'
     this.barChartData=[]
     this.isDataAvailable=false
   this.dash.post_comparaisonacceptancePrv(Number(this.data1),this.choix).subscribe( data=>{
-      console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
          d.data[Number(s.month)-1]=Number(s.TotalCharge)
        })
-       console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
-
-       this.barChartData.push(d)
-       this.isDataAvailable=true
-       this.wait=false
+      let ver:boolean
+      d.data.forEach(element => {
+             console.log(element)
+           if(element!='0'){
+             ver=true
+           }  
+          });
+        if(ver){
+          this.barChartData.push(d)
+          if(this.data1!=this.data2){
+            this.dash.post_comparaisonacceptancePrv(Number(this.data2),this.choix).subscribe(data=>{
+                let  d:any={}
+                d.data=[0,0,0,0,0,0,0,0,0]
+                 let dataArray:Array<any>=Object.values(data)
+                 dataArray.forEach(s=>{
+                   d.data[Number(s.month)-1]=Number(s.TotalCharge)
+                 })
+                d.label=this.data2
+                d.backgroundColor='rgba(51,106,241)'
+          
+                 this.barChartData.push(d)
+                 this.isDataAvailable=true
+                 this.wait=false
+          
+          
+             
+               }
+            )}
+           
+          this.isDataAvailable=true
+        }
+        else {
+          this.affiche=true
+        }  
+    
 
 
    
      } )
 
 
-     if(this.data1!=this.data2){
-  this.dash.post_comparaisonacceptancePrv(Number(this.data2),this.choix).subscribe(data=>{
-      console.log(data)
-      let  d:any={}
-      d.data=[0,0,0,0,0,0,0,0,0]
-       let dataArray:Array<any>=Object.values(data)
-       dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
-       console.log(d)
-      d.label=this.data2
-      d.backgroundColor='rgba(51,106,241)'
-
-       this.barChartData.push(d)
-       this.isDataAvailable=true
-       this.wait=false
-
-
-   
-     }
-  )}
-  this.popup1.hide()
-    this.popup2.hide()
-    this.popup3.hide()
-    this.popup4.hide()
-    this.popup5.hide()
-    this.popup6.hide()
-    this.popup7.hide()
+ 
   }
+
   calculcanal(){
+    let ver:boolean
+
+    this.affiche=false
     this.choixCalcule='Canal'
     this.barChartData=[]
     this.isDataAvailable=false
   this.dash.post_comparaisoncanalPrv(Number(this.data1),this.choix).subscribe( data=>{
-      console.log(data)
+      
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
          d.data[Number(s.month)-1]=Number(s.TotalCharge)
        })
-       console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
 
-       this.barChartData.push(d)
-       this.isDataAvailable=true
-       this.wait=false
-
+      d.data.forEach(element => {
+             console.log(element)
+           if(element!='0'){
+             ver=true
+           }  
+          });
+        if(ver){
+          this.barChartData.push(d)
+          if(this.data1!=this.data2){
+            this.dash.post_comparaisoncanalPrv(Number(this.data2),this.choix).subscribe(data=>{
+                  let  d:any={}
+                  d.data=[0,0,0,0,0,0,0,0,0]
+                   let dataArray:Array<any>=Object.values(data)
+                   dataArray.forEach(s=>{
+                     d.data[Number(s.month)-1]=Number(s.TotalCharge)
+                   })
+                  d.label=this.data2
+                  d.backgroundColor='rgba(51,106,241)'
+            
+                   this.barChartData.push(d)
+                   this.isDataAvailable=true
+            
+               
+                 }
+              )}
+          this.isDataAvailable=true
+        }
+        else {
+          this.affiche=true
+        }  
+     
 
    
      } )
 
 
-     if(this.data1!=this.data2){
-this.dash.post_comparaisoncanalPrv(Number(this.data2),this.choix).subscribe(data=>{
-      console.log(data)
-      let  d:any={}
-      d.data=[0,0,0,0,0,0,0,0,0]
-       let dataArray:Array<any>=Object.values(data)
-       dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
-       console.log(d)
-      d.label=this.data2
-      d.backgroundColor='rgba(51,106,241)'
-
-       this.barChartData.push(d)
-       this.isDataAvailable=true
-
-   
-     }
-  )}
+  
 
 
 
-  this.popup1.hide()
-    this.popup2.hide()
-    this.popup3.hide()
-    this.popup4.hide()
-    this.popup5.hide()
-    this.popup6.hide()
-    this.popup7.hide()
   
   }
+
+
   calculorigine(){
+    let ver:boolean
+
+    this.affiche=false
     this.choixCalcule='Origin'
-    console.log(this.choix)
     this.barChartData=[]
     this.isDataAvailable=false
   this.dash.post_comparaisonoriginPrv(Number(this.data1),this.choix).subscribe(data=>{
-      console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
          d.data[Number(s.month)-1]=Number(s.TotalCharge)
        })
-       console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
 
-       this.barChartData.push(d)
+      d.data.forEach(element => {
+        console.log(element)
+      if(element!='0'){
+        ver=true
+      }  
+     });
+   if(ver){
+     this.barChartData.push(d)
+     if(this.data1!=this.data2){
+      this.dash.post_comparaisonoriginPrv(Number(this.data2),this.choix).subscribe(data=>{
+         
+          let  d:any={}
+          d.data=[0,0,0,0,0,0,0,0,0]
+           let dataArray:Array<any>=Object.values(data)
+           dataArray.forEach(s=>{
+             d.data[Number(s.month)-1]=Number(s.TotalCharge)
+           })
+          d.label=this.data2
+          d.backgroundColor='rgba(51,106,241)'
+          
+          
+          this.barChartData.push(d)
+          this.isDataAvailable=true
+          this.wait=false  
+       
+         }
+    
+    
+    
       
-       this.isDataAvailable=true
-       this.wait=false
-
+    
+      )}
+     this.isDataAvailable=true
+   }
+   else {
+     this.affiche=true
+   }  
 
    
      })
-     if(this.data1!=this.data2){
-  this.dash.post_comparaisonoriginPrv(Number(this.data2),this.choix).subscribe(data=>{
-      console.log(data)
-      let  d:any={}
-      d.data=[0,0,0,0,0,0,0,0,0]
-       let dataArray:Array<any>=Object.values(data)
-       dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
-       console.log(d)
-      d.label=this.data2
-      d.backgroundColor='rgba(51,106,241)'
+ 
 
-       this.barChartData.push(d)
-       this.isDataAvailable=true
-
-   
-     }
-
-
-
-  
-
-  )}
-  this.popup1.hide()
-  this.popup2.hide()
-  this.popup3.hide()
-  this.popup4.hide()
-  this.popup5.hide()
-  this.popup6.hide()
-  this.popup7.hide()
 
   }
+
+
+
+
+
   calculclassification(){
+    this.affiche=false
   this.choixCalcule='Classification'
     this.barChartData=[]
-    console.log(this.data1)
-    console.log(this.choix)
+    let ver:boolean=false
+
     this.isDataAvailable=false
     this.dash.post_comparaisonPrv(Number(this.data1),this.choix).subscribe(data=>{
-      console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
          d.data[Number(s.month)-1]=Number(s.TotalCharge)
        })
-       console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
-
-       this.barChartData.push(d)
-       this.isDataAvailable=true
-
-   
-     })
-    if(this.data1!=this.data2){
+      d.data.forEach(element => {
+             console.log(element)
+           if(element!='0'){
+             ver=true
+           }  
+          });
+        if(ver){
+          this.barChartData.push(d)
+          if((this.data1!=this.data2)){
+      console.log('salam')
    this.dash.post_comparaisonPrv(Number(this.data2),this.choix).subscribe(data=>{
-      console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
          d.data[Number(s.month)-1]=Number(s.TotalCharge)
        })
-       console.log(d)
       d.label=this.data2
       d.backgroundColor='rgba(51,106,241)'
 
@@ -583,172 +624,24 @@ this.dash.post_comparaisoncanalPrv(Number(this.data2),this.choix).subscribe(data
 
    
      })}
+          this.isDataAvailable=true
+        }
+        else {
+          this.affiche=true
+        }  
+      
+
+   
+     })
      
-     this.popup1.hide()
-     this.popup2.hide()
-     this.popup3.hide()
-     this.popup4.hide()
-     this.popup5.hide()
-     this.popup6.hide()
-     this.popup7.hide()
+    
+     
+     
 
   }
  
   /**finMethode */
-  show1(){
   
-    this.popup1.options = {
-      header: "Filtrage",
-      cancleBtnContent: "Cancel", // the text on your cancel button
-
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup1.show(this.popup1.options);
-  this.popup2.hide()
-  this.popup3.hide()
-  this.popup4.hide()
-  this.popup5.hide()
-  this.popup6.hide()
-  this.popup7.hide()
-  
-
-  }
-  
-  show2(){
-    console.log('ah')
-    this.popup2.options = {
-      header: "Filtrage",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup1.hide()
-  this.popup2.show(this.popup2.options);
-  this.popup3.hide()
-  this.popup4.hide()
-  this.popup5.hide()
-  this.popup6.hide()
-  this.popup7.hide()
-
-  }
-  show3(){
-    this.popup1.hide()
-    this.popup2.hide()
-    this.popup4.hide()
-    this.popup5.hide()
-    this.popup6.hide()
-    this.popup7.hide()
-    console.log('ah')
-    this.popup3.options = {
-      header: "Filtrage",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup3.show(this.popup3.options);
-  
-
-  }
-  show4(){
-    this.popup1.hide()
-    this.popup2.hide()
- this.popup3.hide()
-    this.popup5.hide()
-    this.popup6.hide()
-    this.popup7.hide()
-    console.log('ah')
-    this.popup4.options = {
-      header: "Filtrage",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup4.show(this.popup4.options);
-  
-
-  }
-  show5(){
-    this.popup1.hide()
-    this.popup2.hide()
-    this.popup3.hide()
-
-    this.popup4.hide()
-    this.popup6.hide()
-    this.popup7.hide()
-    console.log('ah')
-    this.popup5.options = {
-      header: "Filtrage",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup5.show(this.popup5.options);
-  
-
-  }
-  show6(){
-    this.popup1.hide()
-    this.popup2.hide()
-    this.popup3.hide()
-
-    this.popup4.hide()
-    this.popup5.hide()
- 
-    this.popup7.hide()
-    console.log('ah')
-    this.popup6.options = {
-      header: "Filtrage",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup6.show(this.popup6.options);
-  
-
-  }
-  show7(){
-    this.popup1.hide()
-    this.popup2.hide()
-    this.popup3.hide()
-
-    this.popup4.hide()
-    this.popup5.hide()
-    this.popup6.hide()
-
-    console.log('ah')
-    this.popup7.options = {
-      header: "Filtrage",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup7.show(this.popup7.options);
-  
-
-  }
 
   /*selectedMethode*/
 selectedfamille(item){
@@ -819,8 +712,10 @@ selectEventco(item){
    
   ];
 
-  constructor(public dash:DashbordService,private SrvSrvsService:SrvsService,private FactureServicess:FactureService,public classifications:ClassificationsService) { }
-
+  constructor(public dash:DashbordService,private SrvSrvsService:SrvsService,private FactureServicess:FactureService,public classifications:ClassificationsService,private modalService: BsModalService) { }
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
   ngOnInit() {
     this.classifications.get_Processus().subscribe(data=>{
       this.dataprocessus=data
@@ -845,21 +740,18 @@ this.classifications.getclassfication().subscribe( data=>{
   )
   this.classifications.getorigine().subscribe(data=>{
     this.dataorigin=data
-    console.log(this.dataorigine)
     this.dataorigin.unshift({'Origine':'All'})
   })
 
    this.barChartData=[]
     this.isDataAvailable=false
   this.dash.post_comparaisonacceptancePrv(Number(this.data1),this.choix).subscribe( data=>{
-      console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
          d.data[Number(s.month)-1]=Number(s.TotalCharge)
        })
-       console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
 
@@ -883,14 +775,12 @@ this.classifications.getclassfication().subscribe( data=>{
     
     data=>{
       this.wait=false
-      console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
          d.data[Number(s.month)-1]=Number(s.TotalCharge)
        })
-       console.log(d)
       d.label=this.data2
       d.backgroundColor='rgba(51,106,241)'
 

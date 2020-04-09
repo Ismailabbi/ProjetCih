@@ -26,13 +26,13 @@
       </div>
     </div>
     <div class="row">
-      <button type="button" (click)='show1()' class="btn btn-info s">Classification </button>
-      <button type="button" (click)='show2()' class="btn btn-info s">Origine  </button>
-      <button type="button" (click)='show3()' class="btn btn-info s">Canal   </button>
-      <button type="button"(click)='show4()' class="btn btn-info s">Acceptance    </button>
-      <button type="button"(click)='show5()' class="btn btn-info s">Categorie    </button>
-      <button type="button"(click)='show6()' class="btn btn-info s">Famille    </button>
-      <button type="button"(click)='show7()' class="btn btn-info s">  Processus </button>
+      <button type="button" (click)="openModal(classification)" class="btn btn-info s">Classification </button>
+      <button type="button" (click)='openModal(origin)' class="btn btn-info s">Origine  </button>
+      <button type="button" (click)='openModal(canal)' class="btn btn-info s">Canal   </button>
+      <button type="button"(click)='openModal(acceptance)' class="btn btn-info s">Acceptance    </button>
+      <button type="button"(click)='openModal(categorie)' class="btn btn-info s">Categorie    </button>
+      <button type="button"(click)='openModal(famille)' class="btn btn-info s">Famille    </button>
+      <button type="button"(click)='openModal(processus)' class="btn btn-info s">  Processus </button>
     
     
     </div>
@@ -51,7 +51,22 @@
     
 </div>
 
-
+<div *ngIf="affiche">
+  <alert type="warning">
+    <strong>les données sur {{this.choix}}</strong> n'existe pas dans notre base de données.
+  </alert>
+  <div class="row">
+    <button type="button" (click)="openModal(classification)" class="btn btn-info s">Classification </button>
+    <button type="button" (click)='openModal(origin)' class="btn btn-info s">Origine  </button>
+    <button type="button" (click)='openModal(canal)' class="btn btn-info s">Canal   </button>
+    <button type="button"(click)='openModal(acceptance)' class="btn btn-info s">Acceptance    </button>
+    <button type="button"(click)='openModal(categorie)' class="btn btn-info s">Categorie    </button>
+    <button type="button"(click)='openModal(famille)' class="btn btn-info s">Famille    </button>
+    <button type="button"(click)='openModal(processus)' class="btn btn-info s">  Processus </button>
+  
+  
+  </div>
+</div>
 
 
 <div  *ngIf="wait">
@@ -67,643 +82,702 @@
 
 
 
-<popup  #popup1>
 
-<div class="row">
-  <div class="col-md-3 marginTop">
-                  <th>
-                      De:
 
-                      
-                      <ng-autocomplete 
-                      [data]="datann"
-                      placeHolder="All"
-                  
-                      [searchKeyword]="keywordann"
-                      (selected)='selectann($event)'
-                      (inputChanged)='onChangeSearch($event)'
-                      (inputFocused)='onFocused($event)'
-                      [itemTemplate]="itemTemplatann"
-                      [notFoundTemplate]="notFoundTemplate">                                 
-                    </ng-autocomplete>
-                     
-                    <ng-template #itemTemplatann let-item>
-                        
-                    <a [innerHTML]="item"></a>
-                    </ng-template>
-                     
-                    <ng-template #notFoundTemplate let-notFound>
-                    <div [innerHTML]="notFound"></div>
-                    </ng-template>
-                  </th>
-                 
-                </div>
-                <div class="col-md-3 marginTop">
-                  <th>
-                      A:
-                      
-                      <ng-autocomplete 
-                      [data]="datann"
-                      placeHolder="All"
-                  
-                      [searchKeyword]="keywordann"
-                      (selected)='selectanne($event)'
-                      (inputChanged)='onChangeSearch($event)'
-                      (inputFocused)='onFocused($event)'
-                      [itemTemplate]="itemTemplatann"
-                      [notFoundTemplate]="notFoundTemplate">                                 
-                    </ng-autocomplete>
-                     
-                    <ng-template #itemTemplatann let-item>
-                        
-                    <a [innerHTML]="item"></a>
-                    </ng-template>
-                     
-                    <ng-template #notFoundTemplate let-notFound>
-                    <div [innerHTML]="notFound"></div>
-                    </ng-template>
-                  </th>
-                 
-                </div>
 
-<div class="col-md-4 marginTop">
-    <th>
-        Classification:
-        <ng-autocomplete 
-        [data]="datasclass"
-        placeHolder="All"
-        [searchKeyword]="keywordclass"
-        (selected)='selectEventc($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatec"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
-       
-      <ng-template #itemTemplatec let-item>
-          
-      <a [innerHTML]="item.Classification"></a>
-      </ng-template>
-       
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
 
-    </th>
-</div>
-<div class="col-md-2 ">
+
+
+
+
+
+
+
+
  
-
-  <button type="button" (click)="calculclassification()" class="btn btn-success">Chercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-
-</div>
-
-</div>
-
-
-
-</popup>
-
-<popup  #popup2>
-
+<ng-template #classification>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Filtrage</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
     <div class="row">
-  <div class="col-md-3 marginTop">
-    <th>
-        De :
-        
-        <ng-autocomplete 
-        [data]="datann"
-        placeHolder="All"
+      <div class="col-md-3 ">
+                      <th>
+                          De:
     
-        [searchKeyword]="keywordann"
-        (selected)='selectann($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
-       
-      <ng-template #itemTemplatann let-item>
-          
-      <a [innerHTML]="item"></a>
-      </ng-template>
-       
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
-    </th>
-   
-  </div>
-  <div class="col-md-3 marginTop">
-    <th>
-         A:
-        
-        <ng-autocomplete 
-        [data]="datann"
-        placeHolder="All"
+                          
+                          <ng-autocomplete 
+                          [data]="datann"
+                          placeHolder="All"
+                      
+                          [searchKeyword]="keywordann"
+                          (selected)='selectann($event)'
+                         
+                          [itemTemplate]="itemTemplatann"
+                          [notFoundTemplate]="notFoundTemplate">                                 
+                        </ng-autocomplete>
+                         
+                        <ng-template #itemTemplatann let-item>
+                            
+                        <a [innerHTML]="item"></a>
+                        </ng-template>
+                         
+                        <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                      </th>
+                     
+                    </div>
+                    <div class="col-md-3 ">
+                      <th>
+                          A:
+                          
+                          <ng-autocomplete 
+                          [data]="datann"
+                          placeHolder="All"
+                      
+                          [searchKeyword]="keywordann"
+                          (selected)='selectanne($event)'
+                          (inputChanged)='onChangeSearch($event)'
+                          (inputFocused)='onFocused($event)'
+                          [itemTemplate]="itemTemplatann"
+                          [notFoundTemplate]="notFoundTemplate">                                 
+                        </ng-autocomplete>
+                         
+                        <ng-template #itemTemplatann let-item>
+                            
+                        <a [innerHTML]="item"></a>
+                        </ng-template>
+                         
+                        <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                      </th>
+                     
+                    </div>
     
-        [searchKeyword]="keywordann"
-        (selected)='selectanne($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
-       
-      <ng-template #itemTemplatann let-item>
-          
-      <a [innerHTML]="item"></a>
-      </ng-template>
-       
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
-    </th>
-   
-  </div>
-  <div class="col-md-4 marginTop">
-    <th>
-    Origine
-    <ng-autocomplete 
-      [data]="dataorigin"
-      placeHolder="All"
-
-      [searchKeyword]="keywordorigin"
-      (selected)='selectEventco($event)'
-      (inputChanged)='onChangeSearch($event)'
-      (inputFocused)='onFocused($event)'
-      [itemTemplate]="itemTemplateoo"
-      [notFoundTemplate]="notFoundTemplate">                                 
-    </ng-autocomplete>
+    <div class="col-md-4 ">
+        <th>
+            Classification:
+            <ng-autocomplete 
+            [data]="datasclass"
+            placeHolder="All"
+            [searchKeyword]="keywordclass"
+            (selected)='selectEventc($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatec"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatec let-item>
+              
+          <a [innerHTML]="item.Classification"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+    
+        </th>
+    </div>
+    <div class="col-md-1 ">
      
-    <ng-template #itemTemplateoo let-item>
-        
-    <a [innerHTML]="item.Origine"></a>
-    </ng-template>
-     
-    <ng-template #notFoundTemplate let-notFound>
-    <div [innerHTML]="notFound"></div>
-    </ng-template>
-
-</th>
-
-  </div>
-  <div class="col-md-2">
-
-  <button type="button" (click)="calculorigine()" class="btn btn-success">Chercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-  </div>
-</div>
-</popup>
-
-<popup  #popup3>
-
-  <div class="row">
-  <div class="col-md-3 marginTop">
-    <th>
-        De :
-        
-        
-        <ng-autocomplete 
-        [data]="datann"
-        placeHolder="All"
     
-        [searchKeyword]="keywordann"
-        (selected)='selectann($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
-       
-      <ng-template #itemTemplatann let-item>
-          
-      <a [innerHTML]="item"></a>
-      </ng-template>
-       
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
-    </th>
-   
-  </div>
-  <div class="col-md-3 marginTop">
-    <th>
-        A:
-        
-        <ng-autocomplete 
-        [data]="datann"
-        placeHolder="All"
+      <button type="button"  (click)="calculclassification()" class="btn btn-success marginTopb"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
     
-        [searchKeyword]="keywordann"
-        (selected)='selectanne($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
-       
-      <ng-template #itemTemplatann let-item>
-          
-      <a [innerHTML]="item"></a>
-      </ng-template>
-       
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
-    </th>
-   
-  </div>
-
-  <div class="col-md-4 marginTop">
-
-     
-    <th>
-      Canal:
-      <ng-autocomplete 
-      [data]="datascanal"
-      placeHolder="All"
-
-      [searchKeyword]="keywordcanal"
-      (selected)='selectEventca($event)'
-      (inputChanged)='onChangeSearch($event)'
-      (inputFocused)='onFocused($event)'
-      [itemTemplate]="itemTemplateca"
-      [notFoundTemplate]="notFoundTemplate">                                 
-    </ng-autocomplete>
-     
-    <ng-template #itemTemplateca let-item>
-        
-    <a [innerHTML]="item.Canal"></a>
-    </ng-template>
-     
-    <ng-template #notFoundTemplate let-notFound>
-    <div [innerHTML]="notFound"></div>
-    </ng-template>
+    </div>
     
-</th>
-
-  </div>
-  <div class="col-md-2">
-
-  <button type="button" (click)="calculcanal()" class="btn btn-success">Chercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-</div>
-</div>
-
-
-</popup>
-
-<popup  #popup4>
- <div class="row">
-  <div class="col-md-3 marginTop">
-    <th>
-        De :
-        
-        <ng-autocomplete 
-        [data]="datann"
-        placeHolder="All"
+    </div>
     
-        [searchKeyword]="keywordann"
-        (selected)='selectann($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
-       
-      <ng-template #itemTemplatann let-item>
-          
-      <a [innerHTML]="item"></a>
-      </ng-template>
-       
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
-    </th>
-   
   </div>
-  <div class="col-md-3 marginTop">
-    <th>
-      A :
-        
-        <ng-autocomplete 
-        [data]="datann"
-        placeHolder="All"
-    
-        [searchKeyword]="keywordann"
-        (selected)='selectanne($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
-       
-      <ng-template #itemTemplatann let-item>
-          
-      <a [innerHTML]="item"></a>
-      </ng-template>
-       
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
-    </th>
-   
+</ng-template>
+<ng-template #origin>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Filtrage</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-  <div class="col-md-4 marginTop"> <th>
-    Acceptance:
-    <ng-autocomplete 
-    [data]="datasclacceptance"
-    placeHolder="All"
-    [searchKeyword]="keywordacceptance"
-    (selected)='selectEventa($event)'
-    (inputChanged)='onChangeSearch($event)'
-    (inputFocused)='onFocused($event)'
-    [itemTemplate]="itemTemplatea"
-    [notFoundTemplate]="notFoundTemplate">                                 
-  </ng-autocomplete>
-   
-  <ng-template #itemTemplatea let-item>
-      
-  <a [innerHTML]="item.Acceptance"></a>
-  </ng-template>
-   
-  <ng-template #notFoundTemplate let-notFound>
-  <div [innerHTML]="notFound"></div>
-  </ng-template>
-
-</th></div>
-<div class="col-md-2">
-
-  <button type="button" (click)="calculacceptance()" class="btn btn-success">Chercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-  </div>
-</div>
-</popup>
-<popup  #popup5>
-
+  <div class="modal-body">
     <div class="row">
-  <div class="col-md-3 marginTop">
-    <th>
-        De :
+      <div class="col-md-3 ">
+        <th>
+            De :
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
         
-        <ng-autocomplete 
-        [data]="datann"
-        placeHolder="All"
-    
-        [searchKeyword]="keywordann"
-        (selected)='selectann($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
+            [searchKeyword]="keywordann"
+            (selected)='selectann($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
        
-      <ng-template #itemTemplatann let-item>
-          
-      <a [innerHTML]="item"></a>
-      </ng-template>
-       
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
-    </th>
-   
-  </div>
-  <div class="col-md-3 marginTop">
-    <th>
-         A:
+      </div>
+      <div class="col-md-3 ">
+        <th>
+             A:
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
         
+            [searchKeyword]="keywordann"
+            (selected)='selectanne($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
+       
+      </div>
+      <div class="col-md-4 ">
+        <th>
+        Origine
         <ng-autocomplete 
-        [data]="datann"
-        placeHolder="All"
+          [data]="dataorigin"
+          placeHolder="All"
     
-        [searchKeyword]="keywordann"
-        (selected)='selectanne($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
-       
-      <ng-template #itemTemplatann let-item>
-          
-      <a [innerHTML]="item"></a>
-      </ng-template>
-       
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
+          [searchKeyword]="keywordorigin"
+          (selected)='selectEventco($event)'
+          (inputChanged)='onChangeSearch($event)'
+          (inputFocused)='onFocused($event)'
+          [itemTemplate]="itemTemplateoo"
+          [notFoundTemplate]="notFoundTemplate">                                 
+        </ng-autocomplete>
+         
+        <ng-template #itemTemplateoo let-item>
+            
+        <a [innerHTML]="item.Origine"></a>
+        </ng-template>
+         
+        <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+        </ng-template>
+    
     </th>
-   
+    
+      </div>
+      <div class="col-md-2">
+    
+      <button type="button" (click)="calculorigine()" class="btn btn-success marginTopb"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </div>
+    </div>
+    
   </div>
-  <div class="col-md-4 marginTop">
-    <th>
-      Categorie
-      <ng-autocomplete 
-      placeHolder="All"
-      [data]="datacategorie"
-      [searchKeyword]="keywordcategorie"
-      (selected)='categorieselect($event)'
-      (inputChanged)='b($event)'
-      (inputFocused)='c($event)'
-      [itemTemplate]="itemTemplatee"
-      [notFoundTemplate]="notFoundTemplatee">                                 
-    </ng-autocomplete>
-     
-    <ng-template #itemTemplatee let-iteme>
-    <a [innerHTML]="iteme.Categorie"></a>
-    </ng-template>
-     
-    <ng-template #notFoundTemplatee let-notFound>
-    <div [innerHTML]="notFound"></div>
-    </ng-template>
-
-
-</th>
-
+</ng-template>
+<ng-template #canal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Filtrage</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-    <div class="col-md-2">
-  <button type="button" (click)="calculcategorie()" class="btn btn-success">Chercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-</div>
-</div>
-</popup>
-
-<popup  #popup6>
-
+  <div class="modal-body">
     <div class="row">
-  <div class="col-md-3 marginTop">
-    <th>
-        De :
+      <div class="col-md-3 ">
+        <th>
+            De :
+            
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
         
-        <ng-autocomplete 
-        [data]="datann"
-        placeHolder="All"
-    
-        [searchKeyword]="keywordann"
-        (selected)='selectann($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
+            [searchKeyword]="keywordann"
+            (selected)='selectann($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
        
-      <ng-template #itemTemplatann let-item>
-          
-      <a [innerHTML]="item"></a>
-      </ng-template>
-       
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
-    </th>
-   
-  </div>
-  <div class="col-md-3 marginTop">
-    <th>
-         A:
+      </div>
+      <div class="col-md-3 ">
+        <th>
+            A:
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
         
-        <ng-autocomplete 
-        [data]="datann"
-        placeHolder="All"
+            [searchKeyword]="keywordann"
+            (selected)='selectanne($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
+       
+      </div>
     
-        [searchKeyword]="keywordann"
-        (selected)='selectanne($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
-       
-      <ng-template #itemTemplatann let-item>
-          
-      <a [innerHTML]="item"></a>
-      </ng-template>
-       
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
+      <div class="col-md-4 ">
+    
+         
+        <th>
+          Canal:
+          <ng-autocomplete 
+          [data]="datascanal"
+          placeHolder="All"
+    
+          [searchKeyword]="keywordcanal"
+          (selected)='selectEventca($event)'
+          (inputChanged)='onChangeSearch($event)'
+          (inputFocused)='onFocused($event)'
+          [itemTemplate]="itemTemplateca"
+          [notFoundTemplate]="notFoundTemplate">                                 
+        </ng-autocomplete>
+         
+        <ng-template #itemTemplateca let-item>
+            
+        <a [innerHTML]="item.Canal"></a>
+        </ng-template>
+         
+        <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+        </ng-template>
+        
     </th>
-   
+    
+      </div>
+      <div class="col-md-2">
+    
+      <button type="button" (click)="calculcanal()" class="btn btn-success marginTopb"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+    </div>
   </div>
-  <div class="col-md-4 marginTop">
-    <th>
-      Famille
-      <ng-autocomplete 
-      placeHolder="All"
-      [data]="datafamille"
-      [searchKeyword]="keywordfamille"
-      (selected)='selectedfamille($event)'
-      (inputChanged)='bb($event)'
-      (inputFocused)='cb($event)'
-      [itemTemplate]="itemTemplateee"
-      [notFoundTemplate]="notFoundTemplateee">                                 
-    </ng-autocomplete>
-     
-    <ng-template #itemTemplateee let-iteme>
-    <a [innerHTML]="iteme.Famille"></a>
-    </ng-template>
-     
-    <ng-template #notFoundTemplateee let-notFound>
-    <div [innerHTML]="notFound"></div>
-    </ng-template>
+    </div>
 
-
-</th>
-
+</ng-template>
+<ng-template #acceptance>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Filtrage</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-  <div class="col-md-2">
-  <button type="button" (click)="calculfamille()" class="btn btn-success">Chercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-  </div>
-</div>
-
-
-</popup>
-<popup  #popup7>
-
+  <div class="modal-body">
+    
     <div class="row">
-  <div class="col-md-3 marginTop">
-    <th>
-        De :
+      <div class="col-md-3 ">
+        <th>
+            De :
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
         
+            [searchKeyword]="keywordann"
+            (selected)='selectann($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
+       
+      </div>
+      <div class="col-md-3 ">
+        <th>
+          A :
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
+        
+            [searchKeyword]="keywordann"
+            (selected)='selectanne($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
+       
+      </div>
+      <div class="col-md-4 "> <th>
+        Acceptance:
         <ng-autocomplete 
-        [data]="datann"
+        [data]="datasclacceptance"
         placeHolder="All"
-    
-        [searchKeyword]="keywordann"
-        (selected)='selectann($event)'
+        [searchKeyword]="keywordacceptance"
+        (selected)='selectEventa($event)'
         (inputChanged)='onChangeSearch($event)'
         (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
+        [itemTemplate]="itemTemplatea"
         [notFoundTemplate]="notFoundTemplate">                                 
       </ng-autocomplete>
        
-      <ng-template #itemTemplatann let-item>
+      <ng-template #itemTemplatea let-item>
           
-      <a [innerHTML]="item"></a>
+      <a [innerHTML]="item.Acceptance"></a>
       </ng-template>
        
       <ng-template #notFoundTemplate let-notFound>
       <div [innerHTML]="notFound"></div>
       </ng-template>
-    </th>
-   
-  </div>
-  <div class="col-md-3 marginTop">
-    <th>
-         A:
-        
-        <ng-autocomplete 
-        [data]="datann"
-        placeHolder="All"
     
-        [searchKeyword]="keywordann"
-        (selected)='selectanne($event)'
-        (inputChanged)='onChangeSearch($event)'
-        (inputFocused)='onFocused($event)'
-        [itemTemplate]="itemTemplatann"
-        [notFoundTemplate]="notFoundTemplate">                                 
-      </ng-autocomplete>
+    </th></div>
+    <div class="col-md-2  ">
+    
+      <button type="button" (click)="calculacceptance()" class="btn btn-success marginTopb"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #categorie>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Filtrage</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    <div class="row">
+      <div class="col-md-3 ">
+        <th>
+            De :
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
+        
+            [searchKeyword]="keywordann"
+            (selected)='selectann($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
        
-      <ng-template #itemTemplatann let-item>
-          
-      <a [innerHTML]="item"></a>
-      </ng-template>
+      </div>
+      <div class="col-md-3 ">
+        <th>
+             A:
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
+        
+            [searchKeyword]="keywordann"
+            (selected)='selectanne($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
        
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-      </ng-template>
+      </div>
+      <div class="col-md-4 ">
+        <th>
+          Categorie
+          <ng-autocomplete 
+          placeHolder="All"
+          [data]="datacategorie"
+          [searchKeyword]="keywordcategorie"
+          (selected)='categorieselect($event)'
+          (inputChanged)='b($event)'
+          (inputFocused)='c($event)'
+          [itemTemplate]="itemTemplatee"
+          [notFoundTemplate]="notFoundTemplatee">                                 
+        </ng-autocomplete>
+         
+        <ng-template #itemTemplatee let-iteme>
+        <a [innerHTML]="iteme.Categorie"></a>
+        </ng-template>
+         
+        <ng-template #notFoundTemplatee let-notFound>
+        <div [innerHTML]="notFound"></div>
+        </ng-template>
+    
+    
     </th>
-   
+    
+      </div>
+        <div class="col-md-2 ">
+      <button type="button" (click)="calculcategorie()" class="btn btn-success marginTopb"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+    </div>
   </div>
-  <div class="col-md-4 marginTop">
-    <th>
-      Processus
-      <ng-autocomplete 
-      class="ng-autocomplete"
-      placeHolder="All"
-      [data]="dataprocessus"
-      [searchKeyword]="keywordProcessus"
-      (selected)='selectprocessus($event)'
-      (inputChanged)='onChangeSearch($event)'
-      (inputFocused)='onFocused($event)'
-      [itemTemplate]="itemTemplate"
-      [notFoundTemplate]="notFoundTemplate">                                 
-    </ng-autocomplete>
-     
-    <ng-template #itemTemplate let-item>
-    <a [innerHTML]="item.Processus"></a>
-    </ng-template>
-     
-    <ng-template #notFoundTemplate let-notFound>
-    <div [innerHTML]="notFound"></div>
-    </ng-template>
-
-</th>
-
   </div>
-  <div class="col-md-2 margin">
-  <button type="button" (click)="calculprocessus()" class="btn btn-success">Chercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
- </div>
-
-</div>
-
-
-</popup>
+</ng-template>
+<ng-template #famille>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Filtrage</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    <div class="row">
+      <div class="col-md-3 ">
+        <th>
+            De :
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
+        
+            [searchKeyword]="keywordann"
+            (selected)='selectann($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
+       
+      </div>
+      <div class="col-md-3 ">
+        <th>
+             A:
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
+        
+            [searchKeyword]="keywordann"
+            (selected)='selectanne($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
+       
+      </div>
+      <div class="col-md-4 ">
+        <th>
+          Famille
+          <ng-autocomplete 
+          placeHolder="All"
+          [data]="datafamille"
+          [searchKeyword]="keywordfamille"
+          (selected)='selectedfamille($event)'
+          (inputChanged)='bb($event)'
+          (inputFocused)='cb($event)'
+          [itemTemplate]="itemTemplateee"
+          [notFoundTemplate]="notFoundTemplateee">                                 
+        </ng-autocomplete>
+         
+        <ng-template #itemTemplateee let-iteme>
+        <a [innerHTML]="iteme.Famille"></a>
+        </ng-template>
+         
+        <ng-template #notFoundTemplateee let-notFound>
+        <div [innerHTML]="notFound"></div>
+        </ng-template>
+    
+    
+    </th>
+    
+      </div>
+      <div class="col-md-2">
+      <button type="button" (click)="calculfamille()" class="btn btn-success marginTopb"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </div>
+    </div>
+    
+  </div>
+</ng-template>
+<ng-template #processus>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Filtrage</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    <div class="row">
+      <div class="col-md-3 ">
+        <th>
+            De :
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
+        
+            [searchKeyword]="keywordann"
+            (selected)='selectann($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
+       
+      </div>
+      <div class="col-md-3 ">
+        <th>
+             A:
+            
+            <ng-autocomplete 
+            [data]="datann"
+            placeHolder="All"
+        
+            [searchKeyword]="keywordann"
+            (selected)='selectanne($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplatann"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplatann let-item>
+              
+          <a [innerHTML]="item"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </th>
+       
+      </div>
+      <div class="col-md-4 ">
+        <th>
+          Processus
+          <ng-autocomplete 
+          class="ng-autocomplete"
+          placeHolder="All"
+          [data]="dataprocessus"
+          [searchKeyword]="keywordProcessus"
+          (selected)='selectprocessus($event)'
+          (inputChanged)='onChangeSearch($event)'
+          (inputFocused)='onFocused($event)'
+          [itemTemplate]="itemTemplate"
+          [notFoundTemplate]="notFoundTemplate">                                 
+        </ng-autocomplete>
+         
+        <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.Processus"></a>
+        </ng-template>
+         
+        <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+        </ng-template>
+    
+    </th>
+    
+      </div>
+      <div class="col-md-2 ">
+      <button type="button" (click)="calculprocessus()" class="btn btn-success marginTopb"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+     </div>
+    
+    </div>
+    
+  </div>
+</ng-template>
