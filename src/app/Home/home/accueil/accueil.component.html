@@ -655,7 +655,7 @@
     <div class="col-md-3">
       <div class="card-counter infoo">
         <i class="fa fa-usd" aria-hidden="true"></i>
-        <span class="count-numbers">{{Mastermontant}}</span>
+        <span class="count-numbers">{{Mastermontant/1000}}k</span>
         <span class="count-name">Charge totale MasterCards</span>
       </div>
     </div>
@@ -670,10 +670,10 @@
     </div>
     <div class="col-md-3">
       <div class="card-counter visa2">
-        <i class="fa fa-file" aria-hidden="true"></i>
+        <i class="fa fa-usd" aria-hidden="true"></i>
 
 
-        <span class="count-numbers">{{visamontant}}</span>
+        <span class="count-numbers">{{visamontant/1000}}k</span>
         <span class="count-name">Charge total Visa</span>
       </div>
     </div>
@@ -791,13 +791,14 @@
     
   </main>
 
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
+      
           <div class="col-sm-4">
               <div  routerLink="/home/Services" class="business-card">
-                  <div class="media">
+                  <div class="media mediahover">
                       <div class="media-left">
-                          <img class="media-object img-circle profile-img"  src="https://img.icons8.com/wired/64/000000/service.png"/>
+                         
                       </div>
                       <div class="media-body">
                           <h2 class="media-heading">Service</h2>
@@ -807,11 +808,12 @@
                   </div>
               </div>
           </div>
+         
           <div class="col-sm-4">
               <div routerLink="/home/event"  class="business-card">
-                  <div class="media">
+                  <div class="media mediahover2">
                       <div class="media-left">
-                          <img class="media-object img-circle profile-img" src="https://img.icons8.com/wired/64/000000/foul.png"/>
+                       
                       </div>
                       <div class="media-body">
                           <h2 class="media-heading">Evenement</h2>
@@ -822,9 +824,9 @@
           </div>
           <div class="col-sm-4">
             <div  routerLink="/home/litiges" class="business-card">
-                <div class="media">
+                <div class="media mediahover3 ">
                     <div class="media-left">
-                        <img class="media-object img-circle profile-img" src="https://img.icons8.com/dotty/80/000000/visa.png">
+                       
                     </div>
                     <div class="media-body">
                         <h2 class="media-heading">Litige</h2>

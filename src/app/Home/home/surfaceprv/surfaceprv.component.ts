@@ -119,7 +119,7 @@ export class SurfaceprvComponent implements OnInit {
               let m=a[j].month
               let mf:number=+m
                
-              d.data[mf-1]=+a[j].TotalCharge
+              d.data[mf-1]=+(a[j].TotalCharge/1000)
               
             }
             
@@ -192,7 +192,7 @@ export class SurfaceprvComponent implements OnInit {
                   let m=a[j].month
                   let mf:number=+m
                    
-                  d.data[mf-1]=+a[j].TotalCharge
+                  d.data[mf-1]=+(a[j].TotalCharge/1000)
                 }
                 
               }
@@ -252,7 +252,7 @@ export class SurfaceprvComponent implements OnInit {
                   let m=a[j].month
                   let mf:number=+m
                    
-                  d.data[mf-1]=+a[j].TotalCharge
+                  d.data[mf-1]=+(a[j].TotalCharge/1000)
                 }
                 
               }
@@ -307,7 +307,7 @@ export class SurfaceprvComponent implements OnInit {
                         let m=a[j].month
                         let mf:number=+m
                          
-                        d.data[mf-1]=+a[j].TotalCharge
+                        d.data[mf-1]=+(a[j].TotalCharge/1000)
                       }
                       
                     }
@@ -363,7 +363,7 @@ export class SurfaceprvComponent implements OnInit {
                         let m=a[j].month
                         let mf:number=+m
                          
-                        d.data[mf-1]=+a[j].TotalCharge
+                        d.data[mf-1]=+(a[j].TotalCharge/1000)
                       }
                       
                     }
@@ -418,8 +418,8 @@ export class SurfaceprvComponent implements OnInit {
                 if(labelss[i]==a[j].Acceptance){
                   let m=a[j].month
                   let mf:number=+m
-                   
-                  d.data[mf-1]=+a[j].TotalCharge
+                  d.data[mf-1]=+(a[j].TotalCharge/1000)
+
                 }
                 
               }
@@ -477,7 +477,7 @@ export class SurfaceprvComponent implements OnInit {
             let m=a[j].month
             let mf:number=+m
              
-            d.data[mf-1]=+a[j].TotalCharge
+            d.data[mf-1]=+(a[j].TotalCharge/1000)
             console.log(d.data)
           }
           

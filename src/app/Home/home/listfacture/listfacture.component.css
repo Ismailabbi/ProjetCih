@@ -90,7 +90,9 @@
 
   }
 
- 
+ .modal-header{
+   background: orange;
+ }
  
     .card-counter.primary {
       background-color: #cc0000;
@@ -118,4 +120,28 @@
 }
 .panel-heading{
   height: 112px;
+}
+.card-counter {
+  
+  height: 68px !important;}
+  .fa-usd{
+    font-size: 2em !important;
+  }
+  .fa{
+
+      font-size: 2em !important;
+   
+  }
+  .count-name{
+    top: 0 !important;
+  }
+  .btn-success {
+    color: #fff;
+    background-color: #d6611d !important;
+    border-color: #c96328 !important;
+}
+.btn-success:hover {
+  color: #fff;
+  background-color: #d6611d !important;
+  border-color: #c96328 !important;
 }

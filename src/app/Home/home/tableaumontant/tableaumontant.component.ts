@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,TemplateRef } from '@angular/core';
 import { DashbordService } from 'src/app/Services/dashbord.service';
 import {Popup} from 'ng2-opd-popup';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-tableaumontant',
@@ -8,6 +9,7 @@ import {Popup} from 'ng2-opd-popup';
   styleUrls: ['./tableaumontant.component.css']
 })
 export class TableaumontantComponent implements OnInit {
+  modalRef: BsModalRef;
 
   labelorigine:string[]
   datallorigin:any[]=[]
@@ -28,7 +30,7 @@ Annee:string
   processus:boolean=true
   categorie:boolean=true
   famille:boolean=true
-  constructor(public dash:DashbordService,private popup:Popup) { }
+  constructor(public dash:DashbordService,private popup:Popup,private modalService: BsModalService) { }
 
 
 
@@ -629,6 +631,9 @@ this.popup.show(this.popup.options);
 
 }
 
-
+openModal(template: TemplateRef<any>) {
+  this.modalRef = this.modalService.show(template);
+ 
+}
 
 }

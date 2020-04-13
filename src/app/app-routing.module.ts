@@ -31,6 +31,8 @@ import { SurfacevisaComponent } from './Home/home/Visa/surfacevisa/surfacevisa.c
 import { VentilationvisaComponent } from './Home/home/Visa/ventilationvisa/ventilationvisa.component';
 import { ComparaisonvisaComponent } from './Home/home/Visa/comparaisonvisa/comparaisonvisa.component';
 import { RapprochementvisaComponent } from './Home/home/Visa/rapprochementvisa/rapprochementvisa.component';
+import {ResolvedataService} from './Services/resolvedata.service'
+import { ComparaisonVisaPComponent } from './Home/home/comparaison-visa-p/comparaison-visa-p.component';
 
 
 const routes: Routes = [
@@ -60,7 +62,9 @@ const routes: Routes = [
     {path:'event',component:ListeventComponent},
     {path:'facutreprevison',component:FacturePrevisionComponent},
     {path:'DomainePrevisionnel',component:DashbordprvComponent},
-    {path:'comparaisonprv',component:CompprvComponent},
+    {path:'comparaisonprv',component:CompprvComponent  
+  },
+  {path:'comparaisonprvVisa',component:ComparaisonVisaPComponent},
     {path:'vuegenerale',component:VueGeneralComponent},
     {path:'typebase',component:TypeBaseComponent},
     {path:'litiges',component:LitigesComponent},

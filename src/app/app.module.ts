@@ -79,6 +79,8 @@ import { ComparaisonvisaComponent } from './Home/home/Visa/comparaisonvisa/compa
 import { RapprochementvisaComponent } from './Home/home/Visa/rapprochementvisa/rapprochementvisa.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import {ResolvedataService} from './Services/resolvedata.service';
+import { ComparaisonVisaPComponent } from './Home/home/comparaison-visa-p/comparaison-visa-p.component';
 
 @NgModule({
   declarations: [
@@ -140,7 +142,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     SurfacevisaComponent,
     VentilationvisaComponent,
     ComparaisonvisaComponent,
-    RapprochementvisaComponent
+    RapprochementvisaComponent,
+    ComparaisonVisaPComponent,
   ],
   imports: [
     BrowserModule,
@@ -165,7 +168,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 
 
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},ResolvedataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,11 @@
-import { Component, OnInit,ViewChild, ViewChildren,ElementRef } from '@angular/core';
+import { Component, OnInit,ViewChild, ViewChildren,ElementRef,TemplateRef  } from '@angular/core';
 import { SrvsService } from 'src/app/Services/srvs.service';
 import { Service } from 'src/app/Models/Service';
 import { Facture } from 'src/app/Models/Factures';
 import { FactureService } from 'src/app/Services/facture.service';
-import {Popup} from 'ng2-opd-popup';
 import * as $ from 'jquery';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 import { AcceptancePipe } from 'src/app/Pipes/acceptance.pipe';
 import { CanalPipe } from 'src/app/Pipes/canal.pipe';
 import { ClassificationPipe } from 'src/app/Pipes/classification.pipe';
@@ -27,8 +28,9 @@ import {MontantserviceService} from '../../../Services/montantservice.service'
 export class ListfactureComponent implements OnInit {
   @ViewChildren('myVar') nameInputRef: ElementRef;
 
-  constructor(private SrvSrvsService:SrvsService,private FactureServicess:FactureService,private popup:Popup,public filtrageservices:FiltrageService, public classifications:ClassificationsService,private servicemontant:MontantserviceService) { }
+  constructor(private SrvSrvsService:SrvsService,private FactureServicess:FactureService,public filtrageservices:FiltrageService, public classifications:ClassificationsService,private servicemontant:MontantserviceService,private modalService: BsModalService) { }
   s:Facture[]
+  modalRef: BsModalRef;
   Mastermontant:string
 
   nextdisabled=false
@@ -86,39 +88,57 @@ export class ListfactureComponent implements OnInit {
   page ;
   pageSize ;
   collectionSize ;
-  show(country:Facture){
-    this.popup.options = {
-      header: "Detail",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup.show(this.popup.options);
-  this.factpop=country
-
+ 
+  
+  openModal(template: TemplateRef<any>,facture:Facture) {
+    this.modalRef = this.modalService.show(template);
+    this.factpop=facture
   }
-  
-  
   selectEventco(item){
     if(item.Origine=="All"){
           this.origine=undefined
+          setTimeout(() => {
+       
+            this.start=0
+            this.end=100
+            this.activenext();
+    
+          }, 0,1);
     }
     else{
-    console.log(item)
-    this.origine=item.Origine}
+    
+    this.origine=item.Origine
+    setTimeout(() => {
+       
+      this.start=0
+      this.end=100
+      this.activenext();
+
+    }, 0,1);
+  }
   }
   selectevent(item){
 
     if(item.EventDescription=="All"){
       this.event=undefined
+      setTimeout(() => {
+       
+        this.start=0
+        this.end=100
+        this.activenext();
+
+      }, 0,1);
 }
 else{
   
     this.event=item.EventDescription
-  
+    setTimeout(() => {
+       
+      this.start=0
+      this.end=100
+      this.activenext();
+
+    }, 0,1);  
 
       
   }
@@ -135,15 +155,41 @@ else{
   selectcode(item){
     if(item.ServiceCodeDescription=="All"){
       this.servicecode=undefined
+      
+      
+      setTimeout(() => {
+       
+        this.start=0
+        this.end=100
+        this.activenext();
+
+      }, 0,1);
 }
 else{
-  
+ 
     this.servicecode=item.ServiceCodeDescription
 
+ 
+    setTimeout(() => {
+      this.activenext();
+      this.start=0
+      this.end=this.filtrageservices.nombrefacture
+    }, 0,1);
       
   
   
   }}
+  activenext(){
+    console.log(this.filtrageservices.nombrefacture)
+    if( this.filtrageservices.nombrefacture<100){
+      this.nextdisabled=true
+    }
+    else{
+      
+      this.nextdisabled=false
+      console.log(this.nextdisabled)
+    }
+  }
   categorieselect(item){
     if(item.Categorie=='All'){
 
@@ -163,38 +209,100 @@ else{
   selectann(item){
     if(item=="All"){
       this.an=undefined
+      setTimeout(() => {
+       
+        this.start=0
+        this.end=100
+        this.activenext();
+
+      }, 0,1);
 }
 
 else{
 console.log(item)
-this.an=item}
+this.an=item
+setTimeout(() => {
+       
+  this.start=0
+  this.end=100
+  this.activenext();
+
+}, 0,1);
+}
   }
   selectprocessus(item){
     if(item.Processus=='All'){
         this.processusselected=undefined
+        setTimeout(() => {
+       
+          this.start=0
+          this.end=100
+          this.activenext();
+  
+        }, 0,1);
     }
     else{
       this.processusselected=item.Processus
+      setTimeout(() => {
+       
+        this.start=0
+        this.end=100
+        this.activenext();
+
+      }, 0,1);
     }
   }
   selectedfamille(item){
     if(item.Famille=="All"){
 
       this.familleselected=undefined
+      setTimeout(() => {
+       
+        this.start=0
+        this.end=100
+        this.activenext();
+
+      }, 0,1);
 }
 else{
  
-this.familleselected=item.Famille}
+this.familleselected=item.Famille
+setTimeout(() => {
+       
+  this.start=0
+  this.end=100
+  this.activenext();
+
+}, 0,1);
+
 }
-  
+}
+activeprv(){
+
+}  
   
   selectdate(item){
     if(item=="All"){
           this.d=undefined
+          setTimeout(() => {
+       
+            this.start=0
+            this.end=100
+            this.activenext();
+    
+          }, 0,1);
     }
     else{
     console.log(item)
-    this.d=item}
+    this.d=item
+    setTimeout(() => {
+       
+      this.start=0
+      this.end=100
+      this.activenext();
+
+    }, 0,1);
+  }
   }
   affchfilter(){
     this.filterbol=!this.filterbol
@@ -202,20 +310,50 @@ this.familleselected=item.Famille}
    selectEventca(item){
     if(item.Canal=="All"){
           this.canal=undefined
+          setTimeout(() => {
+       
+            this.start=0
+            this.end=100
+            this.activenext();
+    
+          }, 0,1);
     }
     else{
    
-    this.canal=item.Canal}
+    this.canal=item.Canal
+    setTimeout(() => {
+       
+      this.start=0
+      this.end=100
+      this.activenext();
+
+    }, 0,1);
+  
+  }
   }
    selectEventa(item){
   //  console.log(this.datatransform)
 
     if(item.Acceptance=="All"){
       this.acceptance=undefined
+      setTimeout(() => {
+       
+        this.start=0
+        this.end=100
+        this.activenext();
+
+      }, 0,1);
 }
 else{
   
     this.acceptance=item.Acceptance
+    setTimeout(() => {
+       
+      this.start=0
+      this.end=100
+      this.activenext();
+
+    }, 0,1);
    
        
   }
@@ -299,20 +437,21 @@ else{
     })
   }
 
-  fermer(){
-    this.popup.hide()
-  }
+  
 
  next(){
    this.prvdisabled=false
-  if((this.end+100)<=this.factures.length){
+  if((this.end+100)<=this.filtrageservices.nombrefacture){
     this.end=this.end+100
      console.log(this.end)
   }
    
- if((this.start+100<this.factures.length)&&(this.start+100<this.end)){
+ if((this.start+100<this.filtrageservices.nombrefacture)&&(this.start+100<this.end)){
    this.start=this.start+100
    console.log(this.start)
+    if(this.start+100>this.filtrageservices.nombrefacture){
+        this.nextdisabled=true
+    }
  }
  else{
    console.log('ok')
@@ -325,6 +464,9 @@ else{
   if((this.start-100)>=0){
     this.start=this.start-100
     console.log(this.start)
+    if(this.start==0){
+      this.prvdisabled=true
+    }
   }
   else{
     this.prvdisabled=true

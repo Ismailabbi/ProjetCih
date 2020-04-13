@@ -254,9 +254,11 @@
                
           
           </tr>
-          <div *ngIf="( countries |sercivnams:servicename|typeservice:typeservice|classification:classification|acceptanceservice:acceptance|canalservice:canal|originservice:origine).length === 0">
-            Aucun résultat trouvé
-         </div>
+          <tr *ngIf="( countries |sercivnams:servicename|typeservice:typeservice|classification:classification|acceptanceservice:acceptance|canalservice:canal|originservice:origine).length === 0">
+            <alert type="warning">
+              <strong>Aucun résultat trouvé!</strong> 
+            </alert>
+          </tr>
           </tbody>
         </table>
       </div>

@@ -50,14 +50,17 @@ body{
     color: #f75a01;
     font-weight: bolder;
     padding-left: 35px;
-}.main-content{
+}
+.main-content{
 text-align:center;
 
     margin-left: 16.5%;
    
-    margin-top: 3%;
+    margin-top: 1,5%;
    
 }
+
+
 .r{
     padding-left: 52px;
     
@@ -100,4 +103,8 @@ text-align:center;
 }
 li{
     cursor: pointer;
+}
+
+.float{
+    float: right;
 }

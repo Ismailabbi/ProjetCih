@@ -17,6 +17,7 @@ nombrefacturevisa:string
   ngOnInit() {
  this.servicemontant.getinfoMc().subscribe( (data)=>{
  this.Mastermontant=data[0]['Total']
+
  this.nombrefacture=data[0]['Facture']
    }
  )

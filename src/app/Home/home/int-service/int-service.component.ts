@@ -20,6 +20,7 @@ export class IntServiceComponent implements OnInit {
   constructor(private _flashMessagesService: FlashMessagesService,private popup:Popup,private SrvSrvsService:SrvsService,public classifications:ClassificationsService) {}
   s:Service[]
   origine
+ 
   k
   origin:string
   acceptance:string

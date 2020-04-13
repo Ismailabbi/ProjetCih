@@ -212,7 +212,9 @@
              
             </tr>
             <div *ngIf="(countries|eventname:nomevent|eventnum:num|id:k|eventfamille:familleselected|eventcategorie:categorieselected|eventprocessus:processusselected).length === 0">
-              Aucun résultat trouvé
+              <alert type="warning">
+                <strong>Aucun résultat trouvé!</strong> 
+              </alert>
            </div>
             </tbody>
           </table>

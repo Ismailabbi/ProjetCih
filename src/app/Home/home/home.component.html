@@ -3,7 +3,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid over">
         <div class="row">
             <div class="col-md-2 col-sm-4 sidebar1">
                 <div class="logo">
@@ -77,7 +77,7 @@
 
 
                                 <div *ngIf='vs' class="r">
-                                        <li routerLink="comparaisonprv"> Vision globale</li><br/>
+                                        <li routerLink="comparaisonprvVisa"> Vision globale</li><br/>
 
                                                 <li (click)="refvisa()"> 
                                                                 Référentiel <span class="glyphicon glyphicon-chevron-down size"></span></li><br/>
@@ -148,7 +148,7 @@
             </div>
 
             
-            <div class="col-md-10 col-sm-8  ka main-content">
+            <div class="col-md-10 float col-sm-8  ka main-content">
             <!--Main content code to be written here --> 
             <router-outlet></router-outlet>       
             

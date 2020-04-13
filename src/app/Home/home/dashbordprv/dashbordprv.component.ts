@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,TemplateRef } from '@angular/core';
 import {ChartType,ChartOptions} from'chart.js'
 import { Label} from 'ng2-charts'
 import * as pluginDataLabels from 'chartjs-plugin-datalabels'
@@ -7,7 +7,7 @@ import {ChartDataSets} from 'chart.js'
 import { DashbordService } from 'src/app/Services/dashbord.service';
 import { SrvsService } from 'src/app/Services/srvs.service';
 import { ClassificationsService } from 'src/app/Services/classifications.service';
-import {Popup} from 'ng2-opd-popup';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-dashbordprv',
@@ -18,6 +18,8 @@ export class DashbordprvComponent implements OnInit {
   classification
   acceptancee
   servicename
+  modalRef: BsModalRef;
+
   isDataAvailable:boolean = false;
   wait:boolean=true
 m:number=null
@@ -36,18 +38,10 @@ vider(){
   this.servicename=undefined
   this.Annee=undefined
 }
-public Popacvtive(){
-  this.popup.options = {
-    header: "Detail",
-    color: "#f65900", // red, blue....
-    widthProsentage: 80, // The with of the popou measured by browser width
-    animationDuration: 1, // in seconds, 0 = no animation
-    showButtons: false, // You can hide this in case you want to use custom buttons
-    cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-    animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-};
-this.popup.show(this.popup.options);
 
+openModal(template: TemplateRef<any>) {
+  this.modalRef = this.modalService.show(template);
+  
 }
 tri(){
   
@@ -99,7 +93,6 @@ tri(){
       console.log(data)
      })
     }
-    this.popup.hide()
    }
 public pieChartOptions: ChartOptions = {
   responsive: true,
@@ -136,7 +129,7 @@ public pieChartColors = [
   },
 ];
 
-constructor(public dash:DashbordService,public services:SrvsService,public classifications:ClassificationsService,private popup:Popup) { }
+constructor(public dash:DashbordService,public services:SrvsService,public classifications:ClassificationsService,private modalService: BsModalService) { }
 en(){
 
  console.log("ok")

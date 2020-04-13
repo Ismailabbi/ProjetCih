@@ -1,52 +1,51 @@
 
 
-
-<popup>
-  <div class="panel-body">
-    <div class="row">
-       
-        
-      <div class="row k">
   
-        <div class="col-md-8">
-      <select class="form-control" id="exampleSelect1"  [(ngModel)]="Anne">
-                   
-        <option     [ngValue]="undefined">  Année		</option>
-    
-        <option   >             2018
-          
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   
+    <div class="row k">
+  
+      <div class="col-md-8">
+    <select class="form-control" id="exampleSelect1"  [(ngModel)]="Anne">
+                 
+      <option     [ngValue]="undefined">  Année		</option>
+  
+      <option   >             2018
+        
+      </option>
+      <option   >             2019
+        
         </option>
-        <option   >             2019
-          
-          </option>
-      </select>
-    
-      </div>
-      
-      <div class="col-md-3">
-          <button type="button" (click)='ch()' class="btn btn-info">Chercher</button>
-    
-      </div>
-    </div>
-        
-
+    </select>
   
-</div>
-</div>
- 
+    </div>
+    
+    <div class="col-md-3">
+        <button type="button" (click)='ch()' class="btn btn-info">Chercher</button>
+  
+    </div>
+  </div>
+      
 
 
-</popup>
-	
+  </div>
+</ng-template>
 <div class="panel panel-warning t">
   <div class="panel-heading"><img height="100px" width="350px" src="../../../../assets/MasterCard_Logo.svg.png"/>
     <div class="pull-right">
-        <button  (click)="Popacvtive()"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Date</button>
+        <button  (click)="openModal(template)"class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Date</button>
     </div>
   </div>
   <div class="panel-body">
     
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-2">
           <a *ngIf="!origin" (click)='orginf()'  class="btn icon-btn btn-success" ><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Origin</a>
@@ -206,7 +205,7 @@
                           <div *ngFor="let r of a.data ;let i = index">
                           <div *ngIf='i==0'>
                                   <tr>
-                                    {{r/1000|number:'3.2-5'}}       
+                                    {{r|number:'3.2-5'}}       
                                   </tr>
                                   <hr>
                               </div>

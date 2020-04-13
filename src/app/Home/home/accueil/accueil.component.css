@@ -64,7 +64,7 @@
 
   .card-counter .count-name{
     position: absolute;
-    right: 35px;
+    right: 23px;
     top: 65px;
     font-style: italic;
     text-transform: capitalize;
@@ -148,4 +148,29 @@
    }
    .img-circle {
     border-radius: 0%;
+}
+.grid-container{
+  padding-top: 0 !important;
+}
+.profile-img {
+  height: 3% !important;}
+  .business-card{
+    padding: 0 !important;
+  }
+  .profile-img{
+    height: 80% !important;
+}
+.business-card {
+
+  margin-bottom: 0px !important; }
+
+.mediahover:hover{
+  background: linear-gradient(90deg, #fda76e, #f08058, #ff0000);
+
+} 
+.mediahover2:hover{
+  background: linear-gradient(90deg, #a3b9d0, #188cc5, #0e65aa);
+}
+.mediahover3:hover{
+  background: linear-gradient(90deg, #c8faff, #74cfea, #01c4ff);
 }

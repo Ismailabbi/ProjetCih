@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,TemplateRef } from '@angular/core';
 import {ChartType,ChartOptions} from'chart.js'
 import { Label} from 'ng2-charts'
 import * as pluginDataLabels from 'chartjs-plugin-datalabels'
@@ -7,7 +7,7 @@ import {ChartDataSets} from 'chart.js'
 import { DashbordService } from 'src/app/Services/dashbord.service';
 import { SrvsService } from 'src/app/Services/srvs.service';
 import { ClassificationsService } from 'src/app/Services/classifications.service';
-import {Popup} from 'ng2-opd-popup';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-tableaubord',
@@ -18,6 +18,7 @@ export class TableaubordComponent implements OnInit {
   datacceptance
   isDataAvailable:boolean = false;
   wait:boolean=true
+  modalRef: BsModalRef;
 
   classification
   dataclassification
@@ -64,11 +65,12 @@ isAvailable:boolean=false
     },
   ];
 
-  constructor(public dash:DashbordService,private popup:Popup,public services:SrvsService,public classifications:ClassificationsService) { }
- en(){
-  
-   console.log("ok")
- }
+  constructor(public dash:DashbordService,public services:SrvsService,public classifications:ClassificationsService,private modalService: BsModalService) { }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+    
+  }
  class(){
   this.dash.get_dashbord1().subscribe(
     (data)=>{this.pie=data
@@ -110,20 +112,7 @@ isAvailable:boolean=false
    this.servicename=undefined
    this.Annee=undefined
  }
- tri(){
-  this.popup.options = {
-    header: "Detail",
-    color: "#f65900", // red, blue....
-    widthProsentage: 80, // The with of the popou measured by browser width
-    animationDuration: 1, // in seconds, 0 = no animation
-    showButtons: false, // You can hide this in case you want to use custom buttons
-    cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-    animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-};
-this.popup.show(this.popup.options);
 
-
- }
   ngOnInit() {
     this.classifications.getclassfication().subscribe(
       data=>{
@@ -139,11 +128,12 @@ this.popup.show(this.popup.options);
       this.servicenames=data
       console.log(data)
     })
-    this.dash.get_dashbord1().subscribe(
-      (data)=>{this.pie=data
+    this.dash.get_dashbord1().subscribe( (data)=>{this.pie=data
         console.log(data)
         this.pieChartLabels = Object.getOwnPropertyNames(data);
-        this.pieChartData=Object.values(data)
+         let values=Object.values(data)
+         
+         this.pieChartData=values.map( s=>((Number(s)/1000)))
         this.isDataAvailable=true
         this.wait=false
       
@@ -163,7 +153,9 @@ this.popup.show(this.popup.options);
     this.dash.get_dashbord2().subscribe((data=>{
     console.log(data)
     this.pieChartLabels = Object.getOwnPropertyNames(data);
-       this.pieChartData=Object.values(data)
+    let values=Object.values(data)
+         
+    this.pieChartData=values.map( s=>((Number(s)/1000)))
     }))
     this.pieChartOptions= {
       responsive: true,
@@ -205,24 +197,14 @@ this.popup.show(this.popup.options);
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
 
-  public Popacvtive(){
-    this.popup.options = {
-      header: "Detail",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup.show(this.popup.options);
-
-  }
+ 
   public acceptance(){
     this.dash.get_acceptance().subscribe((data=>{
       console.log(data)
       this.pieChartLabels = Object.getOwnPropertyNames(data);
-         this.pieChartData=Object.values(data)
+      let values=Object.values(data)
+         
+      this.pieChartData=values.map( s=>((Number(s)/1000)))
       }))
       
   }
@@ -230,7 +212,10 @@ this.popup.show(this.popup.options);
     this.dash.get_origin().subscribe((data=>{
       console.log(data)
       this.pieChartLabels = Object.getOwnPropertyNames(data);
-         this.pieChartData=Object.values(data)
+      let values=Object.values(data)
+         
+         this.pieChartData=values.map( s=>((Number(s)/1000)))
+         
       }))
   }
 
@@ -281,8 +266,10 @@ if(this.mois=="Decembre"){
       data=>{
         console.log(data)
           console.log(Object.values(data))
-          this.pieChartData=Object.values(data)
-          console.log(Object.getOwnPropertyNames(data))
+          let values=Object.values(data)
+         
+          this.pieChartData=values.map( s=>((Number(s)/1000)))
+         
           this.pieChartLabels=Object.getOwnPropertyNames(data)
       }
     )
@@ -314,7 +301,9 @@ if(this.mois=="Decembre"){
       
       console.log(Object.getOwnPropertyNames(data))
       this.pieChartLabels = Object.getOwnPropertyNames(data);
-         this.pieChartData=Object.values(data)
+      let values=Object.values(data)
+         
+      this.pieChartData=values.map( s=>((Number(s)/1000)))
       }))
   }
   public fiable(){
@@ -325,7 +314,9 @@ if(this.mois=="Decembre"){
     this.dash.get_canal().subscribe((data=>{
       console.log(data)
       this.pieChartLabels = Object.getOwnPropertyNames(data);
-         this.pieChartData=Object.values(data)
+      let values=Object.values(data)
+         
+      this.pieChartData=values.map( s=>((Number(s)/1000)))
       }))
   }
 
@@ -333,7 +324,9 @@ if(this.mois=="Decembre"){
     this.dash.post_service(this.Annee,this.m).subscribe((data=>{
       console.log(data)
       this.pieChartLabels = Object.getOwnPropertyNames(data);
-         this.pieChartData=Object.values(data)
+      let values=Object.values(data)
+         
+      this.pieChartData=values.map( s=>((Number(s)/1000)))
       }))
   }
   public originfiable(){
@@ -341,7 +334,9 @@ if(this.mois=="Decembre"){
     this.dash.post_origin(this.Annee,this.m).subscribe((data=>{
       console.log(data)
       this.pieChartLabels = Object.getOwnPropertyNames(data);
-         this.pieChartData=Object.values(data)
+      let values=Object.values(data)
+         
+         this.pieChartData=values.map( s=>((Number(s)/1000)))
       }))
   }
 
@@ -349,7 +344,9 @@ if(this.mois=="Decembre"){
     this.dash.post_canal(this.Annee,this.m).subscribe((data=>{
       console.log(data)
       this.pieChartLabels = Object.getOwnPropertyNames(data);
-         this.pieChartData=Object.values(data)
+      let values=Object.values(data)
+         
+      this.pieChartData=values.map( s=>((Number(s)/1000)))
       }))
   }
   fermer(){
@@ -360,7 +357,9 @@ if(this.mois=="Decembre"){
           (data)=>{this.pie=data
             console.log(data)
             this.pieChartLabels = Object.getOwnPropertyNames(data);
-            this.pieChartData=Object.values(data)
+            let values=Object.values(data)
+         
+            this.pieChartData=values.map( s=>((Number(s)/1000)))
             
           
           }
@@ -373,7 +372,9 @@ if(this.mois=="Decembre"){
       else{
         this.dash.post_classification(this.Annee).subscribe(data=>{
           this.pieChartLabels = Object.getOwnPropertyNames(data);
-          this.pieChartData=Object.values(data)
+          let values=Object.values(data)
+         
+          this.pieChartData=values.map( s=>((Number(s)/1000)))
     
         })
         
@@ -399,11 +400,12 @@ if(this.mois=="Decembre"){
         }
         console.log(sername,clasname,acptanme)
        this.pieChartLabels = [sername+'-'+acptanme+clasname+ane]
-        this.pieChartData=Object.values(data)
+       let values=Object.values(data)
+         
+       this.pieChartData=values.map( s=>((Number(s)/1000)))
         console.log(data)
        })
       }
-    this.popup.hide()
   }
 
 }

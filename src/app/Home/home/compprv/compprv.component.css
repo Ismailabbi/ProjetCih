@@ -102,8 +102,8 @@ padding-bottom: 2%;
 }
 .btn-success {
   color: #fff;
-  background-color: #127ce8;
-  border-color: #127ce8;
+  background-color: #127ce8 !important ;
+  border-color: #127ce8 !important;
   
 }
 .btn-success:hover{
@@ -123,4 +123,7 @@ padding-bottom: 2%;
 }
 .modal-header {
   background: orange;
+}
+.flex{
+  margin-top:2% ;
 }

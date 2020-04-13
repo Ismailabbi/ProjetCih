@@ -21,6 +21,7 @@ export class SurfboardComponent implements OnInit {
   dataCategorie
   dataAcceptance
   dataClassification
+  
   public lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Label[] = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -126,7 +127,7 @@ export class SurfboardComponent implements OnInit {
               let m=a[j].month
               let mf:number=+m
                
-              d.data[mf-1]=+a[j].TotalCharge
+              d.data[mf-1]=+(a[j].TotalCharge/1000)
               
             }
             
@@ -153,6 +154,7 @@ export class SurfboardComponent implements OnInit {
       })
       this.dash.post_surfacecategorie(this.date).subscribe(data=>{
           this.dataCategorie=data
+          console.log(data)
         
         
       })
@@ -220,7 +222,7 @@ export class SurfboardComponent implements OnInit {
                   let m=a[j].month
                   let mf:number=+m
                    
-                  d.data[mf-1]=+a[j].TotalCharge
+                  d.data[mf-1]=+(a[j].TotalCharge/1000)
                 }
                 
               }
@@ -278,7 +280,7 @@ export class SurfboardComponent implements OnInit {
                   let m=a[j].month
                   let mf:number=+m
                    
-                  d.data[mf-1]=+a[j].TotalCharge
+                  d.data[mf-1]=+(a[j].TotalCharge/1000)
                 }
                 
               }
@@ -332,7 +334,7 @@ export class SurfboardComponent implements OnInit {
                         let m=a[j].month
                         let mf:number=+m
                          
-                        d.data[mf-1]=+a[j].TotalCharge
+                        d.data[mf-1]=+(a[j].TotalCharge/1000)
                       }
                       
                     }
@@ -354,12 +356,12 @@ export class SurfboardComponent implements OnInit {
           this.wait=true
           this.lineChartData=[]
        this.isDataAvailable=false
-                
+                console.log('salam')
                   let a:Array<any>=Object.values(this.dataCategorie)
                   let labels:string[]=[]
                  
                   a.forEach(s=>{
-                    labels.push(s.categorie)
+                    labels.push(s.Categorie)
                   })
                   let labelss:string[]=[]
                  let n:string
@@ -383,11 +385,11 @@ export class SurfboardComponent implements OnInit {
                     d.data=[0,0,0,0,0,0,0,0,0,0,0,0]
                 
                     for(let j=0;j<a.length;j++){
-                      if(labelss[i]==a[j].categorie){
+                      if(labelss[i]==a[j].Categorie){
                         let m=a[j].month
                         let mf:number=+m
                          
-                        d.data[mf-1]=+a[j].TotalCharge
+                        d.data[mf-1]=+(a[j].TotalCharge/1000)
                       }
                       
                     }
@@ -443,7 +445,7 @@ export class SurfboardComponent implements OnInit {
                   let m=a[j].month
                   let mf:number=+m
                    
-                  d.data[mf-1]=+a[j].TotalCharge
+                  d.data[mf-1]=+(a[j].TotalCharge/1000)
                 }
                 
               }
@@ -501,7 +503,7 @@ export class SurfboardComponent implements OnInit {
             let m=a[j].month
             let mf:number=+m
              
-            d.data[mf-1]=+a[j].TotalCharge
+            d.data[mf-1]=+(a[j].TotalCharge/1000)
             console.log(d.data)
           }
           

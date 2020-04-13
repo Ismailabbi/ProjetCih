@@ -6,9 +6,7 @@ import { DashbordService } from 'src/app/Services/dashbord.service';
 import { SrvsService } from 'src/app/Services/srvs.service';
 import { FactureService } from 'src/app/Services/facture.service';
 import { ClassificationsService } from 'src/app/Services/classifications.service';
-import {Popup} from 'ng2-opd-popup';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { ListKeyManager } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-compprv',
@@ -21,14 +19,8 @@ export class CompprvComponent implements OnInit {
   datacategorie
   modalRef: BsModalRef;
 
-/*   diblaed buttons*/
-  classficationdiasabled:boolean=true
-  origindisabled:boolean=false
-  canaldisabled:boolean=false
-  acceptancedisabled:boolean=false
-  categoriedisabled:boolean=false
-  familledisabled:boolean=false
-  processusdisabled:boolean=false
+
+ 
   /*....*/
   processus:boolean=false
   wait:boolean=true
@@ -62,150 +54,14 @@ export class CompprvComponent implements OnInit {
   keywordorigin='Origine'
 
   keywordclass='Classification'
-  /*activeMethode Debut*/
-  classificationactive(){
-    this.classavailabale=true
-    this.Acceptanceavailabale=false
-    this.originavailabale=false
-    this.canalavailabale=false
-    this.categorievailabale=false
-    this.famillevailabale=false
-    this.Processusvailabale=false
-    this.classficationdiasabled=true
-    this.acceptancedisabled=false
-    this.processusdisabled=false
-    this.familledisabled=false
-    this.origindisabled=false
-    this.categoriedisabled=false
 
+ 
 
-  }
-  @ViewChild('popup1',{static: true}) popup1: Popup;
-  @ViewChild('popup2',{static: true}) popup2: Popup;
-  @ViewChild('popup3',{static: true}) popup3: Popup;
-  @ViewChild('popup4',{static: true}) popup4: Popup;
-  @ViewChild('popup5',{static: true}) popup5: Popup;
-  @ViewChild('popup6',{static: true}) popup6: Popup;
-  @ViewChild('popup7',{static: true}) popup7: Popup;
-  familleactive(){
-    this.famillevailabale=true
-    this.categorievailabale=false
-    this.classavailabale=false
-    this.Acceptanceavailabale=false
-    this.originavailabale=false
-    this.canalavailabale=false
-    this.origindisabled=false
-    this.classficationdiasabled=false
-    this.canaldisabled=false
-    this.acceptancedisabled=false
-    this.categoriedisabled=false
-    this.familledisabled=true
-    this.processusdisabled=false
-    this.categorievailabale=false
-    this.Processusvailabale=false
-
-
-
-  }
-  categorieactive(){
-    this.categorievailabale=true
-    this.classavailabale=false
-    this.Acceptanceavailabale=false
-    this.originavailabale=false
-    this.canalavailabale=false
-    this.origindisabled=false
-    this.classficationdiasabled=false
-    this.canaldisabled=false
-    this.acceptancedisabled=false
-    this.categoriedisabled=true
-    this.familledisabled=false
-    this.processusdisabled=false
-    this.famillevailabale=false
-    this.Processusvailabale=false
-
-
-  }
-  Processusactive(){
-    this.Processusvailabale=true
-  this.categorievailabale=false
-  this.classavailabale=false
-  this.Acceptanceavailabale=false
-  this.originavailabale=false
-  this.canalavailabale=false
-
-  this.origindisabled=false
-  this.classficationdiasabled=false
-  this.canaldisabled=false
-  this.acceptancedisabled=false
-  this.categoriedisabled=false
-  this.familledisabled=false
-  this.processusdisabled=true
-  this.categorievailabale=false
-  this.famillevailabale=false
-
-
-}
-acceptanceactive(){
-  this.Acceptanceavailabale=true
-  this.classavailabale=false
-  this.originavailabale=false
-  this.canalavailabale=false
-  this.origindisabled=false
-  this.classficationdiasabled=false
-  this.canaldisabled=false
-  this.acceptancedisabled=true
-  this.categoriedisabled=false
-  this.familledisabled=false
-  this.processusdisabled=false
-  this.categorievailabale=false
-  this.famillevailabale=false
-  this.Processusvailabale=false
-
-
-
-}
-origineactive(){
-  this.originavailabale=true
-  this.classavailabale=false
-  this.Acceptanceavailabale=false
-  this.canalavailabale=false
-  this.origindisabled=true
-  this.classficationdiasabled=false
-  this.canaldisabled=false
-  this.acceptancedisabled=false
-  this.categoriedisabled=false
-  this.familledisabled=false
-  this.processusdisabled=false
-  this.categorievailabale=false
-  this.famillevailabale=false
-  this.Processusvailabale=false
-
-
-
-
-}
-canalactive(){
-  this.canalavailabale=true
-  this.classavailabale=false
-  this.Acceptanceavailabale=false
-  this.originavailabale=false
-  this.origindisabled=false
-  this.classficationdiasabled=false
-  this.canaldisabled=true
-  this.acceptancedisabled=false
-  this.categoriedisabled=false
-  this.familledisabled=false
-  this.processusdisabled=false
-  this.categorievailabale=false
-  this.famillevailabale=false
-  this.Processusvailabale=false
  
 
 
 
 
-}
-/**finmethode**/
  
  /*CalculeMethode Debut*/
   calculprocessus(){
@@ -221,7 +77,7 @@ canalactive(){
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
        })
        
       d.label=this.data1
@@ -242,7 +98,7 @@ canalactive(){
                d.data=[0,0,0,0,0,0,0,0,0]
                 let dataArray:Array<any>=Object.values(data)
                 dataArray.forEach(s=>{
-                  d.data[Number(s.month)-1]=Number(s.TotalCharge)
+                  d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
                 })
                 
                d.label=this.data2
@@ -282,7 +138,7 @@ canalactive(){
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
        })
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -303,7 +159,7 @@ canalactive(){
                d.data=[0,0,0,0,0,0,0,0,0]
                 let dataArray:Array<any>=Object.values(data)
                 dataArray.forEach(s=>{
-                  d.data[Number(s.month)-1]=Number(s.TotalCharge)
+                  d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
                 })
               
                d.label=this.data2
@@ -343,7 +199,7 @@ canalactive(){
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
        })
      
       d.label=this.data1
@@ -364,7 +220,7 @@ canalactive(){
                   d.data=[0,0,0,0,0,0,0,0,0]
                    let dataArray:Array<any>=Object.values(data)
                    dataArray.forEach(s=>{
-                     d.data[Number(s.month)-1]=Number(s.TotalCharge)
+                    d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
                    })
                   
                   d.label=this.data2
@@ -405,7 +261,7 @@ canalactive(){
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
        })
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -424,7 +280,7 @@ canalactive(){
                 d.data=[0,0,0,0,0,0,0,0,0]
                  let dataArray:Array<any>=Object.values(data)
                  dataArray.forEach(s=>{
-                   d.data[Number(s.month)-1]=Number(s.TotalCharge)
+                  d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
                  })
                 d.label=this.data2
                 d.backgroundColor='rgba(51,106,241)'
@@ -466,7 +322,7 @@ canalactive(){
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
        })
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -485,7 +341,7 @@ canalactive(){
                   d.data=[0,0,0,0,0,0,0,0,0]
                    let dataArray:Array<any>=Object.values(data)
                    dataArray.forEach(s=>{
-                     d.data[Number(s.month)-1]=Number(s.TotalCharge)
+                    d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
                    })
                   d.label=this.data2
                   d.backgroundColor='rgba(51,106,241)'
@@ -527,7 +383,7 @@ canalactive(){
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
        })
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -547,8 +403,7 @@ canalactive(){
           d.data=[0,0,0,0,0,0,0,0,0]
            let dataArray:Array<any>=Object.values(data)
            dataArray.forEach(s=>{
-             d.data[Number(s.month)-1]=Number(s.TotalCharge)
-           })
+            d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)           })
           d.label=this.data2
           d.backgroundColor='rgba(51,106,241)'
           
@@ -577,10 +432,6 @@ canalactive(){
 
   }
 
-
-
-
-
   calculclassification(){
     this.affiche=false
   this.choixCalcule='Classification'
@@ -589,11 +440,12 @@ canalactive(){
 
     this.isDataAvailable=false
     this.dash.post_comparaisonPrv(Number(this.data1),this.choix).subscribe(data=>{
+      console.log(this.choix)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
+         d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
        })
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -612,8 +464,7 @@ canalactive(){
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)       })
       d.label=this.data2
       d.backgroundColor='rgba(51,106,241)'
 
@@ -712,11 +563,16 @@ selectEventco(item){
    
   ];
 
-  constructor(public dash:DashbordService,private SrvSrvsService:SrvsService,private FactureServicess:FactureService,public classifications:ClassificationsService,private modalService: BsModalService) { }
+  constructor(public dash:DashbordService,private SrvSrvsService:SrvsService,private FactureServicess:FactureService,public classifications:ClassificationsService,private modalService: BsModalService ) { 
+    
+
+  }
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
   ngOnInit() {
+ 
+
     this.classifications.get_Processus().subscribe(data=>{
       this.dataprocessus=data
       this.dataprocessus.unshift({'Processus':'All'})
@@ -750,7 +606,7 @@ this.classifications.getclassfication().subscribe( data=>{
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
        })
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -779,7 +635,7 @@ this.classifications.getclassfication().subscribe( data=>{
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
        })
       d.label=this.data2
       d.backgroundColor='rgba(51,106,241)'

@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild  } from '@angular/core';
+import { Component, OnInit,ViewChild,TemplateRef  } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Label } from 'ng2-charts';
@@ -7,6 +7,8 @@ import { SrvsService } from 'src/app/Services/srvs.service';
 import { FactureService } from 'src/app/Services/facture.service';
 import { ClassificationsService } from 'src/app/Services/classifications.service';
 import {Popup} from 'ng2-opd-popup';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 
 @Component({
   selector: 'app-comparaison-a',
@@ -17,7 +19,8 @@ export class ComparaisonAComponent implements OnInit {
   
   datacategorie
   wait:boolean=true
-  
+  modalRef: BsModalRef;
+
   keywordcategorie='Categorie'
   dataprocessus
   datafamille
@@ -90,20 +93,17 @@ export class ComparaisonAComponent implements OnInit {
 
   }
   calculprocessus(){
-    this.popup7.hide()
     this.barChartData=[]
     this.isDataAvailable=false
-    console.log(this.data1)
-    console.log(this.choix)
-  this.dash.post_comparaisonProcessus(Number(this.data1),this.choix).subscribe(
-    data=>{
+   
+  this.dash.post_comparaisonProcessus(Number(this.data1),this.choix).subscribe( data=>{
       console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+      })
        console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -114,15 +114,14 @@ export class ComparaisonAComponent implements OnInit {
 
    
      })
-     this.dash.post_comparaisonProcessus(Number(this.data2),this.choix).subscribe(
-      data=>{
+     this.dash.post_comparaisonProcessus(Number(this.data2),this.choix).subscribe(data=>{
         console.log(data)
         let  d:any={}
         d.data=[0,0,0,0,0,0,0,0,0]
          let dataArray:Array<any>=Object.values(data)
          dataArray.forEach(s=>{
-           d.data[Number(s.month)-1]=Number(s.TotalCharge)
-         })
+          d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+        })
          console.log(d)
         d.label=this.data2
         d.backgroundColor='rgba(51,106,241)'
@@ -140,11 +139,9 @@ export class ComparaisonAComponent implements OnInit {
   }
 
   calculfamille(){
-    this.popup6.hide()
     this.barChartData=[]
     this.isDataAvailable=false
-    console.log(this.data1)
-    console.log(this.choix)
+   
   this.dash.post_comparaisonfamille(Number(this.data1),this.choix).subscribe(
     data=>{
       console.log(data)
@@ -152,8 +149,8 @@ export class ComparaisonAComponent implements OnInit {
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+      })
        console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -171,8 +168,8 @@ export class ComparaisonAComponent implements OnInit {
         d.data=[0,0,0,0,0,0,0,0,0]
          let dataArray:Array<any>=Object.values(data)
          dataArray.forEach(s=>{
-           d.data[Number(s.month)-1]=Number(s.TotalCharge)
-         })
+          d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+        })
          console.log(d)
         d.label=this.data2
         d.backgroundColor='rgba(51,106,241)'
@@ -245,7 +242,6 @@ export class ComparaisonAComponent implements OnInit {
 
   }
   calculcategorie(){
-    this.popup5.hide()
     this.barChartData=[]
     this.isDataAvailable=false
     console.log(this.data1)
@@ -296,18 +292,16 @@ export class ComparaisonAComponent implements OnInit {
   }
  
   calculacceptance(){
-    this.popup4.hide()
     this.barChartData=[]
     this.isDataAvailable=false
-  this.dash.post_comparaisonacceptance(Number(this.data1),this.choix).subscribe(
-    data=>{
+  this.dash.post_comparaisonacceptance(Number(this.data1),this.choix).subscribe( data=>{
       console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+      })
        console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -328,15 +322,14 @@ export class ComparaisonAComponent implements OnInit {
 
 
 
-  this.dash.post_comparaisonacceptance(Number(this.data2),this.choix).subscribe(
-    data=>{
+  this.dash.post_comparaisonacceptance(Number(this.data2),this.choix).subscribe( data=>{
       console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+      })
        console.log(d)
       d.label=this.data2
       d.backgroundColor='rgba(51,106,241)'
@@ -411,121 +404,9 @@ export class ComparaisonAComponent implements OnInit {
    
   ];
 
-  constructor(public dash:DashbordService,private SrvSrvsService:SrvsService,private FactureServicess:FactureService,public classifications:ClassificationsService) { }
-  @ViewChild('popup1',{static: true}) popup1: Popup;
-  @ViewChild('popup2',{static: true}) popup2: Popup;
-  @ViewChild('popup3',{static: true}) popup3: Popup;
-  @ViewChild('popup4',{static: true}) popup4: Popup;
-  @ViewChild('popup5',{static: true}) popup5: Popup;
-  @ViewChild('popup6',{static: true}) popup6: Popup;
-  @ViewChild('popup7',{static: true}) popup7: Popup;
-
-  show1(){
-  
-    this.popup1.options = {
-      header: "Detail",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup1.show(this.popup1.options);
+  constructor(public dash:DashbordService,private SrvSrvsService:SrvsService,private FactureServicess:FactureService,public classifications:ClassificationsService,  private modalService: BsModalService) { }
   
 
-  }
-  
-  show2(){
-    console.log('ah')
-    this.popup2.options = {
-      header: "Detail",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup2.show(this.popup2.options);
-  
-
-  }
-  show3(){
-    console.log('ah')
-    this.popup3.options = {
-      header: "Detail",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup3.show(this.popup3.options);
-  
-
-  }
-  show4(){
-    console.log('ah')
-    this.popup4.options = {
-      header: "Detail",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup4.show(this.popup4.options);
-  
-
-  }
-  show5(){
-    console.log('ah')
-    this.popup5.options = {
-      header: "Detail",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup5.show(this.popup5.options);
-  
-
-  }
-  show6(){
-    console.log('ah')
-    this.popup6.options = {
-      header: "Detail",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup6.show(this.popup6.options);
-  
-
-  }
-  show7(){
-    console.log('ah')
-    this.popup7.options = {
-      header: "Detail",
-      color: "#f65900", // red, blue....
-      widthProsentage: 80, // The with of the popou measured by browser width
-      animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: false, // You can hide this in case you want to use custom buttons
-      cancleBtnClass: "btn btn-default", // you class for styling the cancel button
-      animation: "fadeInDown" // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
-  };
-  this.popup7.show(this.popup7.options);
-  
-
-  }
   ngOnInit() {
     this.classifications.get_Processus().subscribe(data=>{
       this.dataprocessus=data
@@ -557,15 +438,14 @@ this.classifications.getclassfication().subscribe(
 
    this.barChartData=[]
     this.isDataAvailable=false
-  this.dash.post_comparaisonacceptance(Number(this.data1),this.choix).subscribe(
-    data=>{
+  this.dash.post_comparaisonacceptance(Number(this.data1),this.choix).subscribe(data=>{
       console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+      })
        console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -584,15 +464,14 @@ this.classifications.getclassfication().subscribe(
 
 
 
-  this.dash.post_comparaisonacceptance(Number(this.data2),this.choix).subscribe(
-    data=>{
+  this.dash.post_comparaisonacceptance(Number(this.data2),this.choix).subscribe(data=>{
       console.log(data)
       let  d:any={}
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+      })
        console.log(d)
       d.label=this.data2
       d.backgroundColor='rgba(51,106,241)'
@@ -646,7 +525,6 @@ this.classifications.getclassfication().subscribe(
     this.data2=item
   }
   calculcanal(){
-    this.popup3.hide()
     this.barChartData=[]
     this.isDataAvailable=false
   this.dash.post_comparaisoncanal(Number(this.data1),this.choix).subscribe(
@@ -705,7 +583,6 @@ this.classifications.getclassfication().subscribe(
     this.choix=item.Origine
   }
   calculorigine(){
-    this.popup2.hide()
     this.barChartData=[]
     this.isDataAvailable=false
   this.dash.post_comparaisonorigin(Number(this.data1),this.choix).subscribe(
@@ -715,8 +592,8 @@ this.classifications.getclassfication().subscribe(
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+      })
        console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -738,8 +615,8 @@ this.classifications.getclassfication().subscribe(
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+      })
        console.log(d)
 
       d.label=this.data2
@@ -759,7 +636,6 @@ this.classifications.getclassfication().subscribe(
 
   }
   calculclassification(){
-  this.popup1.hide()
     this.barChartData=[]
     console.log(this.data1)
     console.log(this.choix)
@@ -770,8 +646,8 @@ this.classifications.getclassfication().subscribe(
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+      })
        console.log(d)
       d.label=this.data1
       d.backgroundColor='rgba(238, 83, 79, 1)'
@@ -787,8 +663,8 @@ this.classifications.getclassfication().subscribe(
       d.data=[0,0,0,0,0,0,0,0,0]
        let dataArray:Array<any>=Object.values(data)
        dataArray.forEach(s=>{
-         d.data[Number(s.month)-1]=Number(s.TotalCharge)
-       })
+        d.data[Number(s.month)-1]=(Number(s.TotalCharge)/1000).toFixed(2)
+      })
        console.log(d)
       d.label=this.data2
       d.backgroundColor='rgba(51,106,241)'
@@ -801,6 +677,10 @@ this.classifications.getclassfication().subscribe(
      
      
 
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
  
  
